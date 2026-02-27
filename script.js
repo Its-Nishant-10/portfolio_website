@@ -1,39 +1,36 @@
 /**
- * ================================================================
- * RETRO PORTFOLIO — script.js
- * Nishant Nahar's portfolio — all vanilla JavaScript
- *
- * TABLE OF CONTENTS
- * -----------------
- * 1.  Configuration
- * 2.  Smooth Scroll (nav links + CTA buttons)
- * 3.  Hamburger / Mobile Nav Toggle
- * 4.  Active Nav Link (IntersectionObserver)
- * 5.  Section Fade-in (IntersectionObserver)
- * 6.  Typewriter Effect
- * 7.  Skill Bar Animation (IntersectionObserver)
- * 8.  Project Filter
- * 9.  Project Modal (open / close / Escape key)
- * 10. Contact Form Validation + Toast
- * 11. Init — bootstraps all features on DOMContentLoaded
- * ================================================================
+ * NISHANT NAHAR — RETRO PORTFOLIO  |  script.js
+ * ─────────────────────────────────────────────────────────────
+ *  1. Typewriter hero animation
+ *  2. Sticky navbar active link on scroll
+ *  3. Hamburger mobile menu toggle
+ *  4. Project card filter (All / Web / Mobile / Design)
+ *  5. Project modal open / close
+ *  6. Skill bar animation on scroll
+ *  7. Section fade-in on scroll
+ *  8. Contact form validation + Formspree submission + toast
  */
 
 "use strict";
 
-/* ================================================================
-   1. CONFIGURATION
-   ================================================================ */
+/* ============================================================
+   CONFIG — edit these values
+   ============================================================ */
 
 /**
- * TODO: Add 3 personal tagline phrases for the typewriter effect.
- * Each string will be typed out character-by-character and then
- * erased before the next one begins.
+ * HOW TO GET YOUR FORMSPREE URL (free, takes 2 minutes):
+ *  1. Go to https://formspree.io and sign up
+ *  2. Click "New Form" → give it a name → confirm your email
+ *  3. Copy the endpoint URL (e.g. https://formspree.io/f/xabcdefg)
+ *  4. Paste it below, replacing the placeholder string
  *
- * Example phrases:
- *   "I build retro-inspired web experiences."
- *   "I turn ideas into pixel-perfect interfaces."
- *   "I love clean code and bold design."
+ * Once set, every form submission will land in your inbox. ✓
+ */
+const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID"; // TODO: paste your Formspree URL here
+
+/**
+ * Typewriter phrases shown in the hero section.
+ * TODO: Replace these with your own taglines (min 2).
  */
 const TYPEWRITER_PHRASES = [
   "I build retro-inspired web experiences.",
@@ -41,635 +38,316 @@ const TYPEWRITER_PHRASES = [
   "I love clean code and bold design.",
 ];
 
-/** Typing speed in milliseconds per character (lower = faster). */
-const TYPEWRITER_SPEED = 68;
+/* ============================================================
+   1. TYPEWRITER ANIMATION
+   ============================================================ */
+(function initTypewriter() {
+  const el = document.getElementById("typewriter-text");
+  if (!el) return;
 
-/** Erasing speed in milliseconds per character (lower = faster). */
-const TYPEWRITER_ERASE_SPEED = 38;
+  let phraseIndex = 0,
+    charIndex = 0,
+    isDeleting = false;
+  const TYPE_SPEED = 60;
+  const DELETE_SPEED = 35;
+  const PAUSE_END = 1800;
+  const PAUSE_START = 300;
 
-/** Pause (ms) after fully typing a phrase before erasing starts. */
-const TYPEWRITER_PAUSE_AFTER = 2200;
+  function tick() {
+    const phrase = TYPEWRITER_PHRASES[phraseIndex];
+    isDeleting ? charIndex-- : charIndex++;
+    el.textContent = phrase.slice(0, charIndex);
 
-/** Pause (ms) after fully erasing a phrase before the next starts. */
-const TYPEWRITER_PAUSE_BEFORE = 500;
+    let delay = isDeleting ? DELETE_SPEED : TYPE_SPEED;
 
-/** Duration (ms) the success toast is visible before auto-dismissing. */
-const TOAST_DURATION = 3000;
+    if (!isDeleting && charIndex === phrase.length) {
+      delay = PAUSE_END;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % TYPEWRITER_PHRASES.length;
+      delay = PAUSE_START;
+    }
+    setTimeout(tick, delay);
+  }
+  tick();
+})();
 
-/* ================================================================
-   2. SMOOTH SCROLL
-   Intercepts all anchor clicks whose href points to an on-page
-   section (#id) and scrolls to it smoothly instead of jumping.
-   ================================================================ */
+/* ============================================================
+   2. NAVBAR — active link highlight on scroll
+   ============================================================ */
+(function initNavHighlight() {
+  const sections = document.querySelectorAll("main section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-/**
- * Initialises smooth scrolling on all internal anchor links.
- * Also closes the mobile nav drawer when a link is clicked.
- */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", (e) => {
-      const targetId = anchor.getAttribute("href");
-      if (targetId === "#") return; // Skip bare "#" links
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === "#" + entry.target.id,
+            );
+          });
+        }
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" },
+  );
+  sections.forEach((sec) => observer.observe(sec));
+})();
 
-      const target = document.querySelector(targetId);
-      if (!target) return;
+/* ============================================================
+   3. HAMBURGER — mobile menu toggle
+   ============================================================ */
+(function initHamburger() {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+  if (!hamburger || !navLinks) return;
 
-      e.preventDefault();
+  hamburger.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    hamburger.classList.toggle("open", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+  });
 
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      // Close mobile nav drawer after a link is clicked
-      closeMobileNav();
+  navLinks.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      hamburger.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
     });
   });
-}
+})();
 
-/* ================================================================
-   3. HAMBURGER / MOBILE NAV TOGGLE
-   Toggles the slide-down mobile navigation drawer and updates
-   the aria-expanded attribute for accessibility.
-   ================================================================ */
+/* ============================================================
+   4. PROJECT FILTER
+   ============================================================ */
+(function initFilter() {
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".project-card");
+  if (!filterBtns.length || !cards.length) return;
 
-/** @type {HTMLButtonElement|null} */
-let hamburgerBtn = null;
-
-/** @type {HTMLElement|null} */
-let mobileNav = null;
-
-/**
- * Initialises the hamburger button toggle behaviour.
- */
-function initHamburger() {
-  hamburgerBtn = document.getElementById("hamburger-btn");
-  mobileNav = document.getElementById("mobile-nav");
-
-  if (!hamburgerBtn || !mobileNav) return;
-
-  hamburgerBtn.addEventListener("click", () => {
-    const isOpen = mobileNav.classList.contains("nav-open");
-    if (isOpen) {
-      closeMobileNav();
-    } else {
-      openMobileNav();
-    }
-  });
-}
-
-/**
- * Opens the mobile nav drawer.
- */
-function openMobileNav() {
-  if (!mobileNav || !hamburgerBtn) return;
-  mobileNav.classList.add("nav-open");
-  mobileNav.setAttribute("aria-hidden", "false");
-  hamburgerBtn.setAttribute("aria-expanded", "true");
-  hamburgerBtn.innerHTML = '<span aria-hidden="true">✕</span>';
-}
-
-/**
- * Closes the mobile nav drawer.
- */
-function closeMobileNav() {
-  if (!mobileNav || !hamburgerBtn) return;
-  mobileNav.classList.remove("nav-open");
-  mobileNav.setAttribute("aria-hidden", "true");
-  hamburgerBtn.setAttribute("aria-expanded", "false");
-  hamburgerBtn.innerHTML = '<span aria-hidden="true">☰</span>';
-}
-
-/* ================================================================
-   4. ACTIVE NAV LINK HIGHLIGHT
-   Uses IntersectionObserver to track which section is currently
-   in view and highlights the corresponding nav link.
-   ================================================================ */
-
-/**
- * Observes all major page sections and updates active nav links.
- */
-function initActiveNav() {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link[data-section]");
-
-  if (!sections.length || !navLinks.length) return;
-
-  /**
-   * Build a map: sectionId → navLink element
-   * for O(1) lookups when the observer fires.
-   */
-  const linkMap = {};
-  navLinks.forEach((link) => {
-    linkMap[link.dataset.section] = link;
-  });
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.id;
-        const link = linkMap[id];
-        if (!link) return;
-
-        if (entry.isIntersecting) {
-          // Remove active class from all links first
-          navLinks.forEach((l) => l.classList.remove("is-active"));
-          link.classList.add("is-active");
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      cards.forEach((card) => {
+        const show = filter === "all" || card.dataset.category === filter;
+        if (show) {
+          card.classList.remove("hidden");
+          card.style.animation = "none";
+          card.offsetHeight; // force reflow
+          card.style.animation = "";
+        } else {
+          card.classList.add("hidden");
         }
       });
-    },
-    {
-      // Trigger when a section occupies at least 35% of the viewport
-      threshold: 0.35,
-    },
-  );
+    });
+  });
+})();
 
-  sections.forEach((section) => observer.observe(section));
-}
+/* ============================================================
+   5. MODALS — open / close
+   ============================================================ */
+(function initModals() {
+  const overlays = document.querySelectorAll(".modal-overlay");
+  const viewBtns = document.querySelectorAll(".btn-view");
 
-/* ================================================================
-   5. SECTION FADE-IN
-   Observes all elements with .fade-section and adds .is-visible
-   once they enter the viewport, triggering the CSS transition.
-   ================================================================ */
-
-/**
- * Sets up scroll-triggered fade-in for all .fade-section elements.
- */
-function initFadeIn() {
-  const fadeEls = document.querySelectorAll(".fade-section");
-  if (!fadeEls.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          // Unobserve after animating to avoid toggling
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px",
-    },
-  );
-
-  fadeEls.forEach((el) => observer.observe(el));
-}
-
-/* ================================================================
-   6. TYPEWRITER EFFECT
-   Cycles through TYPEWRITER_PHRASES array, typing each character
-   one-by-one and then erasing before moving to the next phrase.
-   ================================================================ */
-
-/**
- * Starts the typewriter animation on #typewriter-text.
- */
-function initTypewriter() {
-  const el = document.getElementById("typewriter-text");
-  if (!el || !TYPEWRITER_PHRASES.length) return;
-
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let isErasing = false;
-
-  /**
-   * Core tick function — called recursively via setTimeout.
-   * @returns {void}
-   */
-  function tick() {
-    const currentPhrase = TYPEWRITER_PHRASES[phraseIndex];
-
-    if (!isErasing) {
-      // Typing forward
-      charIndex++;
-      el.textContent = currentPhrase.slice(0, charIndex);
-
-      if (charIndex === currentPhrase.length) {
-        // Fully typed — pause then start erasing
-        isErasing = true;
-        setTimeout(tick, TYPEWRITER_PAUSE_AFTER);
-        return;
-      }
-    } else {
-      // Erasing
-      charIndex--;
-      el.textContent = currentPhrase.slice(0, charIndex);
-
-      if (charIndex === 0) {
-        // Fully erased — move to next phrase
-        isErasing = false;
-        phraseIndex = (phraseIndex + 1) % TYPEWRITER_PHRASES.length;
-        setTimeout(tick, TYPEWRITER_PAUSE_BEFORE);
-        return;
-      }
-    }
-
-    const speed = isErasing ? TYPEWRITER_ERASE_SPEED : TYPEWRITER_SPEED;
-    setTimeout(tick, speed);
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    modal.querySelector(".modal-close")?.focus();
   }
 
-  tick();
-}
+  function closeAll() {
+    overlays.forEach((m) => m.classList.remove("open"));
+    document.body.style.overflow = "";
+  }
 
-/* ================================================================
-   7. SKILL BAR ANIMATION
-   Observes .skill-bar elements. When they enter the viewport,
-   reads the data-width attribute and animates the bar to that %.
-   ================================================================ */
+  viewBtns.forEach((btn) =>
+    btn.addEventListener("click", () => openModal(btn.dataset.modal)),
+  );
+  overlays.forEach((o) =>
+    o.addEventListener("click", (e) => {
+      if (e.target === o) closeAll();
+    }),
+  );
+  document
+    .querySelectorAll(".modal-close")
+    .forEach((btn) => btn.addEventListener("click", closeAll));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+})();
 
-/**
- * Animates skill progress bars when they scroll into view.
- */
-function initSkillBars() {
-  const bars = document.querySelectorAll(".skill-bar[data-width]");
+/* ============================================================
+   6. SKILL BARS — animate on scroll
+   ============================================================ */
+(function initSkillBars() {
+  const bars = document.querySelectorAll(".skill-bar");
   if (!bars.length) return;
+  let animated = false;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          const targetPct = parseInt(bar.dataset.width, 10) || 0;
-          // Small delay so other fade-in transitions complete first
-          setTimeout(() => {
-            bar.style.width = `${targetPct}%`;
-          }, 200);
-          observer.unobserve(bar);
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          bars.forEach((bar) => {
+            requestAnimationFrame(() => {
+              bar.style.width = (bar.dataset.width || "0") + "%";
+            });
+          });
         }
       });
     },
     { threshold: 0.3 },
   );
+  const skillSection = document.getElementById("skills");
+  if (skillSection) observer.observe(skillSection);
+})();
 
-  bars.forEach((bar) => observer.observe(bar));
-}
+/* ============================================================
+   7. FADE-IN on scroll
+   ============================================================ */
+(function initFadeIn() {
+  // NOTE: .project-card is intentionally excluded here —
+  // it uses its own CSS fadeUp keyframe with nth-child delays.
+  const targets = document.querySelectorAll(
+    '.about-grid, .skills-grid, .contact-grid, ' +
+    '.section-title, .section-eyebrow, .quicklinks-label, .quicklinks-bar'
+  );
+  targets.forEach((el) => el.classList.add('fade-in'));
 
-/* ================================================================
-   8. PROJECT FILTER
-   Filter buttons toggle card visibility by matching each card's
-   data-category attribute. A fade-in transition is applied.
-   ================================================================ */
-
-/**
- * Initialises the project filter bar.
- */
-function initProjectFilter() {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".project-card");
-
-  if (!filterBtns.length || !cards.length) return;
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter;
-
-      // Update button states + aria-pressed
-      filterBtns.forEach((b) => {
-        b.classList.remove("active");
-        b.setAttribute("aria-pressed", "false");
-      });
-      btn.classList.add("active");
-      btn.setAttribute("aria-pressed", "true");
-
-      // Show / hide cards
-      cards.forEach((card) => {
-        const category = card.dataset.category;
-        const show = filter === "all" || category === filter;
-
-        if (show) {
-          card.removeAttribute("data-hidden");
-          // Re-trigger fade-in if the card had previously animated
-          card.classList.remove("is-visible");
-          // requestAnimationFrame ensures the class removal is painted
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => card.classList.add("is-visible"));
-          });
-        } else {
-          card.setAttribute("data-hidden", "true");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
       });
-    });
-  });
-}
-
-/* ================================================================
-   9. PROJECT MODAL
-   "View Project" buttons open the matching modal panel.
-   Close via ✕ button, clicking the dark overlay, or Escape key.
-   Focus is trapped inside the modal while open.
-   ================================================================ */
-
-/** @type {HTMLElement|null} Currently-open modal panel */
-let activeModal = null;
-
-/** @type {Element|null} Element that triggered the modal (for focus restore) */
-let modalTrigger = null;
-
-/**
- * Initialises project modal open/close behaviour.
- */
-function initModals() {
-  const overlay = document.getElementById("modal-overlay");
-  const viewBtns = document.querySelectorAll(".btn-view[data-project]");
-  const closeBtns = document.querySelectorAll(".modal-close[data-close]");
-
-  if (!overlay) return;
-
-  // Open modal when "View Project" is clicked
-  viewBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const projectId = btn.dataset.project;
-      const panel = document.getElementById(`modal-${projectId}`);
-      if (!panel) return;
-
-      modalTrigger = btn;
-      openModal(overlay, panel);
-    });
-  });
-
-  // Close via ✕ button
-  closeBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      closeModal(overlay);
-    });
-  });
-
-  // Close by clicking the dark overlay (outside the panel)
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      closeModal(overlay);
-    }
-  });
-
-  // Close via Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && overlay.classList.contains("is-open")) {
-      closeModal(overlay);
-    }
-
-    // Trap focus inside the modal
-    if (e.key === "Tab" && activeModal) {
-      trapFocus(activeModal, e);
-    }
-  });
-}
-
-/**
- * Opens the modal overlay and shows the target panel.
- *
- * @param {HTMLElement} overlay - The full-screen modal overlay element.
- * @param {HTMLElement} panel   - The specific modal panel to display.
- */
-function openModal(overlay, panel) {
-  // Hide any currently visible panel
-  document.querySelectorAll(".modal-panel").forEach((p) => {
-    p.hidden = true;
-  });
-
-  panel.hidden = false;
-  activeModal = panel;
-
-  overlay.classList.add("is-open");
-  overlay.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-
-  // Move focus to the close button inside the opened modal
-  const closeBtn = panel.querySelector(".modal-close");
-  if (closeBtn) closeBtn.focus();
-}
-
-/**
- * Closes the modal overlay and hides all panels.
- *
- * @param {HTMLElement} overlay - The full-screen modal overlay element.
- */
-function closeModal(overlay) {
-  overlay.classList.remove("is-open");
-  overlay.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-
-  // Small delay so the CSS transition finishes before setting hidden
-  setTimeout(() => {
-    document.querySelectorAll(".modal-panel").forEach((p) => {
-      p.hidden = true;
-    });
-    activeModal = null;
-  }, 400);
-
-  // Restore focus to the trigger that opened the modal
-  if (modalTrigger) {
-    modalTrigger.focus();
-    modalTrigger = null;
-  }
-}
-
-/**
- * Traps keyboard focus within the modal panel while it is open.
- * Cycles through focusable elements when Tab / Shift+Tab is pressed.
- *
- * @param {HTMLElement} panel - The currently active modal panel.
- * @param {KeyboardEvent} e   - The keyboard event to intercept.
- */
-function trapFocus(panel, e) {
-  const focusable = Array.from(
-    panel.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
-    ),
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
+  targets.forEach((el) => observer.observe(el));
+})();
 
-  if (!focusable.length) return;
-
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-
-  if (e.shiftKey) {
-    if (document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    }
-  } else {
-    if (document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  }
-}
-
-/* ================================================================
-   10. CONTACT FORM VALIDATION + TOAST
-   Client-side validation runs on submit.
-   Invalid fields get a shake animation and red border.
-   A valid submission shows a retro toast notification.
-   ================================================================ */
-
-/**
- * Validates the contact form and shows a success toast on success.
- */
-function initContactForm() {
+/* ============================================================
+   8. CONTACT FORM — validation + Formspree submission
+   ============================================================ */
+(function initContactForm() {
   const form = document.getElementById("contact-form");
+  const toastEl = document.getElementById("toast");
+  const submitBtn = document.getElementById("submit-btn");
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Always prevent default (no backend yet)
-
-    const isValid = validateForm(form);
-    if (isValid) {
-      showToast("Message sent successfully ✓");
-      form.reset();
-      // Re-enable submit button
-      const submitBtn = form.querySelector("#submit-btn");
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Message →";
-      }
-    }
-  });
-}
-
-/**
- * Runs all validation rules against the form fields.
- * Returns true if every field is valid, false otherwise.
- *
- * @param {HTMLFormElement} form - The form element to validate.
- * @returns {boolean} Whether the form is fully valid.
- */
-function validateForm(form) {
-  let isValid = true;
-
-  /** Email regex — RFC 5322 simplified */
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  /**
-   * Validates a single field.
-   *
-   * @param {HTMLInputElement|HTMLTextAreaElement} field - The field to check.
-   * @param {string} errorId  - ID of the <span> that displays the error message.
-   * @param {string} message  - Error message to display if validation fails.
-   * @param {Function} [test] - Optional custom test fn returning boolean.
-   */
-  function validateField(field, errorId, message, test) {
-    const errorEl = document.getElementById(errorId);
-    const isEmpty = !field.value.trim();
-    const fails = isEmpty || (test && !test(field.value.trim()));
-
-    if (fails) {
-      field.classList.add("is-error");
-      if (errorEl)
-        errorEl.textContent = isEmpty ? "This field is required." : message;
-      isValid = false;
-
-      // Remove error class after shake animation completes
-      field.addEventListener(
-        "animationend",
-        () => field.classList.remove("is-error"),
-        { once: true },
-      );
-
-      // Clear error on user input
-      field.addEventListener(
-        "input",
-        () => {
-          field.classList.remove("is-error");
-          if (errorEl) errorEl.textContent = "";
-        },
-        { once: true },
-      );
-    } else {
-      field.classList.remove("is-error");
-      if (errorEl) errorEl.textContent = "";
-    }
+  /* -- Toast helper -- */
+  function showToast(message, duration = 4000) {
+    if (!toastEl) return;
+    toastEl.textContent = message;
+    toastEl.classList.add("show");
+    setTimeout(() => toastEl.classList.remove("show"), duration);
   }
 
-  // Validate Name
-  validateField(
-    form.querySelector("#field-name"),
-    "error-name",
-    "Please enter your name.",
-  );
+  /* -- Validate a single field -- */
+  function validateField(input, errorEl) {
+    const value = input.value.trim();
+    let error = "";
+    if (!value) {
+      error = "This field is required.";
+    } else if (
+      input.type === "email" &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+    ) {
+      error = "Please enter a valid email address.";
+    }
+    input.classList.toggle("error", !!error);
+    errorEl.textContent = error;
+    return !error;
+  }
 
-  // Validate Email (with format check)
-  validateField(
-    form.querySelector("#field-email"),
-    "error-email",
-    "Please enter a valid email address.",
-    (val) => emailRegex.test(val),
-  );
-
-  // Validate Subject
-  validateField(
-    form.querySelector("#field-subject"),
-    "error-subject",
-    "Please enter a subject.",
-  );
-
-  // Validate Message
-  validateField(
-    form.querySelector("#field-message"),
-    "error-message",
-    "Please write a message.",
-  );
-
-  return isValid;
-}
-
-/**
- * Creates and shows a retro toast notification at the bottom-right.
- * Auto-dismisses after TOAST_DURATION milliseconds.
- *
- * @param {string} message - Text to display inside the toast.
- */
-function showToast(message) {
-  // Remove any existing toast first
-  const existing = document.getElementById("success-toast");
-  if (existing) existing.remove();
-
-  const toast = document.createElement("div");
-  toast.id = "success-toast";
-  toast.className = "toast";
-  toast.textContent = message;
-  toast.setAttribute("role", "status");
-  toast.setAttribute("aria-live", "polite");
-
-  document.body.appendChild(toast);
-
-  // Trigger CSS transition (needs a paint frame after insertion)
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      toast.classList.add("is-visible");
+  /* -- Clear inline errors on typing -- */
+  form.querySelectorAll("input, textarea").forEach((input) => {
+    input.addEventListener("input", () => {
+      input.classList.remove("error");
+      const errorEl = document.getElementById(input.id + "-error");
+      if (errorEl) errorEl.textContent = "";
     });
   });
 
-  // Auto-dismiss after TOAST_DURATION ms
-  setTimeout(() => {
-    toast.classList.remove("is-visible");
-    // Remove from DOM after transition finishes
-    toast.addEventListener("transitionend", () => toast.remove(), {
-      once: true,
-    });
-  }, TOAST_DURATION);
-}
+  /* -- Submit handler -- */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-/* ================================================================
-   11. INIT
-   Called once the DOM is fully parsed. Bootstraps all features.
-   ================================================================ */
+    const fields = [
+      {
+        input: form.querySelector("#name"),
+        error: form.querySelector("#name-error"),
+      },
+      {
+        input: form.querySelector("#email"),
+        error: form.querySelector("#email-error"),
+      },
+      {
+        input: form.querySelector("#subject"),
+        error: form.querySelector("#subject-error"),
+      },
+      {
+        input: form.querySelector("#message"),
+        error: form.querySelector("#message-error"),
+      },
+    ];
 
-/**
- * Entry point — initialises all portfolio features.
- * Called when the DOM content is fully loaded.
- */
-function init() {
-  initSmoothScroll();
-  initHamburger();
-  initActiveNav();
-  initFadeIn();
-  initTypewriter();
-  initSkillBars();
-  initProjectFilter();
-  initModals();
-  initContactForm();
-}
+    const allValid = fields.every(({ input, error }) =>
+      input && error ? validateField(input, error) : true,
+    );
 
-document.addEventListener("DOMContentLoaded", init);
+    if (!allValid) {
+      showToast("⚠ Please fill in all fields correctly.");
+      return;
+    }
+
+    /* ── Send via Formspree ── */
+    if (FORMSPREE_URL.includes("YOUR_FORM_ID")) {
+      // Formspree not yet configured — show success toast as demo
+      showToast(
+        "✓ Message sent! (Demo mode — add your Formspree URL to script.js to receive real emails)",
+      );
+      form.reset();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+
+      if (response.ok) {
+        showToast("✓ Message sent successfully! I'll be in touch soon.");
+        form.reset();
+      } else {
+        const data = await response.json().catch(() => ({}));
+        const msg =
+          data?.errors?.map((e) => e.message).join(", ") ||
+          "Something went wrong.";
+        showToast("✕ Failed to send: " + msg);
+      }
+    } catch {
+      showToast("✕ Network error — please try again or email me directly.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message →";
+    }
+  });
+})();
