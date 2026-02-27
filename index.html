@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TODO: Update the title with your preferred display name / tagline -->
+    <title>Nishant Nahar — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Nishant Nahar — Web Developer crafting retro-inspired digital experiences."
+    />
+    <!-- TODO: Update meta description with your own tagline -->
+
+    <!-- Google Fonts: Fredoka One + DM Sans + IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============================================================ -->
+    <!-- STICKY NAVIGATION BAR                                         -->
+    <!-- ============================================================ -->
+    <header class="nav-wrapper" role="banner">
+      <nav class="nav-inner" aria-label="Primary navigation">
+        <!-- Logo -->
+        <a href="#hero" class="nav-logo" aria-label="Go to top">
+          <span class="nav-logo-icon" aria-hidden="true">⊞</span>
+          <!-- TODO: Replace "Nishant." with your preferred display name -->
+          <span class="nav-logo-text">Nishant.</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <ul class="nav-links" role="list">
+          <li>
+            <a href="#projects" class="nav-link" data-section="projects"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="nav-link" data-section="about">About</a>
+          </li>
+          <li>
+            <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+          </li>
+          <li>
+            <a href="#contact" class="nav-link" data-section="contact"
+              >Contact</a
+            >
+          </li>
+        </ul>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          class="nav-hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          id="hamburger-btn"
+        >
+          <span aria-hidden="true">☰</span>
+        </button>
+      </nav>
+
+      <!-- Mobile slide-down drawer -->
+      <div
+        class="mobile-nav"
+        id="mobile-nav"
+        aria-hidden="true"
+        role="dialog"
+        aria-label="Mobile navigation"
+      >
+        <ul role="list">
+          <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+          <li><a href="#about" class="mobile-nav-link">About</a></li>
+          <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+          <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================ -->
+      <!-- HERO SECTION                                                  -->
+      <!-- ============================================================ -->
+      <section id="hero" class="hero-section" aria-label="Introduction">
+        <div class="hero-content">
+          <!-- Left column -->
+          <div class="hero-left">
+            <!-- TODO: Update your title/role e.g. "< UI Designer />" or "< Full Stack Dev />" -->
+            <span class="hero-tag">&lt; Web Developer /&gt;</span>
+
+            <!-- TODO: Update your full name here -->
+            <h1 class="hero-heading">Hello. I'm<br />Nishant Nahar.</h1>
+
+            <!-- Typewriter output — phrases controlled in script.js -->
+            <p class="hero-typewriter" aria-live="polite">
+              <span id="typewriter-text"></span
+              ><span class="typewriter-cursor" aria-hidden="true">|</span>
+            </p>
+            <!-- TODO: Add 3 personal tagline phrases in script.js (TYPEWRITER_PHRASES array), e.g.:
+               "I build retro-inspired web experiences."
+               "I turn ideas into pixel-perfect interfaces."
+               "I love clean code and bold design." -->
+
+            <!-- CTA Buttons -->
+            <div class="hero-ctas">
+              <a href="#projects" class="btn btn-primary" id="hero-cta-work"
+                >View My Work</a
+              >
+              <a href="#contact" class="btn btn-secondary" id="hero-cta-contact"
+                >Contact Me</a
+              >
+            </div>
+          </div>
+
+          <!-- Right column — SVG Mascot -->
+          <div class="hero-right" aria-hidden="true">
+            <div class="mascot-wrapper">
+              <!-- Retro CRT monitor mascot — pure inline SVG, no external image -->
+              <svg
+                class="mascot-svg"
+                viewBox="0 0 320 360"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Retro CRT monitor mascot holding a cursor pen"
+              >
+                <!-- Monitor body -->
+                <rect
+                  x="30"
+                  y="20"
+                  width="260"
+                  height="200"
+                  rx="18"
+                  ry="18"
+                  fill="#1a1a1a"
+                  stroke="#0a0a0a"
+                  stroke-width="4"
+                />
+                <!-- Monitor screen -->
+                <rect
+                  x="52"
+                  y="42"
+                  width="216"
+                  height="152"
+                  rx="8"
+                  ry="8"
+                  fill="#e8f5e9"
+                  stroke="#333"
+                  stroke-width="2"
+                />
+                <!-- Screen scanlines overlay (decorative) -->
+                <rect
+                  x="52"
+                  y="42"
+                  width="216"
+                  height="152"
+                  rx="8"
+                  ry="8"
+                  fill="url(#scanlines)"
+                  opacity="0.12"
+                />
+                <defs>
+                  <pattern
+                    id="scanlines"
+                    width="1"
+                    height="4"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <rect width="1" height="2" fill="#000" />
+                  </pattern>
+                </defs>
+                <!-- Eyes (white circles with black pupils) -->
+                <circle
+                  cx="125"
+                  cy="108"
+                  r="22"
+                  fill="white"
+                  stroke="#0a0a0a"
+                  stroke-width="2.5"
+                />
+                <circle
+                  cx="195"
+                  cy="108"
+                  r="22"
+                  fill="white"
+                  stroke="#0a0a0a"
+                  stroke-width="2.5"
+                />
+                <circle cx="130" cy="112" r="10" fill="#0a0a0a" />
+                <circle cx="200" cy="112" r="10" fill="#0a0a0a" />
+                <!-- Highlight dots on eyes -->
+                <circle cx="135" cy="106" r="3.5" fill="white" />
+                <circle cx="205" cy="106" r="3.5" fill="white" />
+                <!-- Smile -->
+                <path
+                  d="M 130 148 Q 160 172 190 148"
+                  stroke="#0a0a0a"
+                  stroke-width="3.5"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+                <!-- Rosy cheeks -->
+                <ellipse
+                  cx="108"
+                  cy="148"
+                  rx="13"
+                  ry="8"
+                  fill="#FFD700"
+                  opacity="0.55"
+                />
+                <ellipse
+                  cx="212"
+                  cy="148"
+                  rx="13"
+                  ry="8"
+                  fill="#FFD700"
+                  opacity="0.55"
+                />
+                <!-- Monitor stand / neck -->
+                <rect
+                  x="130"
+                  y="220"
+                  width="60"
+                  height="28"
+                  rx="4"
+                  ry="4"
+                  fill="#333"
+                  stroke="#0a0a0a"
+                  stroke-width="2"
+                />
+                <!-- Monitor base -->
+                <rect
+                  x="90"
+                  y="246"
+                  width="140"
+                  height="20"
+                  rx="6"
+                  ry="6"
+                  fill="#1a1a1a"
+                  stroke="#0a0a0a"
+                  stroke-width="2"
+                />
+                <!-- Left arm -->
+                <line
+                  x1="30"
+                  y1="160"
+                  x2="-18"
+                  y2="210"
+                  stroke="#1a1a1a"
+                  stroke-width="14"
+                  stroke-linecap="round"
+                />
+                <!-- Right arm holding pen -->
+                <line
+                  x1="290"
+                  y1="160"
+                  x2="338"
+                  y2="195"
+                  stroke="#1a1a1a"
+                  stroke-width="14"
+                  stroke-linecap="round"
+                />
+                <!-- Pen / cursor -->
+                <rect
+                  x="334"
+                  y="183"
+                  width="12"
+                  height="34"
+                  rx="3"
+                  ry="3"
+                  fill="#FFD700"
+                  stroke="#0a0a0a"
+                  stroke-width="2"
+                  transform="rotate(30,340,200)"
+                />
+                <polygon
+                  points="342,215 350,228 334,222"
+                  fill="#0a0a0a"
+                  transform="rotate(30,340,215)"
+                />
+                <!-- Small pixel decorations on screen -->
+                <rect
+                  x="74"
+                  y="58"
+                  width="8"
+                  height="8"
+                  fill="#FFD700"
+                  rx="1"
+                />
+                <rect x="88" y="58" width="8" height="8" fill="#444" rx="1" />
+                <rect x="102" y="58" width="28" height="4" fill="#555" rx="1" />
+                <!-- Keyboard hint at bottom of screen -->
+                <rect
+                  x="74"
+                  y="176"
+                  width="172"
+                  height="10"
+                  rx="3"
+                  fill="#333"
+                  opacity="0.4"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- QUICK LINKS BAR                                               -->
+      <!-- ============================================================ -->
+      <section class="quicklinks-bar" aria-label="Quick navigation links">
+        <p class="quicklinks-label">Quick links</p>
+        <div class="quicklinks-grid" role="list">
+          <a href="#projects" class="quicklink-cell" role="listitem">
+            <span class="quicklink-text">Projects</span>
+            <i
+              class="quicklink-arrow fa-solid fa-arrow-up-right-from-square"
+              aria-hidden="true"
+            ></i>
+          </a>
+          <a href="#about" class="quicklink-cell" role="listitem">
+            <span class="quicklink-text">About</span>
+            <i
+              class="quicklink-arrow fa-solid fa-arrow-up-right-from-square"
+              aria-hidden="true"
+            ></i>
+          </a>
+          <a href="#skills" class="quicklink-cell" role="listitem">
+            <span class="quicklink-text">Skills</span>
+            <i
+              class="quicklink-arrow fa-solid fa-arrow-up-right-from-square"
+              aria-hidden="true"
+            ></i>
+          </a>
+          <a href="#contact" class="quicklink-cell" role="listitem">
+            <span class="quicklink-text">Contact</span>
+            <i
+              class="quicklink-arrow fa-solid fa-arrow-up-right-from-square"
+              aria-hidden="true"
+            ></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PROJECTS SECTION                                              -->
+      <!-- ============================================================ -->
+      <section
+        id="projects"
+        class="projects-section fade-section"
+        aria-labelledby="projects-heading"
+      >
+        <div class="section-inner">
+          <h2 id="projects-heading" class="section-title">Projects</h2>
+
+          <!-- Filter bar -->
+          <div
+            class="filter-bar"
+            role="group"
+            aria-label="Filter projects by category"
+          >
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              All
+            </button>
+            <button class="filter-btn" data-filter="web" aria-pressed="false">
+              Web
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="mobile"
+              aria-pressed="false"
+            >
+              Mobile
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="design"
+              aria-pressed="false"
+            >
+              Design
+            </button>
+          </div>
+
+          <!-- Projects Grid -->
+          <div class="projects-grid" id="projects-grid">
+            <!-- ============================================================ -->
+            <!-- PROJECT CARD 1 — Duplicate this block for each project        -->
+            <!-- ============================================================ -->
+            <article
+              class="project-card fade-section"
+              data-category="web"
+              aria-labelledby="proj-title-1"
+            >
+              <!-- TODO: Set data-category to "web", "mobile", or "design" -->
+
+              <div class="card-topbar">
+                <span class="card-dots" aria-hidden="true">● ●</span>
+                <span class="card-filename">
+                  <!-- TODO: Replace with your project filename e.g. "my-project.html" -->
+                  project-one.html
+                </span>
+              </div>
+
+              <div class="card-image">
+                <!-- TODO: Replace src with your project screenshot URL       -->
+                <!-- Recommended size: 600x340px                              -->
+                <img
+                  src=""
+                  alt=""
+                  class="project-img"
+                  data-placeholder="true"
+                  aria-label="Project screenshot placeholder — add your screenshot URL"
+                />
+                <!-- Empty-state: camera icon shown via CSS when src is empty -->
+                <div class="img-placeholder" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <span>600 × 340 px</span>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <h3 class="card-title" id="proj-title-1">
+                  <!-- TODO: Your project title e.g. "RetroUI Kit" -->
+                  Project One
+                </h3>
+                <p class="card-desc">
+                  <!-- TODO: 2–3 sentence description of what the project does -->
+                  Add a short description of this project here. Explain what it
+                  does, who it helps, and any interesting challenges you solved
+                  while building it.
+                </p>
+                <button
+                  class="btn-view"
+                  data-project="1"
+                  aria-haspopup="dialog"
+                >
+                  View Project
+                </button>
+              </div>
+            </article>
+
+            <!-- ============================================================ -->
+            <!-- PROJECT CARD 2                                                -->
+            <!-- ============================================================ -->
+            <article
+              class="project-card fade-section"
+              data-category="web"
+              aria-labelledby="proj-title-2"
+            >
+              <div class="card-topbar">
+                <span class="card-dots" aria-hidden="true">● ●</span>
+                <span class="card-filename">
+                  <!-- TODO: Replace with your project filename e.g. "dashboard.html" -->
+                  project-two.html
+                </span>
+              </div>
+              <div class="card-image">
+                <!-- TODO: Replace src with your project screenshot URL -->
+                <img
+                  src=""
+                  alt=""
+                  class="project-img"
+                  data-placeholder="true"
+                  aria-label="Project screenshot placeholder — add your screenshot URL"
+                />
+                <div class="img-placeholder" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <span>600 × 340 px</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="proj-title-2">
+                  <!-- TODO: Your project title -->
+                  Project Two
+                </h3>
+                <p class="card-desc">
+                  <!-- TODO: 2–3 sentence description -->
+                  Describe your second project here. Mention the tech stack, the
+                  problem it solves, and any outcomes or metrics you're proud
+                  of.
+                </p>
+                <button
+                  class="btn-view"
+                  data-project="2"
+                  aria-haspopup="dialog"
+                >
+                  View Project
+                </button>
+              </div>
+            </article>
+
+            <!-- ============================================================ -->
+            <!-- PROJECT CARD 3                                                -->
+            <!-- ============================================================ -->
+            <article
+              class="project-card fade-section"
+              data-category="mobile"
+              aria-labelledby="proj-title-3"
+            >
+              <!-- TODO: Set data-category to "web", "mobile", or "design" -->
+              <div class="card-topbar">
+                <span class="card-dots" aria-hidden="true">● ●</span>
+                <span class="card-filename">
+                  <!-- TODO: Replace with your project filename -->
+                  project-three.html
+                </span>
+              </div>
+              <div class="card-image">
+                <!-- TODO: Replace src with your project screenshot URL -->
+                <img
+                  src=""
+                  alt=""
+                  class="project-img"
+                  data-placeholder="true"
+                  aria-label="Project screenshot placeholder — add your screenshot URL"
+                />
+                <div class="img-placeholder" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <span>600 × 340 px</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="proj-title-3">
+                  <!-- TODO: Your project title -->
+                  Project Three
+                </h3>
+                <p class="card-desc">
+                  <!-- TODO: 2–3 sentence description -->
+                  Your third project description goes here. This could be a
+                  mobile app, a plugin, or any other creative work you've
+                  completed.
+                </p>
+                <button
+                  class="btn-view"
+                  data-project="3"
+                  aria-haspopup="dialog"
+                >
+                  View Project
+                </button>
+              </div>
+            </article>
+
+            <!-- ============================================================ -->
+            <!-- PROJECT CARD 4                                                -->
+            <!-- ============================================================ -->
+            <article
+              class="project-card fade-section"
+              data-category="design"
+              aria-labelledby="proj-title-4"
+            >
+              <!-- TODO: Set data-category to "web", "mobile", or "design" -->
+              <div class="card-topbar">
+                <span class="card-dots" aria-hidden="true">● ●</span>
+                <span class="card-filename">
+                  <!-- TODO: Replace with your project filename -->
+                  project-four.html
+                </span>
+              </div>
+              <div class="card-image">
+                <!-- TODO: Replace src with your project screenshot URL -->
+                <img
+                  src=""
+                  alt=""
+                  class="project-img"
+                  data-placeholder="true"
+                  aria-label="Project screenshot placeholder — add your screenshot URL"
+                />
+                <div class="img-placeholder" aria-hidden="true">
+                  <i class="fa-regular fa-image"></i>
+                  <span>600 × 340 px</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="proj-title-4">
+                  <!-- TODO: Your project title -->
+                  Project Four
+                </h3>
+                <p class="card-desc">
+                  <!-- TODO: 2–3 sentence description -->
+                  Describe your fourth project. Maybe it's a design system, a
+                  branding project, or a UI/UX case study worth highlighting.
+                </p>
+                <button
+                  class="btn-view"
+                  data-project="4"
+                  aria-haspopup="dialog"
+                >
+                  View Project
+                </button>
+              </div>
+            </article>
+          </div>
+          <!-- /.projects-grid -->
+        </div>
+        <!-- /.section-inner -->
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- PROJECT MODALS (one per project)                              -->
+      <!-- ============================================================ -->
+
+      <!-- Modal overlay — shared backdrop -->
+      <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+        <!-- ============================================================ -->
+        <!-- MODAL 1 — Fill in details for Project One                    -->
+        <!-- ============================================================ -->
+        <div
+          class="modal-panel"
+          id="modal-1"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title-1"
+          hidden
+        >
+          <button
+            class="modal-close"
+            aria-label="Close modal"
+            data-close="modal-1"
+          >
+            ✕
+          </button>
+
+          <h2 class="modal-title" id="modal-title-1">
+            <!-- TODO: Full title of Project One -->
+            Project One
+          </h2>
+
+          <p class="modal-desc">
+            <!-- TODO: Longer description (4–6 sentences) of Project One.
+               Explain: What was the goal? What did you build?
+               What technologies did you use? What was the outcome? -->
+            Add a detailed description of your first project here. Walk the
+            reader through the problem, your approach, and the result. Mention
+            any interesting technical decisions or learnings. You can also
+            include performance metrics or user feedback.
+          </p>
+
+          <!-- Tech stack tags -->
+          <div class="modal-tags" aria-label="Technologies used">
+            <!-- TODO: Add tech stack tags e.g. HTML, CSS, JavaScript, React, Node.js -->
+            <span class="modal-tag">HTML</span>
+            <span class="modal-tag">CSS</span>
+            <span class="modal-tag">JavaScript</span>
+          </div>
+
+          <!-- Links -->
+          <div class="modal-links">
+            <!-- TODO: Replace href="#" with the Live Demo URL for Project One -->
+            <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
+              >Live Demo ↗</a
+            >
+            <!-- TODO: Replace href="#" with the GitHub repo URL for Project One -->
+            <a
+              href="#"
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODAL 2 — Fill in details for Project Two                    -->
+        <!-- ============================================================ -->
+        <div
+          class="modal-panel"
+          id="modal-2"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title-2"
+          hidden
+        >
+          <button
+            class="modal-close"
+            aria-label="Close modal"
+            data-close="modal-2"
+          >
+            ✕
+          </button>
+          <h2 class="modal-title" id="modal-title-2">
+            <!-- TODO: Full title of Project Two -->
+            Project Two
+          </h2>
+          <p class="modal-desc">
+            <!-- TODO: Longer description (4–6 sentences) of Project Two -->
+            Add a detailed description of your second project here. Explain the
+            problem it solves and the technical approach you took. Highlight any
+            frameworks, APIs, or tools you used. Share any user impact,
+            performance wins, or lessons learned.
+          </p>
+          <div class="modal-tags" aria-label="Technologies used">
+            <!-- TODO: Add tech stack tags for Project Two -->
+            <span class="modal-tag">React</span>
+            <span class="modal-tag">Node.js</span>
+            <span class="modal-tag">MongoDB</span>
+          </div>
+          <div class="modal-links">
+            <!-- TODO: Replace href="#" with the Live Demo URL for Project Two -->
+            <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
+              >Live Demo ↗</a
+            >
+            <!-- TODO: Replace href="#" with the GitHub repo URL for Project Two -->
+            <a
+              href="#"
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODAL 3 — Fill in details for Project Three                  -->
+        <!-- ============================================================ -->
+        <div
+          class="modal-panel"
+          id="modal-3"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title-3"
+          hidden
+        >
+          <button
+            class="modal-close"
+            aria-label="Close modal"
+            data-close="modal-3"
+          >
+            ✕
+          </button>
+          <h2 class="modal-title" id="modal-title-3">
+            <!-- TODO: Full title of Project Three -->
+            Project Three
+          </h2>
+          <p class="modal-desc">
+            <!-- TODO: Longer description (4–6 sentences) of Project Three -->
+            Describe your third project in detail here. What platform or
+            environment does it target? What were the main technical challenges
+            you overcame? What impact has it had?
+          </p>
+          <div class="modal-tags" aria-label="Technologies used">
+            <!-- TODO: Add tech stack tags for Project Three -->
+            <span class="modal-tag">React Native</span>
+            <span class="modal-tag">Firebase</span>
+          </div>
+          <div class="modal-links">
+            <!-- TODO: Replace href="#" with the Live Demo URL for Project Three -->
+            <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
+              >Live Demo ↗</a
+            >
+            <!-- TODO: Replace href="#" with the GitHub repo URL for Project Three -->
+            <a
+              href="#"
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODAL 4 — Fill in details for Project Four                   -->
+        <!-- ============================================================ -->
+        <div
+          class="modal-panel"
+          id="modal-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title-4"
+          hidden
+        >
+          <button
+            class="modal-close"
+            aria-label="Close modal"
+            data-close="modal-4"
+          >
+            ✕
+          </button>
+          <h2 class="modal-title" id="modal-title-4">
+            <!-- TODO: Full title of Project Four -->
+            Project Four
+          </h2>
+          <p class="modal-desc">
+            <!-- TODO: Longer description (4–6 sentences) of Project Four -->
+            Write about your fourth project here — perhaps a design system or
+            branding case study. Describe the creative process, your tooling,
+            and any deliverables. Mention what you'd do differently if you were
+            starting over.
+          </p>
+          <div class="modal-tags" aria-label="Technologies used">
+            <!-- TODO: Add tech stack tags for Project Four -->
+            <span class="modal-tag">Figma</span>
+            <span class="modal-tag">Illustrator</span>
+          </div>
+          <div class="modal-links">
+            <!-- TODO: Replace href="#" with the Live Demo URL for Project Four -->
+            <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
+              >Live Demo ↗</a
+            >
+            <!-- TODO: Replace href="#" with the GitHub repo URL for Project Four -->
+            <a
+              href="#"
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-overlay -->
+
+      <!-- ============================================================ -->
+      <!-- ABOUT SECTION                                                 -->
+      <!-- ============================================================ -->
+      <section
+        id="about"
+        class="about-section fade-section"
+        aria-labelledby="about-heading"
+      >
+        <div class="section-inner">
+          <div class="about-grid">
+            <!-- Left: Profile photo -->
+            <div class="about-photo-wrap">
+              <div class="photo-frame">
+                <!-- TODO: Replace src with your actual photo URL              -->
+                <!-- Recommended: Square image, minimum 400x400px              -->
+                <img
+                  src=""
+                  alt="Photo of Nishant Nahar"
+                  class="profile-photo"
+                  data-placeholder="true"
+                />
+                <!-- Empty-state shown via CSS when src is empty -->
+                <div class="photo-placeholder" aria-hidden="true">
+                  <i class="fa-regular fa-user"></i>
+                  <span>400 × 400 px</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Bio + fun facts -->
+            <div class="about-content">
+              <h2 id="about-heading" class="section-title">About Me</h2>
+
+              <!-- TODO: Write 2 short paragraphs about yourself.
+                 Paragraph 1: Who you are + what you do professionally.
+                 Paragraph 2: Your interests, hobbies, or what drives you. -->
+              <p class="about-para">
+                Replace this paragraph with a brief professional introduction —
+                who you are, what kind of work you do, and how long you've been
+                doing it. Keep it concise and confident.
+              </p>
+              <p class="about-para">
+                Use this second paragraph to show your personality. Mention
+                hobbies, passions, or what motivates you to keep building
+                things. This humanises you to potential employers or clients.
+              </p>
+
+              <!-- Fun fact sticky notes -->
+              <div class="fun-facts" aria-label="Fun facts about Nishant">
+                <!-- TODO: Add 3 short fun facts about yourself, e.g.:
+                   "☕ Coffee-powered developer"
+                   "🎨 Design obsessed"
+                   "🌍 Open to remote opportunities" -->
+                <div class="sticky-note sticky-note--1" role="note">
+                  <!-- TODO: Fun fact #1 (emoji + short phrase) -->
+                  ☕ Coffee-powered developer
+                </div>
+                <div class="sticky-note sticky-note--2" role="note">
+                  <!-- TODO: Fun fact #2 (emoji + short phrase) -->
+                  🎨 Design obsessed
+                </div>
+                <div class="sticky-note sticky-note--3" role="note">
+                  <!-- TODO: Fun fact #3 (emoji + short phrase) -->
+                  🌍 Open to remote opportunities
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.about-grid -->
+        </div>
+        <!-- /.section-inner -->
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SKILLS SECTION                                                -->
+      <!-- ============================================================ -->
+      <section
+        id="skills"
+        class="skills-section fade-section"
+        aria-labelledby="skills-heading"
+      >
+        <div class="section-inner">
+          <h2 id="skills-heading" class="section-title section-title--light">
+            Skills
+          </h2>
+
+          <div class="skills-grid">
+            <!-- Left column: Animated progress bars -->
+            <div class="skills-bars" aria-label="Skill proficiency levels">
+              <!-- TODO: Add your skills and proficiency percentages below.
+                 Each skill needs: a name label and a percentage (0–100).
+                 Duplicate the .skill-item block for each skill you want to show. -->
+
+              <div class="skill-item">
+                <span class="skill-label">
+                  <!-- TODO: Skill name e.g. "JavaScript" -->
+                  HTML &amp; CSS
+                </span>
+                <div
+                  class="skill-track"
+                  role="progressbar"
+                  aria-valuenow="90"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label="HTML & CSS proficiency"
+                >
+                  <div class="skill-bar" data-width="90"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <span class="skill-label">
+                  <!-- TODO: Skill name -->
+                  JavaScript
+                </span>
+                <div
+                  class="skill-track"
+                  role="progressbar"
+                  aria-valuenow="80"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label="JavaScript proficiency"
+                >
+                  <div class="skill-bar" data-width="80"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <span class="skill-label">
+                  <!-- TODO: Skill name -->
+                  React
+                </span>
+                <div
+                  class="skill-track"
+                  role="progressbar"
+                  aria-valuenow="75"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label="React proficiency"
+                >
+                  <div class="skill-bar" data-width="75"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <span class="skill-label">
+                  <!-- TODO: Skill name -->
+                  Node.js
+                </span>
+                <div
+                  class="skill-track"
+                  role="progressbar"
+                  aria-valuenow="65"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label="Node.js proficiency"
+                >
+                  <div class="skill-bar" data-width="65"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <span class="skill-label">
+                  <!-- TODO: Skill name -->
+                  UI/UX Design
+                </span>
+                <div
+                  class="skill-track"
+                  role="progressbar"
+                  aria-valuenow="70"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label="UI/UX Design proficiency"
+                >
+                  <div class="skill-bar" data-width="70"></div>
+                </div>
+              </div>
+
+              <!-- TODO: Duplicate the .skill-item above and change the label + data-width for each additional skill -->
+            </div>
+            <!-- /.skills-bars -->
+
+            <!-- Right column: Tool tag chips -->
+            <div class="skills-tags" aria-label="Tools and technologies">
+              <h3 class="skills-tags-heading">Tools &amp; Tech</h3>
+              <!-- TODO: Add your tools as individual <span class="tag"> elements.
+                 E.g.: Git, Figma, VS Code, React, Node.js, MongoDB, Tailwind CSS, Docker, AWS
+                 Duplicate the <span class="tag"> below for each tool. -->
+              <div class="tags-cloud">
+                <span class="tag">Git</span>
+                <span class="tag">Figma</span>
+                <span class="tag">VS Code</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Tailwind CSS</span>
+                <span class="tag">Docker</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">REST APIs</span>
+                <!-- TODO: Add more tags here -->
+              </div>
+            </div>
+          </div>
+          <!-- /.skills-grid -->
+        </div>
+        <!-- /.section-inner -->
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CONTACT SECTION                                               -->
+      <!-- ============================================================ -->
+      <section
+        id="contact"
+        class="contact-section fade-section"
+        aria-labelledby="contact-heading"
+      >
+        <div class="section-inner">
+          <h2 id="contact-heading" class="section-title">
+            Let's Work Together
+          </h2>
+
+          <!-- TODO: Add a short invite message below, e.g.:
+             "Have a project in mind or just want to say hi? Drop me a message." -->
+          <p class="contact-subtext">
+            Have a project in mind or just want to say hi? Drop me a message
+            below.
+          </p>
+
+          <div class="contact-grid">
+            <!-- Left: Contact form -->
+            <div class="contact-form-wrap">
+              <!-- TODO: To make this form functional, either:
+                 Option A — Use Formspree: set action="https://formspree.io/f/YOUR_ID"
+                 Option B — Connect your own backend endpoint here -->
+              <form
+                class="contact-form"
+                id="contact-form"
+                action=""
+                method="POST"
+                novalidate
+                aria-label="Contact form"
+              >
+                <!-- Name field -->
+                <div class="form-group">
+                  <label for="field-name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    id="field-name"
+                    name="name"
+                    class="form-input"
+                    placeholder="Your full name"
+                    autocomplete="name"
+                    required
+                  />
+                  <span
+                    class="form-error"
+                    id="error-name"
+                    role="alert"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <!-- Email field -->
+                <div class="form-group">
+                  <label for="field-email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    id="field-email"
+                    name="email"
+                    class="form-input"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                  />
+                  <span
+                    class="form-error"
+                    id="error-email"
+                    role="alert"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <!-- Subject field -->
+                <div class="form-group">
+                  <label for="field-subject" class="form-label">Subject</label>
+                  <input
+                    type="text"
+                    id="field-subject"
+                    name="subject"
+                    class="form-input"
+                    placeholder="What's this about?"
+                    required
+                  />
+                  <span
+                    class="form-error"
+                    id="error-subject"
+                    role="alert"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <!-- Message textarea -->
+                <div class="form-group">
+                  <label for="field-message" class="form-label">Message</label>
+                  <textarea
+                    id="field-message"
+                    name="message"
+                    class="form-input form-textarea"
+                    placeholder="Tell me about your project, idea, or just say hello..."
+                    rows="5"
+                    required
+                  ></textarea>
+                  <span
+                    class="form-error"
+                    id="error-message"
+                    role="alert"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-submit"
+                  id="submit-btn"
+                >
+                  Send Message →
+                </button>
+              </form>
+            </div>
+
+            <!-- Right: Contact info + socials -->
+            <div class="contact-info">
+              <h3 class="contact-info-heading">Get In Touch</h3>
+
+              <div class="contact-details">
+                <!-- TODO: Replace the placeholder with your real email address -->
+                <p class="contact-detail">
+                  <span class="contact-icon" aria-hidden="true">📧</span>
+                  <!-- TODO: your email address — replace text and href below -->
+                  <a href="mailto:your@email.com" class="contact-link"
+                    >your@email.com</a
+                  >
+                </p>
+
+                <!-- TODO: Replace with your city and country -->
+                <p class="contact-detail">
+                  <span class="contact-icon" aria-hidden="true">📍</span>
+                  <!-- TODO: your city, country -->
+                  City, Country
+                </p>
+              </div>
+
+              <!-- Social links -->
+              <div class="social-links" aria-label="Social media profiles">
+                <!-- TODO: Replace href="#" with your actual social profile URLs -->
+
+                <a
+                  href="#"
+                  class="social-link"
+                  aria-label="GitHub profile"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <!-- TODO: Replace href="#" with https://github.com/YOUR_USERNAME -->
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+
+                <a
+                  href="#"
+                  class="social-link"
+                  aria-label="LinkedIn profile"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <!-- TODO: Replace href="#" with https://linkedin.com/in/YOUR_USERNAME -->
+                  <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                </a>
+
+                <a
+                  href="#"
+                  class="social-link"
+                  aria-label="Twitter / X profile"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <!-- TODO: Replace href="#" with https://twitter.com/YOUR_USERNAME or https://x.com/YOUR_USERNAME -->
+                  <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                </a>
+
+                <a
+                  href="#"
+                  class="social-link"
+                  aria-label="Instagram profile"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <!-- TODO: Replace href="#" with https://instagram.com/YOUR_USERNAME -->
+                  <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+            <!-- /.contact-info -->
+          </div>
+          <!-- /.contact-grid -->
+        </div>
+        <!-- /.section-inner -->
+      </section>
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                        -->
+    <!-- ============================================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <!-- Left: Copyright -->
+        <p class="footer-copy">
+          <!-- TODO: Update year and your name in the copyright line -->
+          &copy; 2025 Nishant Nahar
+        </p>
+
+        <!-- Center: Blinking cursor -->
+        <p class="footer-cursor" aria-hidden="true">_</p>
+
+        <!-- Right: Quick links -->
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#projects" class="footer-link">Projects</a>
+          <span class="footer-dot" aria-hidden="true">·</span>
+          <a href="#about" class="footer-link">About</a>
+          <span class="footer-dot" aria-hidden="true">·</span>
+          <a href="#contact" class="footer-link">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Success Toast (injected by JS, shown here for structure reference) -->
+    <!-- <div class="toast" id="success-toast" role="status" aria-live="polite">Message sent successfully ✓</div> -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
