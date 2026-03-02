@@ -1,353 +1,302 @@
-/**
- * NISHANT NAHAR — RETRO PORTFOLIO  |  script.js
- * ─────────────────────────────────────────────────────────────
- *  1. Typewriter hero animation
- *  2. Sticky navbar active link on scroll
- *  3. Hamburger mobile menu toggle
- *  4. Project card filter (All / Web / Mobile / Design)
- *  5. Project modal open / close
- *  6. Skill bar animation on scroll
- *  7. Section fade-in on scroll
- *  8. Contact form validation + Formspree submission + toast
- */
-
 "use strict";
 
-/* ============================================================
-   CONFIG — edit these values
-   ============================================================ */
-
-/**
- * HOW TO GET YOUR FORMSPREE URL (free, takes 2 minutes):
- *  1. Go to https://formspree.io and sign up
- *  2. Click "New Form" → give it a name → confirm your email
- *  3. Copy the endpoint URL (e.g. https://formspree.io/f/xabcdefg)
- *  4. Paste it below, replacing the placeholder string
- *
- * Once set, every form submission will land in your inbox. ✓
- */
-const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID"; // TODO: paste your Formspree URL here
-
-/**
- * Typewriter phrases shown in the hero section.
- * TODO: Replace these with your own taglines (min 2).
- */
-const TYPEWRITER_PHRASES = [
+const formspree_url = "https://formspree.io/f/YOUR_FORM_ID";
+const typewriter_phrases = [
   "I build retro-inspired web experiences.",
   "I turn ideas into pixel-perfect interfaces.",
   "I love clean code and bold design.",
 ];
 
-/* ============================================================
-   1. TYPEWRITER ANIMATION
-   ============================================================ */
-(function initTypewriter() {
-  const el = document.getElementById("typewriter-text");
-  if (!el) return;
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. TYPEWRITER ANIMATION
+  const typewriter_text = document.getElementById("typewriter-text");
+  if (typewriter_text) {
+    let phrase_index = 0;
+    let char_index = 0;
+    let is_deleting = false;
 
-  let phraseIndex = 0,
-    charIndex = 0,
-    isDeleting = false;
-  const TYPE_SPEED = 60;
-  const DELETE_SPEED = 35;
-  const PAUSE_END = 1800;
-  const PAUSE_START = 300;
+    const type_speed = 60;
+    const delete_speed = 35;
+    const pause_end = 1800;
+    const pause_start = 300;
 
-  function tick() {
-    const phrase = TYPEWRITER_PHRASES[phraseIndex];
-    isDeleting ? charIndex-- : charIndex++;
-    el.textContent = phrase.slice(0, charIndex);
+    const tick_typewriter = () => {
+      const current_phrase = typewriter_phrases[phrase_index];
 
-    let delay = isDeleting ? DELETE_SPEED : TYPE_SPEED;
+      if (is_deleting) {
+        char_index--;
+      } else {
+        char_index++;
+      }
 
-    if (!isDeleting && charIndex === phrase.length) {
-      delay = PAUSE_END;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % TYPEWRITER_PHRASES.length;
-      delay = PAUSE_START;
-    }
-    setTimeout(tick, delay);
-  }
-  tick();
-})();
+      typewriter_text.textContent = current_phrase.slice(0, char_index);
+      let current_delay = is_deleting ? delete_speed : type_speed;
 
-/* ============================================================
-   2. NAVBAR — active link highlight on scroll
-   ============================================================ */
-(function initNavHighlight() {
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
+      if (!is_deleting && char_index === current_phrase.length) {
+        current_delay = pause_end;
+        is_deleting = true;
+      } else if (is_deleting && char_index === 0) {
+        is_deleting = false;
+        phrase_index = (phrase_index + 1) % typewriter_phrases.length;
+        current_delay = pause_start;
+      }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === "#" + entry.target.id,
-            );
-          });
-        }
-      });
-    },
-    { rootMargin: "-40% 0px -55% 0px" },
-  );
-  sections.forEach((sec) => observer.observe(sec));
-})();
+      setTimeout(tick_typewriter, current_delay);
+    };
 
-/* ============================================================
-   3. HAMBURGER — mobile menu toggle
-   ============================================================ */
-(function initHamburger() {
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-  if (!hamburger || !navLinks) return;
-
-  hamburger.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    hamburger.classList.toggle("open", isOpen);
-    hamburger.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  navLinks.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      hamburger.classList.remove("open");
-      hamburger.setAttribute("aria-expanded", "false");
-    });
-  });
-})();
-
-/* ============================================================
-   4. PROJECT FILTER
-   ============================================================ */
-(function initFilter() {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".project-card");
-  if (!filterBtns.length || !cards.length) return;
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const filter = btn.dataset.filter;
-      cards.forEach((card) => {
-        const show = filter === "all" || card.dataset.category === filter;
-        if (show) {
-          card.classList.remove("hidden");
-          card.style.animation = "none";
-          card.offsetHeight; // force reflow
-          card.style.animation = "";
-        } else {
-          card.classList.add("hidden");
-        }
-      });
-    });
-  });
-})();
-
-/* ============================================================
-   5. MODALS — open / close
-   ============================================================ */
-(function initModals() {
-  const overlays = document.querySelectorAll(".modal-overlay");
-  const viewBtns = document.querySelectorAll(".btn-view");
-
-  function openModal(id) {
-    const modal = document.getElementById(id);
-    if (!modal) return;
-    modal.classList.add("open");
-    document.body.style.overflow = "hidden";
-    modal.querySelector(".modal-close")?.focus();
+    setTimeout(tick_typewriter, pause_start);
   }
 
-  function closeAll() {
-    overlays.forEach((m) => m.classList.remove("open"));
+  // 2. NAVBAR HIGHLIGHTING ON SCROLL
+  const page_sections = document.querySelectorAll("main section[id]");
+  const navigation_links = document.querySelectorAll(".nav-link");
+
+  const scroll_observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        navigation_links.forEach((link) => {
+          const target_id = "#" + entry.target.id;
+          if (link.getAttribute("href") === target_id) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+
+  page_sections.forEach((section) => scroll_observer.observe(section));
+
+  // 3. HAMBURGER MENU TOGGLE
+  const hamburger_btn = document.getElementById("hamburger");
+  const nav_links_container = document.getElementById("nav-links");
+
+  if (hamburger_btn && nav_links_container) {
+    hamburger_btn.addEventListener("click", () => {
+      const is_open = nav_links_container.classList.toggle("open");
+      hamburger_btn.classList.toggle("open", is_open);
+      hamburger_btn.setAttribute("aria-expanded", String(is_open));
+    });
+
+    const all_nav_links = nav_links_container.querySelectorAll(".nav-link");
+    all_nav_links.forEach((link) => {
+      link.addEventListener("click", () => {
+        nav_links_container.classList.remove("open");
+        hamburger_btn.classList.remove("open");
+        hamburger_btn.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // 4. PROJECT FILTERING
+  const filter_buttons = document.querySelectorAll(".filter-btn");
+  const project_cards = document.querySelectorAll(".project-card");
+
+  if (filter_buttons.length > 0 && project_cards.length > 0) {
+    filter_buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filter_buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const selected_filter = btn.dataset.filter;
+
+        project_cards.forEach((card) => {
+          const should_show = selected_filter === "all" || card.dataset.category === selected_filter;
+          if (should_show) {
+            card.classList.remove("hidden");
+            card.style.animation = "none";
+            // trigger reflow to restart animation
+            void card.offsetHeight;
+            card.style.animation = "";
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      });
+    });
+  }
+
+  // 5. MODAL LOGIC
+  const modal_overlays = document.querySelectorAll(".modal-overlay");
+  const view_buttons = document.querySelectorAll(".btn-view");
+  const close_buttons = document.querySelectorAll(".modal-close");
+
+  const close_all_modals = () => {
+    modal_overlays.forEach((modal) => modal.classList.remove("open"));
     document.body.style.overflow = "";
-  }
+  };
 
-  viewBtns.forEach((btn) =>
-    btn.addEventListener("click", () => openModal(btn.dataset.modal)),
-  );
-  overlays.forEach((o) =>
-    o.addEventListener("click", (e) => {
-      if (e.target === o) closeAll();
-    }),
-  );
-  document
-    .querySelectorAll(".modal-close")
-    .forEach((btn) => btn.addEventListener("click", closeAll));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeAll();
+  view_buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target_modal_id = btn.dataset.modal;
+      const target_modal = document.getElementById(target_modal_id);
+      if (target_modal) {
+        target_modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        const close_btn = target_modal.querySelector(".modal-close");
+        if (close_btn) close_btn.focus();
+      }
+    });
   });
-})();
 
-/* ============================================================
-   6. SKILL BARS — animate on scroll
-   ============================================================ */
-(function initSkillBars() {
-  const bars = document.querySelectorAll(".skill-bar");
-  if (!bars.length) return;
-  let animated = false;
+  modal_overlays.forEach((overlay) => {
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        close_all_modals();
+      }
+    });
+  });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
+  close_buttons.forEach((btn) => {
+    btn.addEventListener("click", close_all_modals);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") close_all_modals();
+  });
+
+  // 6. SKILL BARS SCROLL ANIMATION
+  const skill_bars = document.querySelectorAll(".skill-bar");
+  if (skill_bars.length > 0) {
+    let has_animated = false;
+
+    const skills_observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
-          bars.forEach((bar) => {
+        if (entry.isIntersecting && !has_animated) {
+          has_animated = true;
+          skill_bars.forEach((bar) => {
             requestAnimationFrame(() => {
-              bar.style.width = (bar.dataset.width || "0") + "%";
+              const target_width = bar.dataset.width || "0";
+              bar.style.width = target_width + "%";
             });
           });
         }
       });
-    },
-    { threshold: 0.3 },
-  );
-  const skillSection = document.getElementById("skills");
-  if (skillSection) observer.observe(skillSection);
-})();
+    }, { threshold: 0.3 });
 
-/* ============================================================
-   7. FADE-IN on scroll
-   ============================================================ */
-(function initFadeIn() {
-  // NOTE: .project-card is intentionally excluded here —
-  // it uses its own CSS fadeUp keyframe with nth-child delays.
-  const targets = document.querySelectorAll(
+    const skills_section = document.getElementById("skills");
+    if (skills_section) {
+      skills_observer.observe(skills_section);
+    }
+  }
+
+  // 7. FADE-IN ANIMATION ON SCROLL
+  const fade_in_targets = document.querySelectorAll(
     '.about-grid, .skills-grid, .contact-grid, ' +
-    '.section-title, .section-eyebrow, .quicklinks-label, .quicklinks-bar'
+    '.section-title, .section-eyebrow, .quicklinks-label, .quicklinks-bar, ' +
+    '.section-header-row'
   );
-  targets.forEach((el) => el.classList.add('fade-in'));
+  fade_in_targets.forEach((el) => el.classList.add('fade-in'));
 
-  const observer = new IntersectionObserver(
+  const fade_in_observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          fade_in_observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
-  targets.forEach((el) => observer.observe(el));
-})();
+  fade_in_targets.forEach((el) => fade_in_observer.observe(el));
 
-/* ============================================================
-   8. CONTACT FORM — validation + Formspree submission
-   ============================================================ */
-(function initContactForm() {
-  const form = document.getElementById("contact-form");
-  const toastEl = document.getElementById("toast");
-  const submitBtn = document.getElementById("submit-btn");
-  if (!form) return;
+  // 8. CONTACT FORM VALIDATION
+  const contact_form = document.getElementById("contact-form");
+  const toast_element = document.getElementById("toast");
+  const submit_button = document.getElementById("submit-btn");
 
-  /* -- Toast helper -- */
-  function showToast(message, duration = 4000) {
-    if (!toastEl) return;
-    toastEl.textContent = message;
-    toastEl.classList.add("show");
-    setTimeout(() => toastEl.classList.remove("show"), duration);
-  }
+  if (contact_form) {
+    const show_toast = (message, duration_ms = 4000) => {
+      if (!toast_element) return;
+      toast_element.textContent = message;
+      toast_element.classList.add("show");
+      setTimeout(() => toast_element.classList.remove("show"), duration_ms);
+    };
 
-  /* -- Validate a single field -- */
-  function validateField(input, errorEl) {
-    const value = input.value.trim();
-    let error = "";
-    if (!value) {
-      error = "This field is required.";
-    } else if (
-      input.type === "email" &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-    ) {
-      error = "Please enter a valid email address.";
-    }
-    input.classList.toggle("error", !!error);
-    errorEl.textContent = error;
-    return !error;
-  }
+    const validate_input_field = (input_el, error_el) => {
+      const current_val = input_el.value.trim();
+      let error_message = "";
 
-  /* -- Clear inline errors on typing -- */
-  form.querySelectorAll("input, textarea").forEach((input) => {
-    input.addEventListener("input", () => {
-      input.classList.remove("error");
-      const errorEl = document.getElementById(input.id + "-error");
-      if (errorEl) errorEl.textContent = "";
-    });
-  });
+      if (!current_val) {
+        error_message = "This field is required.";
+      } else if (input_el.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(current_val)) {
+        error_message = "Please enter a valid email address.";
+      }
 
-  /* -- Submit handler -- */
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      if (error_message) {
+        input_el.classList.add("error");
+      } else {
+        input_el.classList.remove("error");
+      }
 
-    const fields = [
-      {
-        input: form.querySelector("#name"),
-        error: form.querySelector("#name-error"),
-      },
-      {
-        input: form.querySelector("#email"),
-        error: form.querySelector("#email-error"),
-      },
-      {
-        input: form.querySelector("#subject"),
-        error: form.querySelector("#subject-error"),
-      },
-      {
-        input: form.querySelector("#message"),
-        error: form.querySelector("#message-error"),
-      },
-    ];
+      error_el.textContent = error_message;
+      return !error_message;
+    };
 
-    const allValid = fields.every(({ input, error }) =>
-      input && error ? validateField(input, error) : true,
-    );
+    const clear_error_on_input = (input_el) => {
+      input_el.addEventListener("input", () => {
+        input_el.classList.remove("error");
+        const error_el = document.getElementById(input_el.id + "-error");
+        if (error_el) error_el.textContent = "";
+      });
+    };
 
-    if (!allValid) {
-      showToast("⚠ Please fill in all fields correctly.");
-      return;
-    }
+    const form_inputs = contact_form.querySelectorAll("input, textarea");
+    form_inputs.forEach(clear_error_on_input);
 
-    /* ── Send via Formspree ── */
-    if (FORMSPREE_URL.includes("YOUR_FORM_ID")) {
-      // Formspree not yet configured — show success toast as demo
-      showToast(
-        "✓ Message sent! (Demo mode — add your Formspree URL to script.js to receive real emails)",
-      );
-      form.reset();
-      return;
-    }
+    contact_form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending…";
+      const form_fields = [
+        { input: contact_form.querySelector("#name"), error: contact_form.querySelector("#name-error") },
+        { input: contact_form.querySelector("#email"), error: contact_form.querySelector("#email-error") },
+        { input: contact_form.querySelector("#subject"), error: contact_form.querySelector("#subject-error") },
+        { input: contact_form.querySelector("#message"), error: contact_form.querySelector("#message-error") }
+      ];
 
-    try {
-      const response = await fetch(FORMSPREE_URL, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
+      let is_form_valid = true;
+      form_fields.forEach((field) => {
+        if (field.input && field.error) {
+          const is_valid = validate_input_field(field.input, field.error);
+          if (!is_valid) is_form_valid = false;
+        }
       });
 
-      if (response.ok) {
-        showToast("✓ Message sent successfully! I'll be in touch soon.");
-        form.reset();
-      } else {
-        const data = await response.json().catch(() => ({}));
-        const msg =
-          data?.errors?.map((e) => e.message).join(", ") ||
-          "Something went wrong.";
-        showToast("✕ Failed to send: " + msg);
+      if (!is_form_valid) {
+        show_toast("⚠ Please fill in all fields correctly.");
+        return;
       }
-    } catch {
-      showToast("✕ Network error — please try again or email me directly.");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message →";
-    }
-  });
-})();
+
+      if (formspree_url.includes("YOUR_FORM_ID")) {
+        show_toast("✓ Message sent! (Demo mode)");
+        contact_form.reset();
+        return;
+      }
+
+      submit_button.disabled = true;
+      submit_button.textContent = "Sending…";
+
+      try {
+        const fetch_response = await fetch(formspree_url, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(contact_form),
+        });
+
+        if (fetch_response.ok) {
+          show_toast("✓ Message sent successfully! I'll be in touch soon.");
+          contact_form.reset();
+        } else {
+          show_toast("✕ Failed to send. Please check your details.");
+        }
+      } catch (err) {
+        show_toast("✕ Network error — please try again or email me directly.");
+      } finally {
+        submit_button.disabled = false;
+        submit_button.textContent = "Send Message →";
+      }
+    });
+  }
+});

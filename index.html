@@ -1,224 +1,105 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Update the title tag with your full name and role -->
-    <title>Nishant Nahar — Web Developer</title>
-    <meta
-      name="description"
-      content="Portfolio of Nishant Nahar, Web Developer"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- NAVIGATION BAR -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishant Nahar — Web Developer</title>
+  <meta name="description" content="Portfolio of Nishant Nahar, Web Developer — clean code, bold design." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-frame">
+
+
     <header class="navbar" id="navbar">
       <nav class="nav-container">
         <a href="#hero" class="nav-logo">
-          <span class="logo-icon">⊞</span>
-          <!-- TODO: Replace "Nishant." with your preferred display name -->
-          <span class="logo-text">Nishant.</span>
+          <span class="logo-box">N.</span>
+          <span>Nishant Nahar</span>
         </a>
-        <button
-          class="hamburger"
-          id="hamburger"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-        >
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="nav-links">
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open nav-icon"></i>projects</a></li>
+          <li><a href="#about" class="nav-link"><i class="fa-solid fa-user nav-icon"></i>about</a></li>
+          <li><a href="#skills" class="nav-link"><i class="fa-solid fa-code nav-icon"></i>skills</a></li>
+          <li><a href="#contact" class="nav-link"><i class="fa-solid fa-envelope nav-icon"></i>contact</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <!-- HERO SECTION -->
+
+
       <section class="hero" id="hero">
-        <div class="hero-content">
+        <div class="hero-inner">
           <div class="hero-left">
-            <!-- TODO: Update your role/title -->
             <span class="hero-tag">&lt; Web Developer /&gt;</span>
             <h1 class="hero-heading">
               Hello.<br />
-              <!-- TODO: Update your full name -->
               I'm <span class="hero-name">Nishant Nahar.</span>
             </h1>
-            <!-- Typewriter text — edit phrases in script.js → TYPEWRITER_PHRASES -->
             <p class="hero-typewriter">
               <span id="typewriter-text"></span><span class="tw-cursor">|</span>
             </p>
             <div class="hero-cta">
-              <a href="#projects" class="btn btn-primary">View My Work</a>
+              <a href="#projects" class="btn btn-primary">View My Work →</a>
               <a href="#contact" class="btn btn-secondary">Contact Me</a>
             </div>
           </div>
 
           <div class="hero-right">
-            <div class="mascot-wrapper">
-              <svg
-                class="mascot-svg"
-                viewBox="0 0 340 340"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-label="Retro computer mascot"
-              >
-                <rect
-                  x="55"
-                  y="45"
-                  width="210"
-                  height="165"
-                  rx="18"
-                  fill="#0a0a0a"
-                />
-                <rect
-                  x="68"
-                  y="58"
-                  width="184"
-                  height="139"
-                  rx="10"
-                  fill="#f5f5f5"
-                />
-                <rect
-                  x="68"
-                  y="58"
-                  width="60"
-                  height="139"
-                  rx="10"
-                  fill="#fff"
-                  opacity="0.08"
-                />
-                <!-- Left eye -->
+            <div class="mascot-card">
+              <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot-svg"
+                aria-label="Nerdy robot mascot">
+
+
+                <rect x="55" y="45" width="210" height="165" rx="18" fill="#0a0a0a" />
+                <rect x="68" y="58" width="184" height="139" rx="10" fill="#f5f5f5" />
+                <rect x="68" y="58" width="60" height="139" rx="10" fill="#fff" opacity="0.08" />
+                
                 <circle cx="118" cy="112" r="24" fill="#0a0a0a" />
                 <circle cx="118" cy="112" r="15" fill="#fff" />
                 <circle cx="123" cy="107" r="7" fill="#0a0a0a" />
                 <circle cx="125" cy="105" r="2.5" fill="#fff" />
-                <!-- Right eye -->
+                
                 <circle cx="202" cy="112" r="24" fill="#0a0a0a" />
                 <circle cx="202" cy="112" r="15" fill="#fff" />
                 <circle cx="207" cy="107" r="7" fill="#0a0a0a" />
                 <circle cx="209" cy="105" r="2.5" fill="#fff" />
-                <!-- Smile -->
-                <path
-                  d="M130 158 Q160 182 190 158"
-                  stroke="#0a0a0a"
-                  stroke-width="5"
-                  stroke-linecap="round"
-                  fill="none"
-                />
-                <!-- Blush -->
-                <ellipse
-                  cx="104"
-                  cy="150"
-                  rx="16"
-                  ry="9"
-                  fill="#FFD700"
-                  opacity="0.55"
-                />
-                <ellipse
-                  cx="216"
-                  cy="150"
-                  rx="16"
-                  ry="9"
-                  fill="#FFD700"
-                  opacity="0.55"
-                />
-                <!-- Stand & base -->
-                <rect
-                  x="146"
-                  y="210"
-                  width="48"
-                  height="32"
-                  rx="5"
-                  fill="#0a0a0a"
-                />
-                <rect
-                  x="114"
-                  y="240"
-                  width="112"
-                  height="15"
-                  rx="7"
-                  fill="#0a0a0a"
-                />
-                <!-- Left arm + pen -->
-                <rect
-                  x="15"
-                  y="108"
-                  width="40"
-                  height="14"
-                  rx="7"
-                  fill="#0a0a0a"
-                />
-                <rect
-                  x="5"
-                  y="93"
-                  width="20"
-                  height="40"
-                  rx="10"
-                  fill="#0a0a0a"
-                />
+                
+                <path d="M130 158 Q160 182 190 158" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"
+                  fill="none" />
+                
+                <ellipse cx="104" cy="150" rx="16" ry="9" fill="#FFD700" opacity="0.55" />
+                <ellipse cx="216" cy="150" rx="16" ry="9" fill="#FFD700" opacity="0.55" />
+                
+                <rect x="146" y="210" width="48" height="32" rx="5" fill="#0a0a0a" />
+                <rect x="114" y="240" width="112" height="15" rx="7" fill="#0a0a0a" />
+                
+                <rect x="15" y="108" width="40" height="14" rx="7" fill="#0a0a0a" />
+                <rect x="5" y="93" width="20" height="40" rx="10" fill="#0a0a0a" />
                 <g transform="rotate(-22 15 93)">
-                  <rect
-                    x="9"
-                    y="70"
-                    width="11"
-                    height="44"
-                    rx="4"
-                    fill="#333"
-                  />
+                  <rect x="9" y="70" width="11" height="44" rx="4" fill="#333" />
                   <polygon points="9,114 20,114 14.5,132" fill="#FFD700" />
-                  <rect
-                    x="9"
-                    y="70"
-                    width="11"
-                    height="10"
-                    rx="4"
-                    fill="#FFD700"
-                  />
+                  <rect x="9" y="70" width="11" height="10" rx="4" fill="#FFD700" />
                 </g>
-                <!-- Right arm -->
-                <rect
-                  x="265"
-                  y="108"
-                  width="40"
-                  height="14"
-                  rx="7"
-                  fill="#0a0a0a"
-                />
-                <rect
-                  x="295"
-                  y="93"
-                  width="20"
-                  height="40"
-                  rx="10"
-                  fill="#0a0a0a"
-                />
-                <!-- Antenna -->
-                <rect
-                  x="155"
-                  y="18"
-                  width="10"
-                  height="30"
-                  rx="5"
-                  fill="#0a0a0a"
-                />
+                
+                <rect x="265" y="108" width="40" height="14" rx="7" fill="#0a0a0a" />
+                <rect x="295" y="93" width="20" height="40" rx="10" fill="#0a0a0a" />
+                
+                <rect x="155" y="18" width="10" height="30" rx="5" fill="#0a0a0a" />
                 <circle cx="160" cy="13" r="9" fill="#FFD700" />
-                <!-- Decorative dots -->
+                
                 <circle cx="42" cy="58" r="6" fill="#FFD700" />
                 <circle cx="298" cy="48" r="5" fill="#0a0a0a" />
                 <circle cx="318" cy="76" r="4" fill="#FFD700" />
@@ -228,37 +109,44 @@
             </div>
           </div>
         </div>
-
-        <div class="scroll-indicator">
-          <span>Scroll down</span>
-          <div class="scroll-line"></div>
-        </div>
       </section>
 
-      <!-- QUICK LINKS BAR -->
+
       <section class="quicklinks-section">
-        <p class="quicklinks-label">Quick links</p>
-        <div class="quicklinks-bar">
-          <a href="#projects" class="quicklink-cell"
-            ><span>Projects</span><span class="ql-arrow">↗</span></a
-          >
-          <a href="#about" class="quicklink-cell"
-            ><span>About</span><span class="ql-arrow">↗</span></a
-          >
-          <a href="#skills" class="quicklink-cell"
-            ><span>Skills</span><span class="ql-arrow">↗</span></a
-          >
-          <a href="#contact" class="quicklink-cell"
-            ><span>Contact</span><span class="ql-arrow">↗</span></a
-          >
+        <div class="inner">
+          <div class="quicklinks-bar">
+            <a href="#projects" class="quicklink-cell">
+              <span class="ql-icon"><i class="fa-solid fa-folder-open"></i></span>
+              <span>Projects</span>
+              <span class="ql-arrow">↗</span>
+            </a>
+            <a href="#about" class="quicklink-cell">
+              <span class="ql-icon"><i class="fa-solid fa-user"></i></span>
+              <span>About</span>
+              <span class="ql-arrow">↗</span>
+            </a>
+            <a href="#skills" class="quicklink-cell">
+              <span class="ql-icon"><i class="fa-solid fa-code"></i></span>
+              <span>Skills</span>
+              <span class="ql-arrow">↗</span>
+            </a>
+            <a href="#contact" class="quicklink-cell">
+              <span class="ql-icon"><i class="fa-solid fa-envelope"></i></span>
+              <span>Contact</span>
+              <span class="ql-arrow">↗</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      <!-- PROJECTS SECTION -->
-      <section class="projects-section" id="projects">
-        <div class="section-container">
-          <div class="section-header">
-            <h2 class="section-title">Projects</h2>
+
+      <section class="section-wrap" id="projects">
+        <div class="inner">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">Selected work</span>
+              <h2 class="section-title">Projects</h2>
+            </div>
             <div class="filter-bar">
               <button class="filter-btn active" data-filter="all">All</button>
               <button class="filter-btn" data-filter="web">Web</button>
@@ -268,360 +156,248 @@
           </div>
 
           <div class="projects-grid" id="projects-grid">
-            <!-- PROJECT CARD 1
-               TODO: data-category = "web" | "mobile" | "design"
-               TODO: card-filename, title, description, tags -->
+
+
             <article class="project-card" data-category="web">
-              <div class="card-topbar">
-                <span class="card-dots"><i></i><i></i></span>
-                <span class="card-filename">project-01.html</span
-                ><!-- TODO: filename -->
+              <div class="win-bar">
+                <div class="win-dots"><span></span><span></span></div>
+                <span class="win-filename">project-01.html</span>
               </div>
               <div class="card-image">
-                <!-- TODO: Replace with: <img src="screenshot.jpg" alt="..." loading="lazy" /> (600×340px) -->
                 <div class="img-placeholder">
                   <i class="fa-regular fa-image"></i>
-                  <span>Add project screenshot</span>
+                  <span>Add screenshot</span>
                 </div>
               </div>
               <div class="card-body">
                 <h3 class="card-title">Your Project Title</h3>
-                <!-- TODO -->
-                <p class="card-desc">
-                  Describe your project here. What does it do, who is it for,
-                  and what problem does it solve?
-                </p>
-                <!-- TODO -->
+                <p class="card-desc">Describe your project here. What does it do, who is it for, and what problem does
+                  it solve?</p>
                 <div class="card-tags">
-                  <!-- TODO: replace with your actual tech stack -->
                   <span class="tag">HTML</span>
                   <span class="tag">CSS</span>
                   <span class="tag">JavaScript</span>
                 </div>
-                <button class="btn-view" data-modal="modal-1">
-                  View Project
-                </button>
+                <button class="btn-view" data-modal="modal-1">View Project →</button>
               </div>
             </article>
 
-            <!-- PROJECT CARD 2 — TODO: same as above -->
+
             <article class="project-card" data-category="web">
-              <div class="card-topbar">
-                <span class="card-dots"><i></i><i></i></span>
-                <span class="card-filename">project-02.html</span
-                ><!-- TODO -->
+              <div class="win-bar">
+                <div class="win-dots"><span></span><span></span></div>
+                <span class="win-filename">project-02.html</span>
               </div>
               <div class="card-image">
                 <div class="img-placeholder">
                   <i class="fa-regular fa-image"></i>
-                  <span>Add project screenshot</span>
+                  <span>Add screenshot</span>
                 </div>
               </div>
               <div class="card-body">
                 <h3 class="card-title">Your Project Title</h3>
-                <!-- TODO -->
-                <p class="card-desc">
-                  Describe your project here. What does it do, who is it for,
-                  and what problem does it solve?
-                </p>
-                <!-- TODO -->
+                <p class="card-desc">Describe your project here. What does it do, who is it for, and what problem does
+                  it solve?</p>
                 <div class="card-tags">
                   <span class="tag">React</span>
                   <span class="tag">Node.js</span>
                   <span class="tag">MongoDB</span>
                 </div>
-                <button class="btn-view" data-modal="modal-2">
-                  View Project
-                </button>
+                <button class="btn-view" data-modal="modal-2">View Project →</button>
               </div>
             </article>
 
-            <!-- PROJECT CARD 3 — TODO: same as above -->
+
             <article class="project-card" data-category="mobile">
-              <div class="card-topbar">
-                <span class="card-dots"><i></i><i></i></span>
-                <span class="card-filename">project-03.html</span
-                ><!-- TODO -->
+              <div class="win-bar">
+                <div class="win-dots"><span></span><span></span></div>
+                <span class="win-filename">project-03.html</span>
               </div>
               <div class="card-image">
                 <div class="img-placeholder">
                   <i class="fa-regular fa-image"></i>
-                  <span>Add project screenshot</span>
+                  <span>Add screenshot</span>
                 </div>
               </div>
               <div class="card-body">
                 <h3 class="card-title">Your Project Title</h3>
-                <!-- TODO -->
-                <p class="card-desc">
-                  Describe your project here. What does it do, who is it for,
-                  and what problem does it solve?
-                </p>
-                <!-- TODO -->
+                <p class="card-desc">Describe your project here. What does it do, who is it for, and what problem does
+                  it solve?</p>
                 <div class="card-tags">
                   <span class="tag">Flutter</span>
                   <span class="tag">Firebase</span>
                 </div>
-                <button class="btn-view" data-modal="modal-3">
-                  View Project
-                </button>
+                <button class="btn-view" data-modal="modal-3">View Project →</button>
               </div>
             </article>
 
-            <!-- PROJECT CARD 4 — TODO: same as above -->
+
             <article class="project-card" data-category="design">
-              <div class="card-topbar">
-                <span class="card-dots"><i></i><i></i></span>
-                <span class="card-filename">project-04.html</span
-                ><!-- TODO -->
+              <div class="win-bar">
+                <div class="win-dots"><span></span><span></span></div>
+                <span class="win-filename">project-04.html</span>
               </div>
               <div class="card-image">
                 <div class="img-placeholder">
                   <i class="fa-regular fa-image"></i>
-                  <span>Add project screenshot</span>
+                  <span>Add screenshot</span>
                 </div>
               </div>
               <div class="card-body">
                 <h3 class="card-title">Your Project Title</h3>
-                <!-- TODO -->
-                <p class="card-desc">
-                  Describe your project here. What does it do, who is it for,
-                  and what problem does it solve?
-                </p>
-                <!-- TODO -->
+                <p class="card-desc">Describe your project here. What does it do, who is it for, and what problem does
+                  it solve?</p>
                 <div class="card-tags">
                   <span class="tag">Figma</span>
                   <span class="tag">UI/UX</span>
                 </div>
-                <button class="btn-view" data-modal="modal-4">
-                  View Project
-                </button>
+                <button class="btn-view" data-modal="modal-4">View Project →</button>
               </div>
             </article>
+
           </div>
         </div>
       </section>
 
-      <!-- PROJECT MODALS -->
 
-      <!-- Modal 1 — TODO: title, description, tags, live URL, GitHub URL -->
-      <div
-        class="modal-overlay"
-        id="modal-1"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-1-title"
-      >
+      <div class="modal-overlay" id="modal-1" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <div class="modal-panel">
           <button class="modal-close" aria-label="Close modal">✕</button>
+          <div class="win-bar">
+            <div class="win-dots"><span></span><span></span></div><span class="win-filename">project-01.html</span>
+          </div>
           <div class="modal-image">
-            <!-- TODO: <img src="screenshot.jpg" alt="..." /> -->
-            <div class="img-placeholder large">
-              <i class="fa-regular fa-image"></i>
-            </div>
+            <div class="img-placeholder large"><i class="fa-regular fa-image"></i></div>
           </div>
           <div class="modal-body">
             <h3 id="modal-1-title">Your Project Title</h3>
-            <!-- TODO -->
-            <p>
-              Write a detailed description (4–6 sentences): problem solved, your
-              role, challenges, outcome.
-            </p>
-            <!-- TODO -->
-            <div class="modal-tags">
-              <span class="tag">HTML</span><span class="tag">CSS</span
-              ><span class="tag">JavaScript</span>
-            </div>
+            <p>Write a detailed description (4–6 sentences): problem solved, your role, challenges, outcome.</p>
+            <div class="modal-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
+                class="tag">JavaScript</span></div>
             <div class="modal-links">
-              <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
-                >Live Demo ↗</a
-              ><!-- TODO: href -->
-              <a
-                href="#"
-                class="btn btn-secondary"
-                target="_blank"
-                rel="noopener"
-                ><i class="fa-brands fa-github"></i> GitHub</a
-              ><!-- TODO: href -->
+              <a href="#" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <a href="#" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+                GitHub</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Modal 2 — TODO -->
-      <div
-        class="modal-overlay"
-        id="modal-2"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-2-title"
-      >
+      <div class="modal-overlay" id="modal-2" role="dialog" aria-modal="true" aria-labelledby="modal-2-title">
         <div class="modal-panel">
           <button class="modal-close" aria-label="Close modal">✕</button>
+          <div class="win-bar">
+            <div class="win-dots"><span></span><span></span></div><span class="win-filename">project-02.html</span>
+          </div>
           <div class="modal-image">
-            <div class="img-placeholder large">
-              <i class="fa-regular fa-image"></i>
-            </div>
+            <div class="img-placeholder large"><i class="fa-regular fa-image"></i></div>
           </div>
           <div class="modal-body">
             <h3 id="modal-2-title">Your Project Title</h3>
-            <!-- TODO -->
             <p>Write a detailed description of this project here.</p>
-            <!-- TODO -->
-            <div class="modal-tags">
-              <span class="tag">React</span><span class="tag">Node.js</span
-              ><span class="tag">MongoDB</span>
-            </div>
+            <div class="modal-tags"><span class="tag">React</span><span class="tag">Node.js</span><span
+                class="tag">MongoDB</span></div>
             <div class="modal-links">
-              <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
-                >Live Demo ↗</a
-              ><!-- TODO -->
-              <a
-                href="#"
-                class="btn btn-secondary"
-                target="_blank"
-                rel="noopener"
-                ><i class="fa-brands fa-github"></i> GitHub</a
-              ><!-- TODO -->
+              <a href="#" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <a href="#" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+                GitHub</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Modal 3 — TODO -->
-      <div
-        class="modal-overlay"
-        id="modal-3"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-3-title"
-      >
+      <div class="modal-overlay" id="modal-3" role="dialog" aria-modal="true" aria-labelledby="modal-3-title">
         <div class="modal-panel">
           <button class="modal-close" aria-label="Close modal">✕</button>
+          <div class="win-bar">
+            <div class="win-dots"><span></span><span></span></div><span class="win-filename">project-03.html</span>
+          </div>
           <div class="modal-image">
-            <div class="img-placeholder large">
-              <i class="fa-regular fa-image"></i>
-            </div>
+            <div class="img-placeholder large"><i class="fa-regular fa-image"></i></div>
           </div>
           <div class="modal-body">
             <h3 id="modal-3-title">Your Project Title</h3>
-            <!-- TODO -->
             <p>Write a detailed description of this project here.</p>
-            <!-- TODO -->
-            <div class="modal-tags">
-              <span class="tag">Flutter</span><span class="tag">Firebase</span>
-            </div>
+            <div class="modal-tags"><span class="tag">Flutter</span><span class="tag">Firebase</span></div>
             <div class="modal-links">
-              <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
-                >Live Demo ↗</a
-              ><!-- TODO -->
-              <a
-                href="#"
-                class="btn btn-secondary"
-                target="_blank"
-                rel="noopener"
-                ><i class="fa-brands fa-github"></i> GitHub</a
-              ><!-- TODO -->
+              <a href="#" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <a href="#" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+                GitHub</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Modal 4 — TODO -->
-      <div
-        class="modal-overlay"
-        id="modal-4"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-4-title"
-      >
+      <div class="modal-overlay" id="modal-4" role="dialog" aria-modal="true" aria-labelledby="modal-4-title">
         <div class="modal-panel">
           <button class="modal-close" aria-label="Close modal">✕</button>
+          <div class="win-bar">
+            <div class="win-dots"><span></span><span></span></div><span class="win-filename">project-04.html</span>
+          </div>
           <div class="modal-image">
-            <div class="img-placeholder large">
-              <i class="fa-regular fa-image"></i>
-            </div>
+            <div class="img-placeholder large"><i class="fa-regular fa-image"></i></div>
           </div>
           <div class="modal-body">
             <h3 id="modal-4-title">Your Project Title</h3>
-            <!-- TODO -->
             <p>Write a detailed description of this project here.</p>
-            <!-- TODO -->
-            <div class="modal-tags">
-              <span class="tag">Figma</span><span class="tag">UI/UX</span>
-            </div>
+            <div class="modal-tags"><span class="tag">Figma</span><span class="tag">UI/UX</span></div>
             <div class="modal-links">
-              <a href="#" class="btn btn-primary" target="_blank" rel="noopener"
-                >Live Demo ↗</a
-              ><!-- TODO -->
-              <a
-                href="#"
-                class="btn btn-secondary"
-                target="_blank"
-                rel="noopener"
-                ><i class="fa-brands fa-github"></i> GitHub</a
-              ><!-- TODO -->
+              <a href="#" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <a href="#" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+                GitHub</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ABOUT SECTION -->
-      <section class="about-section" id="about">
-        <div class="section-container">
+
+      <section class="section-wrap alt" id="about">
+        <div class="inner">
           <div class="about-grid">
             <div class="about-photo-col">
-              <div class="photo-frame">
-                <!-- TODO: Replace with <img src="your-photo.jpg" alt="Photo of Nishant Nahar" class="profile-photo" /> (400×400px min) -->
-                <div class="photo-placeholder">
-                  <i class="fa-solid fa-user"></i>
-                  <span>Add your photo</span>
+              <div class="photo-window">
+                <div class="win-bar">
+                  <div class="win-dots"><span></span><span></span></div>
+                  <span class="win-filename">about-me.png</span>
+                </div>
+                <div class="photo-frame">
+                  <img src="pfp.png" alt="Photo of Nishant Nahar" class="profile-photo" />
                 </div>
               </div>
-              <!-- TODO: Update with your location -->
-              <div class="location-badge">📍 India</div>
+              <div class="location-badge">📍 India 🇮🇳</div>
             </div>
 
             <div class="about-text-col">
               <span class="section-eyebrow">Get to know me</span>
               <h2 class="section-title">About Me</h2>
-              <!-- TODO: Replace with your real bio paragraph 1 -->
               <p class="about-para">
                 Hi there! I'm <strong>Nishant Nahar</strong>, a passionate web
                 developer who loves building clean, interactive, and visually
                 memorable digital experiences.
               </p>
-              <!-- TODO: Replace with your real bio paragraph 2 -->
-              <p class="about-para">
+              <p class="about-  para">
                 When I'm not writing code, I'm exploring design trends,
                 experimenting with animations, or finding new ways to make the
                 web more beautiful.
               </p>
               <div class="fun-facts">
-                <!-- TODO: Replace each sticky note with your own fun fact (keep under 8 words) -->
-                <div class="sticky-note" style="--rot: -2.5deg">
-                  ☕ Coffee-powered developer
-                </div>
-                <div class="sticky-note" style="--rot: 1.8deg">
-                  🎨 Design nerd at heart
-                </div>
-                <div class="sticky-note" style="--rot: -1.2deg">
-                  🌍 Open to remote work
-                </div>
+                <div class="sticky-note" style="--rot: -2.5deg">☕ Coffee-powered developer</div>
+                <div class="sticky-note" style="--rot: 1.8deg">🎨 Design nerd at heart</div>
+                <div class="sticky-note" style="--rot: -1.2deg">🌍 Open to remote work</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SKILLS SECTION -->
-      <section class="skills-section" id="skills">
-        <div class="section-container">
+
+      <section class="section-wrap dark" id="skills">
+        <div class="inner">
           <div class="skills-grid">
             <div class="skills-left">
               <span class="section-eyebrow light">What I know</span>
               <h2 class="section-title light">Skills</h2>
               <div class="skill-bars" id="skill-bars">
-                <!-- TODO: Update each skill-label, skill-pct, and data-width -->
 
                 <div class="skill-item">
                   <div class="skill-header">
@@ -673,17 +449,13 @@
                   </div>
                 </div>
 
-                <!-- TODO: Add more by copying a skill-item block above -->
               </div>
             </div>
 
             <div class="skills-right">
               <span class="section-eyebrow light">My toolbox</span>
-              <h2 class="section-title light" style="margin-bottom: 2rem">
-                Tools
-              </h2>
+              <h2 class="section-title light" style="margin-bottom: 1.5rem">Tools</h2>
               <div class="tools-grid">
-                <!-- TODO: Replace / add tool-tag spans with your actual tools -->
                 <span class="tool-tag">Git</span>
                 <span class="tool-tag">GitHub</span>
                 <span class="tool-tag">Figma</span>
@@ -702,26 +474,23 @@
         </div>
       </section>
 
-      <!-- CONTACT SECTION -->
-      <section class="contact-section" id="contact">
-        <div class="section-container">
+
+      <section class="section-wrap" id="contact">
+        <div class="inner">
           <div class="contact-grid">
             <div class="contact-left">
               <span class="section-eyebrow">Get in touch</span>
               <h2 class="section-title">Let's Work<br />Together.</h2>
-              <!-- TODO: Update this invite message -->
               <p class="contact-intro">
                 Have a project in mind or just want to say hi? Drop me a message
                 — I'd love to hear from you.
               </p>
 
               <div class="contact-info">
-                <!-- TODO: Replace with your real email (both href and text) -->
                 <a href="mailto:your@email.com" class="contact-detail">
                   <i class="fa-solid fa-envelope"></i>
                   <span>your@email.com</span>
                 </a>
-                <!-- TODO: Replace with your city/country -->
                 <div class="contact-detail">
                   <i class="fa-solid fa-location-dot"></i>
                   <span>India 🇮🇳</span>
@@ -729,105 +498,42 @@
               </div>
 
               <div class="social-links">
-                <!-- TODO: Replace href="#" with your real social URLs. Remove unused ones. -->
-                <a
-                  href="#"
-                  class="social-icon"
-                  aria-label="GitHub"
-                  target="_blank"
-                  rel="noopener"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                  href="#"
-                  class="social-icon"
-                  aria-label="LinkedIn"
-                  target="_blank"
-                  rel="noopener"
-                  ><i class="fa-brands fa-linkedin-in"></i
-                ></a>
-                <a
-                  href="#"
-                  class="social-icon"
-                  aria-label="Twitter/X"
-                  target="_blank"
-                  rel="noopener"
-                  ><i class="fa-brands fa-x-twitter"></i
-                ></a>
-                <a
-                  href="#"
-                  class="social-icon"
-                  aria-label="Instagram"
-                  target="_blank"
-                  rel="noopener"
-                  ><i class="fa-brands fa-instagram"></i
-                ></a>
+                <a href="#" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter/X" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-instagram"></i></a>
               </div>
             </div>
 
             <div class="contact-right">
-              <!--
-              HOW TO RECEIVE EMAILS FROM THIS FORM
-              ──────────────────────────────────────
-              Option A — Formspree (FREE, easiest — recommended):
-                1. Go to https://formspree.io and sign up (free)
-                2. Click "New Form", give it a name, confirm your email
-                3. Copy the form endpoint URL (looks like https://formspree.io/f/xabcdefg)
-                4. In script.js, set FORMSPREE_URL = 'https://formspree.io/f/YOUR_ID'
-                   (replace YOUR_ID with your actual form ID)
-                5. Every submission will now land in your inbox ✓
 
-              Option B — EmailJS (also free, no server needed):
-                See https://www.emailjs.com for setup instructions.
-            -->
               <form class="contact-form" id="contact-form" novalidate>
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your full name"
-                    autocomplete="name"
-                  />
+                  <input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" />
                   <span class="field-error" id="name-error"></span>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="your@email.com"
-                    autocomplete="email"
-                  />
+                  <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
                   <span class="field-error" id="email-error"></span>
                 </div>
                 <div class="form-group">
                   <label for="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="What's this about?"
-                  />
+                  <input type="text" id="subject" name="subject" placeholder="What's this about?" />
                   <span class="field-error" id="subject-error"></span>
                 </div>
                 <div class="form-group">
                   <label for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    placeholder="Tell me about your project or just say hi..."
-                  ></textarea>
+                  <textarea id="message" name="message" rows="5"
+                    placeholder="Tell me about your project or just say hi..."></textarea>
                   <span class="field-error" id="message-error"></span>
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-full"
-                  id="submit-btn"
-                >
+                <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
                   Send Message →
                 </button>
               </form>
@@ -835,27 +541,26 @@
           </div>
         </div>
       </section>
+
     </main>
 
-    <!-- FOOTER -->
+
     <footer class="footer">
-      <div class="footer-container">
-        <!-- TODO: Update year and your name -->
-        <span class="footer-copy"
-          >© 2025 Nishant Nahar. All rights reserved.</span
-        >
-        <span class="footer-cursor">_</span>
-        <nav class="footer-nav">
-          <a href="#projects">Projects</a><span>·</span>
-          <a href="#about">About</a><span>·</span>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
+      <span class="footer-copy">© 2025 Nishant Nahar. All rights reserved.<span class="footer-cursor">_</span></span>
+      <nav class="footer-nav">
+        <a href="#projects">Projects</a><span>·</span>
+        <a href="#about">About</a><span>·</span>
+        <a href="#skills">Skills</a><span>·</span>
+        <a href="#contact">Contact</a>
+      </nav>
     </footer>
 
-    <!-- Toast notification (JS-controlled) -->
-    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
