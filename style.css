@@ -1,3 +1,76 @@
+/* 
+==========================================================================
+FILE: style.css
+PROJECT: Nishant Nahar — Personal Portfolio Website
+==========================================================================
+This file contains ALL styling for the entire portfolio site.
+
+FILE STRUCTURE (in order):
+  1.  :root             — CSS custom properties (design tokens)
+  2.  Reset & Base      — * selector reset, html/body/img/a/ul base styles
+  3.  Layout Utilities  — .page_frame, .inner, .section_title, .section_eyebrow
+  4.  Utilities & Components — .fade_in, .btn variants, .tag, .win_bar
+  5.  Navbar            — .navbar, .nav_container, .nav_logo, .hamburger, etc.
+  6.  Hero Section      — .hero, .hero_inner, .hero_tag, mascot, animations
+  7.  Quicklinks Bar    — .quicklinks_section, .quicklinks_bar, .quicklink_cell
+  8.  Section Wrappers  — .section_wrap, .section_header_row
+  9.  Project Cards     — .project_card, .card_image, .card_body, .filter_btn
+  10. Modal Overlays    — .modal_overlay, .modal_panel, .modal_body
+  11. About Section     — .about_grid, .photo_window, .sticky_note
+  12. Skills Section    — .skills_grid, .skill_bar, .tool_tag
+  13. Contact Section   — .contact_grid, .contact_form, .field_error
+  14. Footer            — .footer, .footer_nav, .footer_cursor
+  15. Toast             — .toast notification popup
+  16. Responsive Media Queries — @media (max-width: 820px) and (max-width: 480px)
+
+NAMING CONVENTION:
+  All custom class names use snake_case (lowercase + underscores).
+  CSS property names (margin-bottom, font-size etc.) keep standard kebab-case,
+  as those are the CSS specification standard and cannot be changed.
+===========================================================================
+*/
+
+
+/* 
+==========================================================================
+[1] GLOBAL CSS VARIABLES (DESIGN TOKENS)
+==========================================================================
+All reusable values used throughout the stylesheet.
+Changing a value here updates it EVERYWHERE it's referenced.
+
+COLORS:
+  --black       : main text / border / button background color
+  --white       : backgrounds, text on dark surfaces
+  --bg          : the page background (light grey tone)
+  --bg-window   : slightly lighter grey for window-like elements
+  --bg-dark     : near-black for the Skills section dark background
+  --gray-light  : About section background, image placeholder background
+  --gray-mid    : muted text color (icon opacity, placeholders)
+  --gray-dark   : subdued body text color
+  --win-bar     : the window title bar color (unused as var currently)
+  --accent      : brand color — bright yellow #ffd700 (Gold)
+  --accent-dark : slightly darker gold for hover states
+
+TYPOGRAPHY:
+  --font-head   : Space Grotesk — large headings, section titles, logo
+  --font-body   : DM Sans — all regular body text, buttons
+  --font-mono   : IBM Plex Mono — labels, tags, nav links, code-style text
+
+BORDERS & SHADOWS:
+  --border      : 2px solid black — used on cards, navbar, modals
+  --border-thin : 1px solid black — form inputs, smaller elements
+  --shadow      : 4px 4px 0 black — flat neo-brutalist drop shadow
+  --shadow-lg   : 7px 7px 0 black — larger shadow for hover states
+  --shadow-sm   : 2px 2px 0 black — subtle shadow for small buttons
+  --shadow-depth: soft blurred shadow for extra depth on hover
+  --shadow-depth-lg: larger version of shadow-depth
+
+SPACING & SIZING:
+  --nav-h  : height of the navbar (58px) — used in hero min-height calc
+  --radius : border-radius for buttons (0px = sharp square corners)
+  --page-w : maximum content width (1040px, shrinks on mobile)
+  --transition: 0.2s ease — snappy but smooth default transition speed
+*/
 :root {
   --black: #1c1c1c;
   --white: #ffffff;
@@ -26,6 +99,23 @@
   --page-w: 1040px;
 }
 
+/* 
+==========================================================================
+[2] RESET & BASE STYLES
+==========================================================================
+Strips default browser styles for consistent cross-browser rendering.
+  *             — box-sizing: border-box means padding/border are INCLUDED
+                  in the element's total width (prevents overflow surprises)
+  html          — enables smooth scrolling; sets base font size to 20px
+                  (all rem units are relative to this, e.g. 1rem = 20px)
+  body          — sets font, background color, text color, and hides
+                  horizontal scrollbar caused by animations
+  img           — display: block removes inline whitespace gap below images
+  a             — removes default blue underline and color from links
+  ul            — removes default bullet points from lists
+  button        — makes cursor a pointer and applies body font
+  :focus-visible — custom keyboard focus outline (gold color) for accessibility
+*/
 *,
 *::before,
 *::after {
@@ -77,12 +167,23 @@ button {
   background-size: 8px 8px;
 }
 
-.halftone-dark {
+.halftone_dark {
   background-image: radial-gradient(#333 1px, transparent 1px);
   background-size: 8px 8px;
 }
 
-.page-frame {
+/* ==========================================================================
+   [3] LAYOUT UTILITIES
+   ==========================================================================
+   Shared structural classes used across sections.
+*/
+
+/*
+  .page_frame — The outermost wrapper around ALL page content.
+  Creates the bordered page frame effect and acts as a stacking context.
+  position: relative allows children to use position: absolute inside it.
+*/
+.page_frame {
   min-height: 100vh;
   border: var(--border);
   margin: 0 auto;
@@ -90,13 +191,25 @@ button {
   position: relative;
 }
 
+/*
+  .inner — A centered content container used inside every section.
+  max-width clamps content to var(--page-w) = 1040px.
+  margin: 0 auto centers it horizontally.
+  padding: 0 2rem adds side gutters so content doesn't touch screen edges.
+*/
 .inner {
   max-width: var(--page-w);
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.section-title {
+/*
+  .section_title — The large H2 heading used in every section.
+  clamp(2.2rem, 5vw, 3.2rem): fluid font size that scales with viewport width
+  between a minimum of 2.2rem and a max of 3.2rem.
+  letter-spacing: -0.02em tightens spacing for a bold display look.
+*/
+.section_title {
   font-family: var(--font-head);
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 700;
@@ -105,11 +218,17 @@ button {
   letter-spacing: -0.02em;
 }
 
-.section-title.light {
+/* .section_title.light — White variant used on the dark Skills section */
+.section_title.light {
   color: var(--white);
 }
 
-.section-eyebrow {
+/*
+  .section_eyebrow — Small uppercase monospace label above section titles.
+  E.g. "Selected work", "Get to know me", "What I know".
+  letter-spacing: 0.12em spreads the uppercase text for readability.
+*/
+.section_eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
@@ -119,21 +238,42 @@ button {
   margin-bottom: 0.5rem;
 }
 
-.section-eyebrow.light {
+/* .section_eyebrow.light — Lighter version for the dark Skills section */
+.section_eyebrow.light {
   color: var(--gray-mid);
 }
 
-.fade-in {
+/* 
+==========================================================================
+[4] UTILITIES, COMPONENTS & SHARED CLASSES
+==========================================================================
+Reusable classes applied across multiple sections.
+*/
+
+/*
+  .fade_in — Added by script.js to elements we want to animate on scroll.
+  Starts invisible and shifted down (opacity:0, translateY:24px).
+  When script.js adds the .is_visible class (via IntersectionObserver),
+  the transition smoothly fades and slides the element into its normal position.
+*/
+.fade_in {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.fade-in.is-visible {
+/* .fade_in.is_visible — The "appeared" state. script.js adds this class. */
+.fade_in.is_visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/*
+  .btn — Base class for ALL buttons and anchor links styled as buttons.
+  Uses inline-flex so icon + text align properly side by side.
+  white-space: nowrap prevents button text from wrapping to two lines.
+  This base class is always combined with a variant: .btn_primary or .btn_secondary.
+*/
 .btn {
   display: inline-flex;
   align-items: center;
@@ -150,12 +290,18 @@ button {
   letter-spacing: 0.02em;
 }
 
-.btn-primary {
+/* .btn_primary — Dark filled button ("View My Work", "Live Demo", "Send Message") */
+.btn_primary {
   background: var(--black);
   color: var(--white);
 }
 
-.btn-primary:hover {
+/*
+  On hover: flips to gold/accent background.
+  transform: translate(-2px, -2px) shifts the button up-left slightly,
+  creating a neo-brutalist "lift" effect paired with the shadow.
+*/
+.btn_primary:hover {
   background: var(--accent);
   color: var(--black);
   border-color: var(--black);
@@ -163,24 +309,32 @@ button {
   transform: translate(-2px, -2px);
 }
 
-.btn-secondary {
+/* .btn_secondary — White/outlined button ("Contact Me", "GitHub") */
+.btn_secondary {
   background: var(--white);
   color: var(--black);
 }
 
-.btn-secondary:hover {
+/* On hover: inverts to dark fill */
+.btn_secondary:hover {
   background: var(--black);
   color: var(--white);
   box-shadow: var(--shadow-sm);
   transform: translate(-2px, -2px);
 }
 
-.btn-full {
+/* .btn_full — Makes a button stretch 100% width (used for contact form submit) */
+.btn_full {
   width: 100%;
   text-align: center;
   justify-content: center;
 }
 
+/*
+  .tag — Small bordered badge. Used in project cards and modals to show
+  the technology stack (e.g. "React", "Firebase", "Figma").
+  Uses monospace font so all tags feel "code-like".
+*/
 .tag {
   display: inline-block;
   font-family: var(--font-mono);
@@ -192,7 +346,13 @@ button {
   letter-spacing: 0.02em;
 }
 
-.win-bar {
+/*
+  .win_bar — A "retro operating system window" title bar.
+  Used on project cards, the about photo, and modal overlays.
+  Black background with small dot circles and a filename label.
+  Creates a consistent "file window" visual motif throughout the site.
+*/
+.win_bar {
   display: flex;
   align-items: center;
   gap: 0.7rem;
@@ -201,12 +361,14 @@ button {
   border-bottom: var(--border-thin);
 }
 
-.win-dots {
+/* .win_dots — Container for the two decorative circles in the title bar */
+.win_dots {
   display: flex;
   gap: 6px;
 }
 
-.win-dots span {
+/* Individual circles inside .win_dots (white with 60% opacity) */
+.win_dots span {
   display: block;
   width: 11px;
   height: 11px;
@@ -215,7 +377,12 @@ button {
   opacity: 0.6;
 }
 
-.win-filename {
+/*
+  .win_filename — The filename label shown centered in the title bar.
+  margin: 0 auto pushes it to the center.
+  padding-right: 2.2rem counterbalances the left dots to visually center the text.
+*/
+.win_filename {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: #999;
@@ -224,6 +391,26 @@ button {
   padding-right: 2.2rem;
 }
 
+/* 
+==========================================================================
+[5] HEADER / NAVBAR
+==========================================================================
+The sticky top bar. Uses position:sticky so it stays at the top of the
+screen as the user scrolls down.
+
+SELECTORS IN THIS SECTION:
+  .navbar          — the <header> element itself
+  .nav_container   — inner flex row (logo ↔ links)
+  .nav_logo        — the "N." logo + name on the left
+  .logo_box        — the square badge holding "N."
+  .nav_icon        — Font Awesome icon inside each nav link
+  .nav_links       — the <ul> containing the 4 links
+  .nav_link        — individual <a> anchor links
+  .nav_link::after — the animated underline on hover/active
+  .hamburger       — mobile menu toggle button (hidden on desktop)
+  .hamburger span  — the three horizontal bar lines
+  .hamburger.open  — animates bars into an ✕ when mobile menu opens
+*/
 .navbar {
   position: sticky;
   top: 0;
@@ -234,7 +421,7 @@ button {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-.nav-container {
+.nav_container {
   max-width: 100%;
   padding: 0 2rem;
   height: 100%;
@@ -243,7 +430,7 @@ button {
   justify-content: space-between;
 }
 
-.nav-logo {
+.nav_logo {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -257,20 +444,27 @@ button {
 
 
 
-.nav-icon {
+/* .nav_icon — Font Awesome icon shown before each nav link text */
+.nav_icon {
   margin-right: 5px;
   font-size: 0.72rem;
   opacity: 0.65;
   vertical-align: middle;
 }
 
-.nav-links {
+/* .nav_links — The <ul> holding all nav items. Flex row on desktop. */
+.nav_links {
   display: flex;
   gap: 2rem;
   align-items: center;
 }
 
-.nav-link {
+/*
+  .nav_link — Individual nav anchor tag.
+  position: relative is required for the ::after underline to position against it.
+  text-transform: lowercase — forces link text to be lowercase (e.g. "projects")
+*/
+.nav_link {
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.82rem;
@@ -281,7 +475,12 @@ button {
   text-transform: lowercase;
 }
 
-.nav-link::after {
+/*
+  .nav_link::after — The animated underline that slides in on hover.
+  Starts at width: 0, grows to 100% on hover or when .active is added by script.js.
+  width transition creates the sliding underline reveal animation.
+*/
+.nav_link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -292,16 +491,17 @@ button {
   transition: width var(--transition);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+/* Trigger the underline on hover OR when script.js adds .active to the visible section's link */
+.nav_link:hover::after,
+.nav_link.active::after {
   width: 100%;
 }
 
-.nav-link.active {
+.nav_link.active {
   font-weight: 700;
 }
 
-.logo-box {
+.logo_box {
   width: 38px;
   height: 38px;
   border: var(--border-thin);
@@ -345,6 +545,35 @@ button {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* 
+==========================================================================
+[6] HERO SECTION
+==========================================================================
+The full-viewport-height landing section.
+
+SELECTORS:
+  .hero            — main section container
+  .hero::before    — CSS dot-grid background pattern (pseudo-element)
+  .hero_inner      — 2-column CSS grid (text | mascot)
+  .hero_left       — left column (text content)
+  .hero_tag        — "<Developer />" badge
+  .hero_heading    — the main H1 heading
+  .hero_name       — the name "Nishant Nahar" with gold highlight underline
+  .hero_name::after— the gold highlight strip placed BEHIND the name text
+  .hero_typewriter — the paragraph with typewriter animation text
+  .tw_cursor       — the blinking "|" character
+  .hero_cta        — the two CTA buttons side by side
+  .hero_right      — right column (mascot SVG)
+  .mascot_card     — wrapper with float animation and drop-shadow
+  .mascot_svg      — the SVG illustration itself
+
+ANIMATIONS USED:
+  @keyframes blink   — makes the typewriter cursor blink
+  @keyframes float   — makes the mascot gently float up and down
+  @keyframes fadeUp  — initial load animation for hero elements
+  The hero child elements use: animation: fadeUp Xs ease Xs delay both;
+  "both" means the element starts in the "from" state before the delay
+*/
 .hero {
   padding: 2.5rem 2rem 2.5rem;
   min-height: calc(100vh - var(--nav-h));
@@ -355,6 +584,11 @@ button {
   overflow: hidden;
 }
 
+/*
+  .hero::before — A CSS pseudo-element that creates the subtle dot grid
+  pattern behind the hero content. inset:0 makes it fill the entire hero.
+  pointer-events: none ensures it doesn't intercept any clicks.
+*/
 .hero::before {
   content: "";
   position: absolute;
@@ -365,7 +599,7 @@ button {
   pointer-events: none;
 }
 
-.hero-inner {
+.hero_inner {
   max-width: var(--page-w);
   margin: 0 auto;
   width: 100%;
@@ -377,13 +611,13 @@ button {
   z-index: 1;
 }
 
-.hero-left {
+.hero_left {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.hero-tag {
+.hero_tag {
   font-family: var(--font-mono);
   font-size: 0.76rem;
   letter-spacing: 0.1em;
@@ -399,7 +633,7 @@ button {
   font-weight: 600;
 }
 
-.hero-heading {
+.hero_heading {
   font-family: var(--font-head);
   font-weight: 700;
   font-size: clamp(3rem, 7vw, 5.5rem);
@@ -408,12 +642,17 @@ button {
   color: var(--black);
 }
 
-.hero-name {
+.hero_name {
   position: relative;
   display: inline;
 }
 
-.hero-name::after {
+/*
+  .hero_name::after — Creates the gold highlight bar that appears BEHIND the name.
+  z-index: -1 places it below the text (which is z-index: auto = 0).
+  height: 10px + bottom: 6px positions it overlapping the text's baseline.
+*/
+.hero_name::after {
   content: "";
   position: absolute;
   left: 0;
@@ -425,7 +664,7 @@ button {
   opacity: 0.85;
 }
 
-.hero-typewriter {
+.hero_typewriter {
   font-family: var(--font-body);
   font-size: 1.1rem;
   color: var(--gray-dark);
@@ -433,43 +672,57 @@ button {
   font-style: italic;
 }
 
-.tw-cursor {
+/*
+  .tw_cursor — The blinking "|" character after the typewriter text.
+  step-end means the animation snaps between states (no smooth fade),
+  giving it a realistic cursor blink effect.
+*/
+.tw_cursor {
   animation: blink 0.8s step-end infinite;
   color: var(--black);
   font-style: normal;
 }
 
+/* @keyframes blink — Makes the cursor disappear at 50% of each cycle */
 @keyframes blink {
   50% {
     opacity: 0;
   }
 }
 
-.hero-cta {
+.hero_cta {
   display: flex;
   gap: 0.85rem;
   flex-wrap: wrap;
 }
 
-.hero-right {
+.hero_right {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.mascot-card {
+/*
+  .mascot_card — The wrapper around the robot SVG.
+  The float animation makes it gently bob up and down.
+  filter: drop-shadow creates a shadow that follows the SVG's actual shape
+  (not just a bounding box rectangle like box-shadow would).
+*/
+.mascot_card {
   width: 100%;
   max-width: 380px;
   animation: float 4s ease-in-out infinite;
   filter: drop-shadow(6px 10px 0 rgba(0, 0, 0, 0.15));
 }
 
-.mascot-svg {
+/* .mascot_svg — The SVG element itself fills the card container */
+.mascot_svg {
   width: 100%;
   height: auto;
   display: block;
 }
 
+/* @keyframes float — Loops translateY 0 → -10px → 0 over 4 seconds */
 @keyframes float {
 
   0%,
@@ -482,6 +735,17 @@ button {
   }
 }
 
+/*
+  @keyframes fadeUp — Used by hero child elements to animate in on page load.
+  Elements start invisible and shifted down 28px, then smoothly appear.
+  Each hero element uses a different delay so they stagger nicely:
+    .hero_tag        0.1s delay
+    .hero_heading    0.2s delay
+    .hero_typewriter 0.3s delay
+    .hero_cta        0.4s delay
+    .hero_right      0.35s delay
+  Also reused by project cards for filter-reset animation.
+*/
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -494,46 +758,61 @@ button {
   }
 }
 
-.hero-tag {
+/* Individual hero element fade-in animations with staggered delays */
+.hero_tag {
   animation: fadeUp 0.5s ease 0.1s both;
 }
 
-.hero-heading {
+.hero_heading {
   animation: fadeUp 0.5s ease 0.2s both;
 }
 
-.hero-typewriter {
+.hero_typewriter {
   animation: fadeUp 0.5s ease 0.3s both;
 }
 
-.hero-cta {
+.hero_cta {
   animation: fadeUp 0.5s ease 0.4s both;
 }
 
-.hero-right {
+.hero_right {
   animation: fadeUp 0.5s ease 0.35s both;
 }
 
-.quicklinks-section {
+/* 
+==========================================================================
+[7] QUICKLINKS BAR
+==========================================================================
+A dark horizontal strip below the Hero with 4 click targets.
+
+SELECTORS:
+  .quicklinks_section     — outer section wrapper
+  .quicklinks_bar         — the dark CSS grid container for the 4 cells
+  .quicklink_cell         — each individual clickable link/cell
+  .quicklink_cell:hover   — accent gold background on hover
+  .ql_icon                — Font Awesome icon inside each cell
+  .ql_arrow               — "↗" arrow that shifts diagonally on hover
+*/
+.quicklinks_section {
   background: var(--bg);
   padding: 1.5rem 2rem;
 }
 
-.quicklinks-section .inner {
+.quicklinks_section .inner {
   max-width: var(--page-w);
   padding: 0;
   display: flex;
   justify-content: center;
 }
 
-.quicklinks-bar {
+.quicklinks_bar {
   display: inline-grid;
   grid-template-columns: repeat(4, auto);
   background: var(--black);
   width: fit-content;
 }
 
-.quicklink-cell {
+.quicklink_cell {
   display: flex;
   align-items: center;
   gap: 0.55rem;
@@ -547,44 +826,56 @@ button {
   white-space: nowrap;
 }
 
-.quicklink-cell:last-child {
+.quicklink_cell:last-child {
   border-right: none;
 }
 
-.quicklink-cell:hover {
+.quicklink_cell:hover {
   background: var(--accent);
   color: var(--black);
 }
 
-.ql-icon {
+.ql_icon {
   font-size: 0.7rem;
   opacity: 0.65;
 }
 
-.ql-arrow {
+.ql_arrow {
   font-size: 0.9rem;
   transition: transform var(--transition);
   margin-left: auto;
 }
 
-.quicklink-cell:hover .ql-arrow {
+.quicklink_cell:hover .ql_arrow {
   transform: translate(3px, -3px);
 }
 
-.section-wrap {
+/* 
+==========================================================================
+[8] GENERAL SECTION WRAPPERS
+==========================================================================
+Shared layout for ALL main content sections (Projects, About, Skills, Contact).
+
+  .section_wrap        — default (light grey-ish bg)
+  .section_wrap.dark   — dark background for the Skills section
+  .section_wrap.alt    — slightly different grey for the About section
+  .section_header_row  — flex row: title on left, filter buttons on right
+  .projects_grid       — CSS grid for the 2-column project cards layout
+*/
+.section_wrap {
   border-bottom: var(--border);
   padding: 3rem 2rem;
 }
 
-.section-wrap.dark {
+.section_wrap.dark {
   background: var(--bg-dark);
 }
 
-.section-wrap.alt {
+.section_wrap.alt {
   background: var(--gray-light);
 }
 
-.section-header-row {
+.section_header_row {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -593,13 +884,38 @@ button {
   flex-wrap: wrap;
 }
 
-.projects-grid {
+.projects_grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.8rem;
 }
 
-.project-card {
+/* 
+==========================================================================
+[9] PROJECT CARDS
+==========================================================================
+The main portfolio content. Cards start slightly invisible (opacity:0) and
+animate in using fadeUp with staggered animation-delay per nth-child.
+
+SELECTORS:
+  .project_card           — the <article> card container
+  .project_card:nth-child — staggered fadeUp animation delays per card
+  .project_card:hover     — shifts card up-left and grows the shadow
+  .project_card.hidden    — applied by JS filter; sets display:none
+  .card_image             — 16:9 image container area
+  .card_image img         — actual image (greyscale effect + zoom on hover)
+  .img_placeholder        — shown when no real image is added yet
+  .img_placeholder.large  — taller version used in modals
+  .card_body              — padded text content below the image
+  .card_title             — project name (H3)
+  .card_desc              — short description text
+  .card_tags              — flex row of .tag badges
+  .btn_view               — the "View Project →" button
+  .filter_bar             — container for the All/Web/Mobile/Design buttons
+  .filter_btn             — each filter pill button
+  .filter_btn.active      — the currently selected filter (dark fill)
+*/
+.project_card {
   border: var(--border);
   background: var(--white);
   box-shadow: var(--shadow);
@@ -611,32 +927,32 @@ button {
   animation: fadeUp 0.5s ease forwards;
 }
 
-.project-card:nth-child(1) {
+.project_card:nth-child(1) {
   animation-delay: 0.05s;
 }
 
-.project-card:nth-child(2) {
+.project_card:nth-child(2) {
   animation-delay: 0.15s;
 }
 
-.project-card:nth-child(3) {
+.project_card:nth-child(3) {
   animation-delay: 0.25s;
 }
 
-.project-card:nth-child(4) {
+.project_card:nth-child(4) {
   animation-delay: 0.35s;
 }
 
-.project-card:hover {
+.project_card:hover {
   transform: translate(-4px, -4px);
   box-shadow: var(--shadow-lg), var(--shadow-depth-lg);
 }
 
-.project-card.hidden {
+.project_card.hidden {
   display: none;
 }
 
-.card-image {
+.card_image {
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
@@ -644,7 +960,7 @@ button {
   border-bottom: var(--border-thin);
 }
 
-.card-image img {
+.card_image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -652,12 +968,12 @@ button {
   filter: grayscale(30%);
 }
 
-.project-card:hover .card-image img {
+.project_card:hover .card_image img {
   transform: scale(1.04);
   filter: grayscale(0%);
 }
 
-.img-placeholder {
+.img_placeholder {
   width: 100%;
   height: 100%;
   display: flex;
@@ -672,15 +988,15 @@ button {
   letter-spacing: 0.05em;
 }
 
-.img-placeholder i {
+.img_placeholder i {
   font-size: 1.8rem;
 }
 
-.img-placeholder.large {
+.img_placeholder.large {
   min-height: 200px;
 }
 
-.card-body {
+.card_body {
   padding: 1.4rem;
   display: flex;
   flex-direction: column;
@@ -688,7 +1004,7 @@ button {
   flex: 1;
 }
 
-.card-title {
+.card_title {
   font-family: var(--font-head);
   font-weight: 700;
   font-size: 1.4rem;
@@ -696,20 +1012,20 @@ button {
   letter-spacing: -0.02em;
 }
 
-.card-desc {
+.card_desc {
   font-size: 0.88rem;
   color: var(--gray-dark);
   line-height: 1.65;
   flex: 1;
 }
 
-.card-tags {
+.card_tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.btn-view {
+.btn_view {
   align-self: flex-start;
   margin-top: 0.4rem;
   font-family: var(--font-body);
@@ -723,20 +1039,20 @@ button {
     box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.btn-view:hover {
+.btn_view:hover {
   background: var(--black);
   color: var(--white);
   box-shadow: var(--shadow-sm);
   transform: translate(-1px, -1px);
 }
 
-.filter-bar {
+.filter_bar {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.filter-btn {
+.filter_btn {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   padding: 0.35rem 0.85rem;
@@ -748,13 +1064,36 @@ button {
   text-transform: uppercase;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
+.filter_btn:hover,
+.filter_btn.active {
   background: var(--black);
   color: var(--white);
 }
 
-.modal-overlay {
+/* 
+==========================================================================
+[10] MODAL & LIGHTBOX OVERLAYS
+==========================================================================
+Full-screen pop-up panels that reveal detailed project info when
+the user clicks "View Project →".
+
+CLOSING METHODS handled by script.js:
+  1. Click the ✕ button (.modal_close)
+  2. Click the dark overlay background itself
+  3. Press the Escape keyboard key
+
+SELECTORS:
+  .modal_overlay    — full-screen dark semi-transparent backdrop (display:none by default)
+  .modal_overlay.open — JS adds "open" to show: switches to display:flex
+  @keyframes modalIn  — the slide-up entrance animation for the panel
+  .modal_panel      — the white box in the center (max 680px, scrollable)
+  .modal_close      — the ✕ close button (absolute positioned top-right)
+  .modal_image      — 16:9 screenshot area
+  .modal_body       — padding container for title, text, tags, links
+  .modal_tags       — tech stack tags inside the modal
+  .modal_links      — the Live Demo + GitHub buttons side by side
+*/
+.modal_overlay {
   display: none;
   position: fixed;
   inset: 0;
@@ -765,7 +1104,7 @@ button {
   padding: 1rem;
 }
 
-.modal-overlay.open {
+.modal_overlay.open {
   display: flex;
 }
 
@@ -781,7 +1120,7 @@ button {
   }
 }
 
-.modal-panel {
+.modal_panel {
   background: var(--white);
   border: var(--border);
   box-shadow: var(--shadow-lg);
@@ -793,7 +1132,7 @@ button {
   animation: modalIn 0.22s ease;
 }
 
-.modal-close {
+.modal_close {
   position: absolute;
   top: 0.9rem;
   right: 0.9rem;
@@ -810,12 +1149,12 @@ button {
   z-index: 10;
 }
 
-.modal-close:hover {
+.modal_close:hover {
   background: var(--black);
   color: var(--white);
 }
 
-.modal-image {
+.modal_image {
   width: 100%;
   aspect-ratio: 16/9;
   background: var(--gray-light);
@@ -823,76 +1162,99 @@ button {
   border-bottom: var(--border-thin);
 }
 
-.modal-image img {
+.modal_image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.modal-body {
+.modal_body {
   padding: 1.8rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.modal-body h3 {
+.modal_body h3 {
   font-family: var(--font-head);
   font-weight: 700;
   font-size: 1.6rem;
   letter-spacing: -0.02em;
 }
 
-.modal-body p {
+.modal_body p {
   font-size: 0.92rem;
   color: var(--gray-dark);
   line-height: 1.7;
 }
 
-.modal-tags {
+.modal_tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.modal-links {
+.modal_links {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.about-grid {
+/* 
+==========================================================================
+[11] ABOUT ME SECTION
+==========================================================================
+Two-column grid layout. Left has the photo; right has the bio.
+
+SELECTORS:
+  .about_grid         — 2-column CSS grid container
+  .about_photo_col    — left column (photo + location badges)
+  .photo_window       — faux OS window frame wrapping the photo
+  .photo_frame        — holds the <img> with 1:1 aspect ratio
+  .profile_photo      — the actual profile picture (slightly greyscale by default)
+  .photo_window:hover .profile_photo — removes greyscale on hover (color reveal)
+  .photo_placeholder  — fallback shown when no photo is present
+  .location_badge     — small bordered location label ("📍Silchar, Assam")
+  .about_text_col     — right column (bio paragraphs + sticky notes)
+  .about_para         — bio text paragraphs
+  .fun_facts          — flex container for sticky notes
+  .sticky_note        — individual fact badge styled as a yellow sticky note
+                        Uses --rot CSS custom property to rotate each note
+                        at a sligthly different angle for a handwritten feel.
+  .sticky_note:hover  — straightens the note and slightly enlarges it
+*/
+.about_grid {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
   gap: 3.5rem;
   align-items: start;
 }
 
-.about-photo-col {
+.about_photo_col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
 }
 
-.photo-window {
+.photo_window {
   width: 100%;
   max-width: 280px;
   border: var(--border);
   box-shadow: var(--shadow);
 }
 
-.photo-window .win-bar {
+.photo_window .win_bar {
   border-bottom: var(--border-thin);
 }
 
-.photo-frame {
+.photo_frame {
   overflow: hidden;
   background: var(--gray-light);
   aspect-ratio: 1;
 }
 
-.photo-frame img.profile-photo {
+.photo_frame img.profile_photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -900,11 +1262,11 @@ button {
   transition: filter 0.4s ease;
 }
 
-.photo-window:hover .profile-photo {
+.photo_window:hover .profile_photo {
   filter: grayscale(0%);
 }
 
-.photo-placeholder {
+.photo_placeholder {
   width: 100%;
   height: 100%;
   display: flex;
@@ -918,44 +1280,44 @@ button {
   background: #e0ded7;
 }
 
-.photo-placeholder i {
-  font-size: 3rem;
+.photo_placeholder i {
+  font-size: 4rem;
 }
 
-.location-badge {
+.location_badge {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 0.35rem 0.9rem;
+  padding: 0.5rem 0.9rem;
   border: var(--border-thin);
   background: var(--white);
   box-shadow: var(--shadow-sm);
 }
 
-.about-text-col {
+.about_text_col {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.about-para {
+.about_para {
   font-size: 0.98rem;
   color: var(--gray-dark);
   line-height: 1.8;
   margin-bottom: 1rem;
 }
 
-.about-para strong {
+.about_para strong {
   color: var(--black);
 }
 
-.fun-facts {
+.fun_facts {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
 
-.sticky-note {
+.sticky_note {
   background: var(--accent);
   color: var(--black);
   font-family: var(--font-mono);
@@ -964,57 +1326,64 @@ button {
   border: 1.5px solid rgba(0, 0, 0, 0.25);
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
   transform: rotate(var(--rot, 0deg));
-  max-width: 155px;
+  max-width: 170px;
   line-height: 1.4;
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.sticky-note:hover {
+.sticky_note:hover {
   transform: rotate(0deg) scale(1.05);
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.skills-grid {
+/* 
+==========================================================================
+SKILLS & TOOLS SECTION
+==========================================================================
+Contains dynamic CSS width-based progress bars and a dense layout of tool 
+tags. The bars' widths are set horizontally utilizing data-width via JS.
+*/
+.skills_grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
 }
 
-.skill-bars {
+.skill_bars {
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
   margin-top: 0.5rem;
 }
 
-.skill-item {
+.skill_item {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
-.skill-header {
+.skill_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.skill-label {
+.skill_label {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--white);
   letter-spacing: 0.04em;
 }
 
-.skill-pct {
+.skill_pct {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--accent);
   font-weight: 600;
 }
 
-.skill-track {
+.skill_track {
   width: 100%;
   height: 10px;
   background: #0d0d0d;
@@ -1022,7 +1391,7 @@ button {
   border-radius: 1px;
 }
 
-.skill-bar {
+.skill_bar {
   height: 100%;
   width: 0;
   background: var(--accent);
@@ -1030,13 +1399,13 @@ button {
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tools-grid {
+.tools_grid {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.tool-tag {
+.tool_tag {
   font-family: var(--font-mono);
   font-size: 0.74rem;
   padding: 0.3rem 0.75rem;
@@ -1046,7 +1415,7 @@ button {
   transition: border-color var(--transition), color var(--transition), background var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
-.tool-tag:hover {
+.tool_tag:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(255, 215, 0, 0.08);
@@ -1054,32 +1423,54 @@ button {
   transform: translateY(-2px);
 }
 
-.contact-grid {
+/* 
+==========================================================================
+[13] CONTACT SECTION
+==========================================================================
+Two-column grid. Left column has contact info + icons; right has the form.
+
+SELECTORS:
+  .contact_grid    — 2-column CSS grid
+  .contact_left    — left column (eyebrow + heading + intro + info + socials)
+  .contact_intro   — the short "Drop me a message" paragraph
+  .contact_info    — vertical flex stack of .contact_detail items
+  .contact_detail  — one row: icon + text (email or location)
+  .social_links    — flex row of .social_icon links
+  .social_icon     — 38x38px bordered square icon button
+  .social_icon:hover — inverts to dark with gold icon
+  .contact_form    — the <form> element on the right
+  .form_group      — wrapper for label + input + error message
+  .form_group label — small uppercase monospace label
+  .form_group input, textarea — styled inputs with focus ring
+  .form_group input.error — red border when script.js detects invalid input
+  .field_error     — small red error message text below a field
+*/
+.contact_grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 3.5rem;
   align-items: start;
 }
 
-.contact-left {
+.contact_left {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-.contact-intro {
+.contact_intro {
   font-size: 0.95rem;
   color: var(--gray-dark);
   line-height: 1.75;
 }
 
-.contact-info {
+.contact_info {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.contact-detail {
+.contact_detail {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -1089,21 +1480,21 @@ button {
   font-size: 0.8rem;
 }
 
-.contact-detail i {
+.contact_detail i {
   font-size: 0.95rem;
   color: var(--gray-dark);
 }
 
-.contact-detail:hover {
+.contact_detail:hover {
   color: var(--gray-dark);
 }
 
-.social-links {
+.social_links {
   display: flex;
   gap: 0.6rem;
 }
 
-.social-icon {
+.social_icon {
   width: 38px;
   height: 38px;
   border: var(--border-thin);
@@ -1116,26 +1507,26 @@ button {
     box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.social-icon:hover {
+.social_icon:hover {
   background: var(--black);
   color: var(--accent);
   box-shadow: var(--shadow-sm);
   transform: translate(-2px, -2px);
 }
 
-.contact-form {
+.contact_form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.form-group {
+.form_group {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-.form-group label {
+.form_group label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -1143,8 +1534,8 @@ button {
   color: var(--black);
 }
 
-.form-group input,
-.form-group textarea {
+.form_group input,
+.form_group textarea {
   font-family: var(--font-body);
   font-size: 0.92rem;
   padding: 0.65rem 0.9rem;
@@ -1156,24 +1547,36 @@ button {
   resize: vertical;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.form_group input:focus,
+.form_group textarea:focus {
   border-color: var(--black);
   box-shadow: var(--shadow-sm);
 }
 
-.form-group input.error,
-.form-group textarea.error {
+.form_group input.error,
+.form_group textarea.error {
   border-color: #cc0000;
 }
 
-.field-error {
+.field_error {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: #cc0000;
   min-height: 1em;
 }
 
+/* 
+==========================================================================
+[14] FOOTER
+==========================================================================
+Minimal bottom bar with copyright + repeat navigation links.
+
+SELECTORS:
+  .footer         — flex row: copyright on left, nav links on right
+  .footer_copy    — the copyright text including the blinking cursor
+  .footer_cursor  — the "_" blink animation (reuses @keyframes blink)
+  .footer_nav     — flex row of repeated nav anchor links with dots between
+*/
 .footer {
   padding: 2rem;
   border-top: var(--border-thin);
@@ -1186,19 +1589,19 @@ button {
   gap: 1rem;
 }
 
-.footer-copy {
+.footer_copy {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--gray-dark);
   letter-spacing: 0.04em;
 }
 
-.footer-cursor {
+.footer_cursor {
   font-family: var(--font-mono);
   animation: blink 1s step-end infinite;
 }
 
-.footer-nav {
+.footer_nav {
   display: flex;
   gap: 1.5rem;
   font-family: var(--font-mono);
@@ -1206,17 +1609,34 @@ button {
   letter-spacing: 0.04em;
 }
 
-.footer-nav a {
+.footer_nav a {
   color: var(--gray-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color var(--transition);
 }
 
-.footer-nav a:hover {
+.footer_nav a:hover {
   color: var(--black);
 }
 
+/* 
+==========================================================================
+[15] TOAST NOTIFICATION
+==========================================================================
+A brief notification bar that slides up from the bottom of the screen
+when the contact form is submitted (success or error).
+
+  position: fixed + bottom: 2rem + left: 50% — keeps it centered at bottom
+  translateX(-50%): horizontally centers the element relative to itself
+  translateY(20px): starts slightly below the screen (hidden state)
+  opacity: 0 + visibility: hidden — fully invisible by default
+  z-index: 500 — appears on top of everything, including modals (z-index 300)
+
+  When script.js adds the "show" class:
+    translateY(0): slides up into visible position
+    opacity: 1 + visibility: visible: makes it opaque and interactive
+*/
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -1237,20 +1657,38 @@ button {
   max-width: 90vw;
 }
 
+/* .toast.show — The "visible" state; script.js adds/removes this class */
 .toast.show {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   visibility: visible;
 }
 
+/* 
+==========================================================================
+[16] RESPONSIVE MEDIA QUERIES
+==========================================================================
+Adapts the layout for smaller screens. Two breakpoints:
+  @media (max-width: 820px)  — Tablet and below
+  @media (max-width: 480px)  — Small phones
+*/
+
+/* ——— TABLET & BELOW (≤820px) ——— */
 @media (max-width: 820px) {
+
+  /*
+    Shrink the max content width to fill the full screen
+    (removes any max-width constraint from --page-w)
+  */
   :root {
     --page-w: 100%;
   }
 
-  .nav-links {
+  /* Navbar: hide the horizontal link list; show the hamburger button instead */
+  .nav_links {
     display: none;
     position: absolute;
+    /* Drops down from below the fixed navbar */
     top: var(--nav-h);
     left: 0;
     right: 0;
@@ -1262,98 +1700,121 @@ button {
     padding: 0;
   }
 
-  .nav-links.open {
+  /* script.js adds .open to show the dropdown mobile menu */
+  .nav_links.open {
     display: flex;
   }
 
-  .nav-links li {
+  /* Each <li> takes full width so links span the whole dropdown */
+  .nav_links li {
     width: 100%;
   }
 
-  .nav-link {
+  /* Nav links become full-width rows with padding, separated by border lines */
+  .nav_link {
     display: block;
     padding: 0.9rem 2rem;
     border-bottom: 1px solid var(--gray-mid);
     font-size: 0.9rem;
   }
 
-  .nav-link::after {
+  /* Remove the slide-in underline animation (not needed on mobile rows) */
+  .nav_link::after {
     display: none;
   }
 
+  /* Show the hamburger ☰ button (hidden on desktop via display:none) */
   .hamburger {
     display: flex;
   }
 
-  .hero-inner {
+  /* Hero: switch from 2-column grid to a single column stacked layout */
+  .hero_inner {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .hero-right {
+  /* On mobile: show the mascot ABOVE the text (order: -1 moves it first) */
+  .hero_right {
     order: -1;
   }
 
-  .mascot-window {
+  /* Cap the mascot width on smaller screens */
+  .mascot_window {
     max-width: 260px;
     margin: 0 auto;
   }
 
-  .quicklinks-bar {
+  /* Quicklinks: switch from 4-column to 2-column grid */
+  .quicklinks_bar {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .quicklink-cell:nth-child(2) {
+  /* Remove right border on cell 2 (now it's the last in its row) */
+  .quicklink_cell:nth-child(2) {
     border-right: none;
   }
 
-  .quicklink-cell:nth-child(1),
-  .quicklink-cell:nth-child(2) {
+  /* Add a bottom border between the top and bottom rows of links */
+  .quicklink_cell:nth-child(1),
+  .quicklink_cell:nth-child(2) {
     border-bottom: 1.5px solid #333;
   }
 
-  .projects-grid {
+  /* Projects: switch from 2-column grid to 1-column stacked cards */
+  .projects_grid {
     grid-template-columns: 1fr;
   }
 
-  .about-grid {
+  /* About: stack photo column above text column */
+  .about_grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .photo-window {
+  /* Shrink the profile photo window on mobile */
+  .photo_window {
     max-width: 220px;
   }
 
-  .skills-grid {
+  /* Skills: stack skill bars above tools grid */
+  .skills_grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 
-  .contact-grid {
+  /* Contact: stack info column above form column */
+  .contact_grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
+  /* Footer: stack copyright above nav links on mobile */
   .footer {
     flex-direction: column;
     align-items: flex-start;
   }
 }
 
+/* ——— SMALL PHONES (≤480px) ——— */
 @media (max-width: 480px) {
-  .hero-heading {
+
+  /* Shrink the H1 hero heading on very small screens */
+  .hero_heading {
     font-size: 2.8rem;
   }
 
+  /* Reduce hero padding on small phones */
   .hero {
     padding: 3rem 1.5rem 3rem;
   }
 
-  .section-wrap {
+  /* Reduce side padding for all sections on small phones */
+  .section_wrap {
     padding: 3rem 1.5rem;
   }
 
+  /* Shrink the inner container gutters on small phones */
   .inner {
     padding: 0 1.5rem;
   }
