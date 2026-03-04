@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const filter_buttons = document.querySelectorAll(".filter_btn");
   const project_cards = document.querySelectorAll(".project_card");
   /* Maximum number of cards visible at one time per selected filter */
-  const visible_project_limit = 5;
+  const visible_project_limit = 4;
 
   if (filter_buttons.length > 0 && project_cards.length > 0) {
     /* Reusable helper: applies category filter + visibility limit together */
