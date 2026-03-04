@@ -125,7 +125,6 @@ Strips default browser styles for consistent cross-browser rendering.
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 20px;
 }
 

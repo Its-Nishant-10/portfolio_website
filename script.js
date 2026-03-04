@@ -734,4 +734,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   } /* end if (contact_form) */
 
+
+  /*
+  ============================================================
+  [9] CUSTOM SMOOTH SCROLLING
+  ============================================================
+  Intercepts clicks on all anchor links (href="#...") to perform
+  a custom smooth scroll animation with easing.
+  This provides a more polished feel than default browser scrolling
+  and ensures the sticky navbar doesn't cover section headers.
+  */
+  const all_anchor_links = document.querySelectorAll('a[href^="#"]');
+
+  all_anchor_links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const target_id = link.getAttribute("href");
+
+      /* Skip if href is just "#" (empty link) or invalid */
+      if (target_id === "#" || !target_id) return;
+
+      const target_element = document.querySelector(target_id);
+      if (target_element) {
+        event.preventDefault(); /* Stop default instant jump */
+
+        /* Calculate position: element top + current scroll - navbar height offset */
+        const nav_offset = 70;
+        const element_top = target_element.getBoundingClientRect().top;
+        const start_position = window.scrollY;
+        const target_position = element_top + start_position - nav_offset;
+        const distance = target_position - start_position;
+        const duration = 800; /* Animation duration in ms (0.8 seconds) */
+        let start_time = null;
+
+        /* Custom easing function (easeInOutCubic) for a premium feel */
+        const ease = (t, b, c, d) => {
+          t /= d / 2;
+          if (t < 1) return c / 2 * t * t * t + b;
+          t -= 2;
+          return c / 2 * (t * t * t + 2) + b;
+        };
+
+        const animation_step = (current_time) => {
+          if (!start_time) start_time = current_time;
+          const time_elapsed = current_time - start_time;
+          const run_time = Math.min(time_elapsed, duration);
+
+          const next_y = ease(run_time, start_position, distance, duration);
+          window.scrollTo(0, next_y);
+
+          if (time_elapsed < duration) {
+            requestAnimationFrame(animation_step);
+          }
+        };
+
+        requestAnimationFrame(animation_step);
+      }
+    });
+  });
+
 }); /* end DOMContentLoaded */
