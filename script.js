@@ -45,7 +45,7 @@
      the next string starts. Loop is infinite.
      Add, remove, or change any phrases here freely.
    ============================================================ */
-const formspree_url = "https://formspree.io/f/YOUR_FORM_ID";
+const formspree_url = "https://formspree.io/f/xdalqqgo";
 const typewriter_phrases = [
   "I Love Building Things for Fun !!",
   "I Enjoy Taking Things Apart — not to Destroy, but to understand.",

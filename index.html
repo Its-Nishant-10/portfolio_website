@@ -46,7 +46,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant Portfolio</title>
-  <meta name="description" content="Portfolio of Nishant Nahar, Web Developer — clean code, bold design." />
+  <meta name="description" content="Portfolio of Nishant Nahar" />
+
+  <!--
+    ============================================================
+    FAVICON & SOCIAL SHARE TAGS (OPEN GRAPH)
+    ============================================================
+    These tags ensure your site looks good when shared on LinkedIn,
+    Twitter/X, or WhatsApp.
+    Replace 'contents/og-image.jpg' with a screenshot of your site.
+  -->
+  <link rel="icon" type="image/png" href="contents/pfp.png" />
+  <meta property="og:title" content="Nishant Nahar | Personal Portfolio" />
+  <meta property="og:description" content="Developer and tinkerer. Check out my projects in Web, Automation, and Design." />
+  <meta property="og:image" content="contents/pfp.png" />
+  <meta property="og:url" content="https://yourwebsite.com" />
+  <meta property="og:type" content="website" />
 
   <!--
     ============================================================
@@ -259,7 +274,7 @@
               Clicking "Contact Me" scrolls to #contact.
             -->
             <div class="hero_cta">
-              <a href="#projects" class="btn btn_primary">View My Work →</a>
+              <a href="#projects" class="btn btn_primary">My Work →</a>
               <a href="#contact" class="btn btn_secondary">Contact Me</a>
             </div>
 
@@ -444,18 +459,13 @@
             .win_dots     — Two decorative small circles (like macOS stoplight)
             .win_filename — The filename shown in the bar (e.g. project-01.html)
           .card_image     — Image area (16:9 aspect ratio)
-            .img_placeholder — Shown when no image is provided; displays an
-                               icon + "Add screenshot" text
+            <img>          — Project screenshot (loaded from contents/ folder)
           .card_body      — The main card content area
             .card_title   — Project name (H3)
             .card_desc    — Short description paragraph
             .card_tags    — Flex row of .tag badges (tech stack used)
             .btn_view     — Button that opens the matching modal overlay;
                             its data-modal attribute tells JS which modal to open
-
-        TO ADD A REAL PROJECT IMAGE:
-          Replace the entire .img_placeholder div with:
-          <img src="your-screenshot.png" alt="Project name" />
         ============================================================
       -->
       <section class="section_wrap" id="projects">
@@ -464,7 +474,7 @@
           <!-- Header row: title on left, filter buttons on right -->
           <div class="section_header_row">
             <div>
-              <span class="section_eyebrow">Selected work</span>
+              <span class="section_eyebrow">Selected Ones</span>
               <h2 class="section_title">Projects</h2>
             </div>
 
@@ -479,7 +489,7 @@
               <button class="filter_btn active" data-filter="all">All</button>
               <button class="filter_btn" data-filter="web">Web</button>
               <button class="filter_btn" data-filter="automation">automation</button>
-              <button class="filter_btn" data-filter="fun">Fun</button>
+              <button class="filter_btn" data-filter="foss">FOSS</button>
             </div>
           </div><!-- end .section_header_row -->
 
@@ -502,10 +512,7 @@
               </div>
               <!-- Card image area (replace .img_placeholder with <img> when ready) -->
               <div class="card_image">
-                <div class="img_placeholder">
-                  <i class="fa-regular fa-image"></i>
-                  <span>Add screenshot</span>
-                </div>
+                <img src="contents/netflix_1.jpg" alt="Netflix Clone project screenshot" />
               </div>
               <!-- Card content body -->
               <div class="card_body">
@@ -535,10 +542,7 @@
                 <span class="win_filename">invoice_pdf.xaml</span>
               </div>
               <div class="card_image">
-                <div class="img_placeholder">
-                  <i class="fa-regular fa-image"></i>
-                  <span>Add screenshot</span>
-                </div>
+                <img src="contents/pdf_2.jpg" alt="Invoice Automation PDF project screenshot" />
               </div>
               <div class="card_body">
                 <h3 class="card_title">Invoice Automation PDF</h3>
@@ -563,21 +567,21 @@
             <article class="project_card" data-category="automation">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
-                <span class="win_filename">project-03.html</span>
+                <span class="win_filename">diet_planner.xaml</span>
               </div>
               <div class="card_image">
-                <div class="img_placeholder">
-                  <i class="fa-regular fa-image"></i>
-                  <span>Add screenshot</span>
-                </div>
+                <img src="contents/diet_2.jpg" alt="Diet Planner" />
               </div>
               <div class="card_body">
-                <h3 class="card_title">Your Project Title</h3>
-                <p class="card_desc">Describe your project here. What does it do, who is it for, and what problem does
-                  it solve?</p>
+                <h3 class="card_title">Diet Planner</h3>
+                <p class="card_desc">DThe Smart Diet Planner Bot is a UiPath automation project that calculates BMI and
+                <p class="card_desc">The Smart Diet Planner Bot is a UiPath automation project that calculates BMI and
+                  generates personalized diet recommendations. It features a dual-mode system that provides instant
+                  logic-based suggestions or fetches real-time meal plans through web scraping.</p>
                 <div class="card_tags">
-                  <span class="tag">Flutter</span>
-                  <span class="tag">Firebase</span>
+                  <span class="tag">UIPath Studio</span>
+                  <span class="tag">Web Scraping</span>
+                  <span class="tag">Logics</span>
                 </div>
                 <button class="btn_view" data-modal="modal_3">View Project →</button>
               </div>
@@ -588,16 +592,13 @@
               PROJECT CARD 4 (category: design)
               data-category="design": only visible when filter is "All" or "Design".
             -->
-            <article class="project_card" data-category="design">
+            <!-- <article class="project_card" data-category="design">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
                 <span class="win_filename">project-04.html</span>
               </div>
               <div class="card_image">
-                <div class="img_placeholder">
-                  <i class="fa-regular fa-image"></i>
-                  <span>Add screenshot</span>
-                </div>
+                <img src="contents/pdf_3.jpg" alt="Project 4 screenshot" />
               </div>
               <div class="card_body">
                 <h3 class="card_title">Your Project Title</h3>
@@ -609,8 +610,8 @@
                 </div>
                 <button class="btn_view" data-modal="modal_4">View Project →</button>
               </div>
-            </article>
-            
+            </article> -->
+
 
 
           </div><!-- end .projects_grid -->
@@ -661,23 +662,31 @@
           <button class="modal_close" aria-label="Close modal">✕</button>
           <!-- Decorative title bar matching the card design -->
           <div class="win_bar">
-            <div class="win_dots"><span></span><span></span></div><span class="win_filename">project-01.html</span>
+            <div class="win_dots"><span></span><span></span></div><span class="win_filename">netflix_clone.html</span>
           </div>
           <!-- Large image placeholder — replace with actual <img> tag -->
           <div class="modal_image">
-            <div class="img_placeholder large"><i class="fa-regular fa-image"></i></div>
+            <img src="contents/netflix_4.jpg" alt="Netflix Clone detailed screenshot" />
           </div>
           <!-- Project details -->
           <div class="modal_body">
-            <h3 id="modal_1_title">Your Project Title</h3>
-            <p>Write a detailed description (4–6 sentences): problem solved, your role, challenges, outcome.</p>
+            <h3 id="modal_1_title">Netflix Clone</h3>
+            <p>
+              Built a front-end recreation of the Netflix user interface.<br>
+              Developed landing, login, and browse pages with a hero banner and scrollable movie rows.<br>
+              Structured layout using HTML and styled with CSS (Flexbox).<br>
+              Implemented responsive design using media queries.<br>
+              Added basic JS for simple interactivity.<br>
+              Focused on clean UI structuring and component-design.<br>
+            </p>
             <!-- Tech stack tags -->
-            <div class="modal_tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
-                class="tag">JavaScript</span></div>
+            <div class="modal_tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
             <!-- Action buttons -->
             <div class="modal_links">
-              <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a>
-              <a href="#" class="btn btn_secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+              <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
+              <a href="https://github.com/Its-Nishant-10/netflix_clone" class="btn btn_secondary" target="_blank"
+                rel="noopener"><i class="fa-brands fa-github"></i>
                 GitHub</a>
             </div>
           </div>
@@ -689,19 +698,25 @@
         <div class="modal_panel">
           <button class="modal_close" aria-label="Close modal">✕</button>
           <div class="win_bar">
-            <div class="win_dots"><span></span><span></span></div><span class="win_filename">project-02.html</span>
+            <div class="win_dots"><span></span><span></span></div><span class="win_filename">invoice_pdf.xaml</span>
           </div>
           <div class="modal_image">
-            <div class="img_placeholder large"><i class="fa-regular fa-image"></i></div>
+            <img src="contents/pdf_3.jpg" alt="Invoice Automation PDF detailed screenshot" />
           </div>
           <div class="modal_body">
-            <h3 id="modal_2_title">Your Project Title</h3>
-            <p>Write a detailed description of this project here.</p>
-            <div class="modal_tags"><span class="tag">React</span><span class="tag">Node.js</span><span
-                class="tag">MongoDB</span></div>
+            <h3 id="modal_2_title">Invoice Automation PDF</h3>
+            <p>Built an automation workflow to process PDF invoices and generate reports.<br>
+              Extracted invoice details (Number, Date, Vendor, Amount) using OCR and Regex.<br>
+              Implemented validation logic to ensure data accuracy.<br>
+              Stored valid records in Excel and calculated vendor-wise monthly bills.<br>
+              Handled exceptions using Try-Catch and automated archiving.<br>
+              Focused on workflow structuring and scalable automation design.</p>
+            <div class="modal_tags"><span class="tag">Excel</span><span class="tag">UIPath Studio</span><span
+                class="tag">Regex</span></div>
             <div class="modal_links">
-              <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a>
-              <a href="#" class="btn btn_secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+              <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
+              <a href="https://github.com/Its-Nishant-10/invoice_automation_pdf" class="btn btn_secondary"
+                target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
                 GitHub</a>
             </div>
           </div>
@@ -716,22 +731,28 @@
             <div class="win_dots"><span></span><span></span></div><span class="win_filename">project-03.html</span>
           </div>
           <div class="modal_image">
-            <div class="img_placeholder large"><i class="fa-regular fa-image"></i></div>
+            <img src="contents/diet_1.jpg" alt="Project 3 detailed screenshot" />
           </div>
           <div class="modal_body">
-            <h3 id="modal_3_title">Your Project Title</h3>
-            <p>Write a detailed description of this project here.</p>
-            <div class="modal_tags"><span class="tag">Flutter</span><span class="tag">Firebase</span></div>
+            <h3 id="modal_3_title">Diet Planner</h3>
+            <p>Developed a dual-mode RPA workflow in UiPath combining automation and live web scraping.<br>
+              Implemented dynamic BMI calculation and conditional branching.<br>
+              Built an Automated Mode for instant calorie and meal suggestions based on BMI.<br>
+              Integrated browser automation to fetch real-time diet plans from <strong>Eat This Much</strong>.<br>
+              Applied selector handling, decision logic and scalability.<br>
+              Focused on multi-path automation.</p>
+            <div class="modal_tags"><span class="tag">Web Scrap</span><span class="tag">UIPath Studio</span></div>
             <div class="modal_links">
-              <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a>
-              <a href="#" class="btn btn_secondary" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
+              <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
+              <a href="https://github.com/Its-Nishant-10/diet_planner" class="btn btn_secondary" target="_blank"
+                rel="noopener"><i class="fa-brands fa-github"></i>
                 GitHub</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ——— MODAL 4: linked to project card 4 ——— -->
+      <!-- ——— MODAL 4: linked to project card 4 ———
       <div class="modal_overlay" id="modal_4" role="dialog" aria-modal="true" aria-labelledby="modal_4_title">
         <div class="modal_panel">
           <button class="modal_close" aria-label="Close modal">✕</button>
@@ -739,7 +760,7 @@
             <div class="win_dots"><span></span><span></span></div><span class="win_filename">project-04.html</span>
           </div>
           <div class="modal_image">
-            <div class="img_placeholder large"><i class="fa-regular fa-image"></i></div>
+            <img src="contents/netflix_4.jpg" alt="Project 4 detailed screenshot" />
           </div>
           <div class="modal_body">
             <h3 id="modal_4_title">Your Project Title</h3>
@@ -752,7 +773,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
       <!--
@@ -772,7 +793,7 @@
           .photo_window — A faux window frame wrapping the profile photo.
             .win_bar        — Decorative top bar (same pattern as project cards)
             .photo_frame    — Contains the actual <img> tag
-              profile_photo — The profile picture (src="pfp.png")
+              profile_photo — The profile picture (src="contents/pfp.png")
           .location_badge — Two small text badges showing location info:
                             "📍Silchar, Assam" and "📍India"
 
@@ -806,7 +827,7 @@
                 </div>
                 <!-- Profile photo frame -->
                 <div class="photo_frame">
-                  <img src="pfp.png" alt="Nishant Pic" class="profile_photo" />
+                  <img src="contents/pfp.png" alt="Nishant Pic" class="profile_photo" />
                 </div>
               </div>
               <!-- Location tags below the photo -->
@@ -842,6 +863,7 @@
               <div class="fun_facts">
                 <div class="sticky_note" style="--rot: -2.5deg">☕ Coffee powered person</div>
                 <div class="sticky_note" style="--rot:- 3.8deg">🎨 Tinkering nerd at heart</div>
+                <div class="sticky_note" style="--rot: -3.8deg">🎨 Tinkering nerd at heart</div>
                 <div class="sticky_note" style="--rot: -4.2deg">🌍 Open to work remotely</div>
                 <div class="sticky_note" style="--rot: -2deg">💻 Open to learning new things</div>
               </div>
@@ -995,6 +1017,8 @@
                 <span class="tool_tag">Markdown</span>
                 <span class="tool_tag">Linux</span>
                 <span class="tool_tag">Machine Learning</span>
+                <span class="tool_tag">Arduino</span>
+                <span class="tool_tag">Canva</span>
               </div>
             </div><!-- end .skills_right -->
 
