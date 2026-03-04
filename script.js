@@ -264,22 +264,30 @@ document.addEventListener("DOMContentLoaded", () => {
   ============================================================
   WHAT IT DOES:
     Filters the project cards grid to show only cards matching
-    the selected category (All / Web / Mobile / Design).
+    the selected category (All / Web / Automation / Fun).
+    Also limits the number of visible cards so you can keep
+    adding many projects without making the section too long.
 
   HOW IT WORKS:
-    1. Each filter button has data-filter="all|web|mobile|design"
-    2. Each project card has data-category="web|mobile|design"
+     1. Each filter button has data-filter="all|web|automation|fun"
+     2. Each project card has data-category="web|automation|fun" (or any custom category)
     3. When a button is clicked:
        a. Remove "active" from all buttons → add it to the clicked one
        b. Loop through all project cards:
-            - If filter is "all" OR card's category matches → show it
+          - If filter is "all" OR card's category matches, AND
+            visible_count is still below visible_project_limit → show it
             - Otherwise → hide it (add class "hidden" → CSS sets display:none)
-    4. A CSS animation REFLOW TRICK is used to restart the fadeUp animation:
+     4. visible_project_limit controls how many cards are shown at once.
+       (Current value is 5. Change this single constant to adjust.)
+     5. A CSS animation REFLOW TRICK is used to restart the fadeUp animation:
          card.style.animation = "none"    → disables animation
          void card.offsetHeight           → forces browser to repaint (reflow)
          card.style.animation = ""        → re-enables animation
        This makes cards animate back in after filtering instead
        of just appearing instantly.
+     6. The same filter function is called once on page load using
+       the currently active filter button, so the 5-card limit is
+       applied immediately (not only after the first click).
 
   ELEMENTS:
     filter_buttons  — all <button class="filter_btn">
@@ -289,8 +297,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. PROJECT FILTERING
   const filter_buttons = document.querySelectorAll(".filter_btn");
   const project_cards = document.querySelectorAll(".project_card");
+  /* Maximum number of cards visible at one time per selected filter */
+  const visible_project_limit = 5;
 
   if (filter_buttons.length > 0 && project_cards.length > 0) {
+    /* Reusable helper: applies category filter + visibility limit together */
+    const apply_project_filter = (selected_filter) => {
+      /* Counts how many cards are currently shown for this filter */
+      let visible_count = 0;
+
+      project_cards.forEach((card) => {
+        const matches_filter = selected_filter === "all" || card.dataset.category === selected_filter;
+        const should_show = matches_filter && visible_count < visible_project_limit;
+
+        if (should_show) {
+          visible_count++;
+          card.classList.remove("hidden");
+          card.style.animation = "none";
+          void card.offsetHeight;
+          card.style.animation = "";
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+    };
+
     filter_buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         /* Move "active" class to the clicked filter button */
@@ -298,21 +329,13 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.add("active");
 
         const selected_filter = btn.dataset.filter;
-
-        project_cards.forEach((card) => {
-          const should_show = selected_filter === "all" || card.dataset.category === selected_filter;
-          if (should_show) {
-            card.classList.remove("hidden");
-            /* Reflow animation trick: restart fadeUp so cards animate in */
-            card.style.animation = "none";
-            void card.offsetHeight; /* Triggers browser reflow/repaint */
-            card.style.animation = "";
-          } else {
-            card.classList.add("hidden");
-          }
-        });
+        apply_project_filter(selected_filter);
       });
     });
+
+    /* Apply current active filter on initial load so limit is active immediately */
+    const initial_active_filter = document.querySelector(".filter_btn.active")?.dataset.filter || "all";
+    apply_project_filter(initial_active_filter);
   }
 
 
