@@ -478,8 +478,8 @@
             <div class="filter_bar">
               <button class="filter_btn active" data-filter="all">All</button>
               <button class="filter_btn" data-filter="web">Web</button>
-              <button class="filter_btn" data-filter="mobile">Mobile</button>
-              <button class="filter_btn" data-filter="design">Design</button>
+              <button class="filter_btn" data-filter="automation">automation</button>
+              <button class="filter_btn" data-filter="fun">Fun</button>
             </div>
           </div><!-- end .section_header_row -->
 
@@ -498,7 +498,7 @@
               <!-- Faux window title bar -->
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
-                <span class="win_filename">project-01.html</span>
+                <span class="win_filename">netflix_clone.html</span>
               </div>
               <!-- Card image area (replace .img_placeholder with <img> when ready) -->
               <div class="card_image">
@@ -509,14 +509,15 @@
               </div>
               <!-- Card content body -->
               <div class="card_body">
-                <h3 class="card_title">Your Project Title</h3>
-                <p class="card_desc">Describe your project here. What does it do, who is it for, and what problem does
-                  it solve?</p>
+                <h3 class="card_title">Netflix Clone</h3>
+                <p class="card_desc">A Netflix-style website created to practice front-end development.
+                  It includes a landing page, login page, and a browse page with a featured banner and movie sections.
+                </p>
                 <!-- Technology tags -->
                 <div class="card_tags">
                   <span class="tag">HTML</span>
                   <span class="tag">CSS</span>
-                  <span class="tag">JavaScript</span>
+                  <span class="tag">JS</span>
                 </div>
                 <!-- Opens modal_1 via script.js -->
                 <button class="btn_view" data-modal="modal_1">View Project →</button>
@@ -528,10 +529,10 @@
               PROJECT CARD 2 (category: web)
               Same structure. data-modal="modal_2" links to #modal_2.
             -->
-            <article class="project_card" data-category="web">
+            <article class="project_card" data-category="automation">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
-                <span class="win_filename">project-02.html</span>
+                <span class="win_filename">invoice_pdf.xaml</span>
               </div>
               <div class="card_image">
                 <div class="img_placeholder">
@@ -540,13 +541,15 @@
                 </div>
               </div>
               <div class="card_body">
-                <h3 class="card_title">Your Project Title</h3>
-                <p class="card_desc">Describe your project here. What does it do, who is it for, and what problem does
-                  it solve?</p>
+                <h3 class="card_title">Invoice Automation PDF</h3>
+                <p class="card_desc">A UiPath automation that reads PDF invoices, extracts key details using OCR and
+                  validation, and vendor-wise monthly reports in Excel.
+                  It also handles errors and automatically organizes processed files.
+                </p>
                 <div class="card_tags">
-                  <span class="tag">React</span>
-                  <span class="tag">Node.js</span>
-                  <span class="tag">MongoDB</span>
+                  <span class="tag">UIPath Studio</span>
+                  <span class="tag">Excel</span>
+                  <span class="tag">Regex</span>
                 </div>
                 <button class="btn_view" data-modal="modal_2">View Project →</button>
               </div>
@@ -557,7 +560,7 @@
               PROJECT CARD 3 (category: mobile)
               data-category="mobile": hidden when filter is "Web" or "Design".
             -->
-            <article class="project_card" data-category="mobile">
+            <article class="project_card" data-category="automation">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
                 <span class="win_filename">project-03.html</span>
@@ -607,6 +610,7 @@
                 <button class="btn_view" data-modal="modal_4">View Project →</button>
               </div>
             </article>
+            
 
 
           </div><!-- end .projects_grid -->
@@ -836,10 +840,10 @@
                 Values vary per note to look natural and hand-placed.
               -->
               <div class="fun_facts">
-                <div class="sticky_note" style="--rot: 2.5deg">☕ Coffee powered person</div>
-                <div class="sticky_note" style="--rot: 1.8deg">🎨 Tinkering nerd at heart</div>
-                <div class="sticky_note" style="--rot: -1.2deg">🌍 Open to work remotely</div>
-                <div class="sticky_note" style="--rot: 4.2deg">💻 Open to learning new things</div>
+                <div class="sticky_note" style="--rot: -2.5deg">☕ Coffee powered person</div>
+                <div class="sticky_note" style="--rot:- 3.8deg">🎨 Tinkering nerd at heart</div>
+                <div class="sticky_note" style="--rot: -4.2deg">🌍 Open to work remotely</div>
+                <div class="sticky_note" style="--rot: -2deg">💻 Open to learning new things</div>
               </div>
 
             </div><!-- end .about_text_col -->
@@ -884,7 +888,7 @@
           - C++ / C          — 95%
           - Python           — 75%
           - UI / UX Design   — 60%
-        ============================================================
+          - Machine Learning — 30%     ============================================================
       -->
       <section class="section_wrap dark" id="skills">
         <div class="inner">
@@ -954,6 +958,17 @@
                   </div>
                 </div>
 
+                <!-- Skill: Machine Learning — 30% -->
+                <div class="skill_item">
+                  <div class="skill_header">
+                    <span class="skill_label">Machine Learning</span>
+                    <span class="skill_pct">30%</span>
+                  </div>
+                  <div class="skill_track">
+                    <div class="skill_bar" data-width="30"></div>
+                  </div>
+                </div>
+
               </div><!-- end .skill_bars -->
             </div><!-- end .skills_left -->
 
@@ -961,7 +976,7 @@
             <!-- RIGHT: Tools grid -->
             <div class="skills_right">
               <span class="section_eyebrow light">My tool stack</span>
-              <h2 class="section_title light" style="margin-bottom: 1.5rem">Tools</h2>
+              <h2 class="section_title light" style="margin-bottom: 2rem">Tools</h2>
 
               <!--
                 Tool tags: each .tool_tag is a small badge for one tool/language.
@@ -1042,16 +1057,17 @@
               <span class="section_eyebrow">Get in touch</span>
               <h2 class="section_title">Let's Work<br />Together.</h2>
               <p class="contact_intro">
-                Have a project in mind or just want to say hi? Drop me a message
-                — I'd love to hear from you.
+                Got something on your mind?
+                A project, collaboration, suggestion, or just a quick hello.
+                I’m just one message away. Looking forward to connecting with you!
               </p>
 
               <!-- Contact details: email and location -->
               <div class="contact_info">
                 <!-- Clickable email link -->
-                <a href="mailto:your@email.com" class="contact_detail">
+                <a href="mailto:nishantnahar2006@email.com" class="contact_detail">
                   <i class="fa-solid fa-envelope"></i>
-                  <span>your@email.com</span>
+                  <span>nishantnahar2006@email.com</span>
                 </a>
                 <!-- Location (not a link, just an info item) -->
                 <div class="contact_detail">
@@ -1062,13 +1078,17 @@
 
               <!-- Social media icon links — update href="#" with your actual URLs -->
               <div class="social_links">
-                <a href="#" class="social_icon" aria-label="GitHub" target="_blank" rel="noopener">
+                <a href="https://github.com/Its-Nishant-10" class="social_icon" aria-label="GitHub" target="_blank"
+                  rel="noopener">
                   <i class="fa-brands fa-github"></i></a>
-                <a href="#" class="social_icon" aria-label="LinkedIn" target="_blank" rel="noopener">
+                <a href="https://www.linkedin.com/in/nishantnahar2006" class="social_icon" aria-label="LinkedIn"
+                  target="_blank" rel="noopener">
                   <i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="social_icon" aria-label="Twitter/X" target="_blank" rel="noopener">
+                <a href="https://x.com/yours_nishant" class="social_icon" aria-label="Twitter/X" target="_blank"
+                  rel="noopener">
                   <i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="social_icon" aria-label="Instagram" target="_blank" rel="noopener">
+                <a href="https://www.instagram.com/its.nishant.10?igsh=ZDV0eHdoM2ttYTk2" class="social_icon"
+                  aria-label="Instagram" target="_blank" rel="noopener">
                   <i class="fa-brands fa-instagram"></i></a>
               </div>
             </div><!-- end .contact_left -->
@@ -1110,7 +1130,7 @@
                 <div class="form_group">
                   <label for="message">Message</label>
                   <textarea id="message" name="message" rows="5"
-                    placeholder="Tell me about your project or just say hi..."></textarea>
+                    placeholder="What message to begin just say hi..."></textarea>
                   <span class="field_error" id="message_error"></span>
                 </div>
 
