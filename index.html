@@ -31,31 +31,13 @@
 <html lang="en">
 
 <head>
-  <!--
-    ============================================================
-    DOCUMENT METADATA
-    charset:    Tells the browser to use UTF-8 character encoding,
-                which supports all unicode characters (emojis, etc.)
-    viewport:   Makes the design responsive — the width of the
-                page matches the device width at 1:1 zoom scale.
-    title:      Shows in the browser tab / bookmark bar.
-    description: Used by search engines to show a short summary
-                 of the page on google results.
-    ============================================================
-  -->
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant Portfolio</title>
   <meta name="description" content="Portfolio of Nishant Nahar" />
 
-  <!--
-    ============================================================
-    FAVICON & SOCIAL SHARE TAGS (OPEN GRAPH)
-    ============================================================
-    These tags ensure your site looks good when shared on LinkedIn,
-    Twitter/X, or WhatsApp.
-    Replace 'contents/og-image.jpg' with a screenshot of your site.
-  -->
+  
   <link rel="icon" type="image/png" href="contents/pfp.png" />
   <meta property="og:title" content="Nishant Nahar | Personal Portfolio" />
   <meta property="og:description"
@@ -64,120 +46,38 @@
   <meta property="og:url" content="https://its-nishant-10.github.io/portfolio_website/" />
   <meta property="og:type" content="website" />
 
-  <!--
-    ============================================================
-    GOOGLE FONTS — PRECONNECT + STYLESHEET LOADING
-    ============================================================
-    preconnect: Tells the browser to open a network connection to
-    Google's font servers EARLY, so fonts load faster.
-
-    The actual @font-face requests 3 font families:
-      1. Space Grotesk (weights 400–700): used for headings / section titles
-      2. DM Sans (regular + italic, weights 400–600): used for body text
-      3. IBM Plex Mono (weights 400, 500): used for code-style labels,
-         eyebrows, file names, tags, etc.
-
-    display=swap ensures the browser shows a fallback font immediately
-    while the custom fonts are loading.
-    ============================================================
-  -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
-  <!--
-    ============================================================
-    FONT AWESOME 6.5.0 — ICON LIBRARY
-    ============================================================
-    This CDN link loads the Font Awesome icon library.
-    It gives access to thousands of icons using simple <i> tags.
-    Used throughout: nav icons, card images, social links, etc.
-    Example usage: <i class="fa-solid fa-envelope"></i>
-    ============================================================
-  -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!--
-    ============================================================
-    MAIN STYLESHEET
-    ============================================================
-    Links to style.css which contains ALL of the visual styling
-    for this portfolio. All layout, colors, fonts, animations,
-    hover effects, responsive breakpoints etc. are there.
-    ============================================================
-  -->
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!--
-    ============================================================
-    PAGE FRAME (.page_frame)
-    ============================================================
-    This <div> wraps the ENTIRE visible page.
-    In style.css it adds a solid border around the whole page
-    and sets the max-width so the content never stretches too wide.
-    It also acts as the positioning context (position: relative)
-    for any absolutely-positioned child elements.
-    ============================================================
-  -->
+  
   <div class="page_frame">
-    <!--
-      ============================================================
-      HEADER — STICKY TOP NAVIGATION BAR
-      ============================================================
-      This <header> stays "stuck" to the top of the screen as
-      the user scrolls (position: sticky in CSS).
-
-      It contains three key parts:
-        1. .nav_logo   — The "N." logo box + full name on the left
-        2. .hamburger  — Hidden by default; appears on mobile as
-                         a ☰ button to toggle the nav menu
-        3. .nav_links  — The 4 main navigation anchor links on the right
-
-      aria-label and aria-expanded are accessibility attributes
-      that help screen readers understand the hamburger button.
-      JavaScript in script.js toggles the hamburger "open" class
-      and updates aria-expanded on click.
-
-      The id="navbar" is used by script.js to observe scroll
-      position and add/remove the .active class to nav links.
-      ============================================================
-    -->
+    
     <header class="navbar" id="navbar">
       <nav class="nav_container">
-        <!--
-          Logo: clicking this scrolls back to the top (#hero).
-          .logo_box holds the "N." square badge.
-          The second <span> holds the full name.
-        -->
+        
         <a href="#hero" class="nav_logo">
           <span class="logo_box">N.</span>
           <span>Nishant Nahar</span>
         </a>
 
-        <!--
-          Hamburger button: only VISIBLE on mobile screens.
-          The three <span> elements are the three horizontal lines.
-          script.js toggles the "open" class on this button, which
-          uses CSS transforms to animate the spans into an ✕ symbol.
-        -->
+        
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
 
-        <!--
-          Navigation links list.
-          id="nav_links" lets script.js find this element to
-          toggle the "open" class on mobile.
-
-          Each <li> holds a nav_link anchor.
-          - The href="#section_id" scrolls smoothly to that section.
-          - .nav_icon is the Font Awesome icon inline before the text.
-          - script.js adds/removes "active" class as sections scroll into view.
-        -->
+        
         <ul class="nav_links" id="nav_links">
           <li>
             <a href="#projects" class="nav_link"><i class="fa-solid fa-folder-open nav_icon"></i>projects</a>
@@ -195,171 +95,93 @@
       </nav>
     </header>
 
-    <!--
-      The <main> element wraps all of the primary page content sections.
-      Screen readers and search engines use <main> to identify the core
-      content of the page, so it's important for accessibility and SEO.
-    -->
+    
     <main>
-      <!--
-        ============================================================
-        SECTION 1 — HERO
-        id="hero" | class="hero"
-        ============================================================
-        This is the very first section the user sees when they land
-        on the page. It takes up the full viewport height minus the
-        navbar height (using CSS calc).
-
-        LAYOUT STRUCTURE (.hero_inner):
-          - Uses CSS Grid: two columns
-          - Left column  (.hero_left)  — Text content
-          - Right column (.hero_right) — Mascot SVG illustration
-
-        CONTENTS (Left column, .hero_left):
-          .hero_tag      — The "<Developer />" badge at the top
-          .hero_heading  — "Hello, I'm Nishant Nahar" (H1 heading)
-          .hero_name     — The name span gets a yellow underline highlight
-                           via a CSS ::after pseudo-element
-          .hero_typewriter — The paragraph that holds the typewriter text.
-                            It contains:
-                              #typewriter_text — script.js types into this span
-                              .tw_cursor       — The blinking | cursor
-          .hero_cta      — Two call-to-action buttons:
-                              "View My Work →"  (.btn_primary)
-                              "Contact Me"      (.btn_secondary)
-
-        CONTENTS (Right column, .hero_right):
-          .mascot_card — Container for the robot SVG illustration.
-                         It has a CSS float animation and drop-shadow filter.
-          .mascot_svg  — The inline SVG drawing of the robot mascot.
-                         It's drawn using primitive SVG shapes:
-                           <rect>    — rectangles (body, screen, arms)
-                           <circle>  — eyes, pupils, highlights
-                           <ellipse> — cheek blushes (yellow accents)
-                           <path>    — the robot's smile curve
-                           <polygon> — pencil tip at the end of arm
-                           <g>       — groups of shapes (rotated arm group)
-        ============================================================
-      -->
+      
       <section class="hero" id="hero">
         <div class="hero_inner">
-          <!-- LEFT: Text content -->
+          
           <div class="hero_left">
-            <!-- Small uppercase badge above the main heading -->
+            
             <span class="hero_tag">&lt; Developer /&gt;</span>
 
-            <!--
-              H1: The main page heading. There should only be ONE h1 per page.
-              .hero_name wraps just "Nishant Nahar" so CSS can add a
-              yellow highlight behind it using the ::after pseudo-element.
-            -->
+            
             <h1 class="hero_heading">
               Hello,<br />
               I'm <span class="hero_name">Nishant Nahar</span>
             </h1>
 
-            <!--
-              Typewriter paragraph.
-              - #typewriter_text: script.js writes and erases phrases here.
-              - .tw_cursor: the blinking "|" character; animated with CSS.
-            -->
+            
             <p class="hero_typewriter">
               <span id="typewriter_text"></span><span class="tw_cursor">|</span>
             </p>
 
-            <!--
-              Call To Action buttons.
-              Clicking "View My Work" scrolls to #projects.
-              Clicking "Contact Me" scrolls to #contact.
-            -->
+            
             <div class="hero_cta">
               <a href="#projects" class="btn btn_primary">My Work →</a>
               <a href="#contact" class="btn btn_secondary">Contact Me</a>
             </div>
           </div>
-          <!-- end .hero_left -->
+          
 
-          <!-- RIGHT: Mascot SVG illustration -->
+          
           <div class="hero_right">
             <div class="mascot_card">
-              <!--
-                ROBOT MASCOT — Inline SVG
-                viewBox="0 0 300 380": the internal coordinate space.
-                All shapes are drawn as if on a 300×380 canvas.
-
-                SVG PARTS (top to bottom):
-                  - Laptop screen body (black rounded rect, white screen fill)
-                  - Left eye & pupil (two circles with specular highlight)
-                  - Right eye & pupil (same as left)
-                  - Smile (curved path using quadratic bezier Q)
-                  - Yellow cheek blushes (ellipses with opacity)
-                  - Laptop trackpad + base (rects below the screen)
-                  - Left arm holding pencil:
-                      rotated <g> group containing:
-                        - pencil body (dark rect)
-                        - pencil tip (yellow polygon)
-                        - pencil eraser (yellow rect at top)
-                  - Right arm (two rects, no pencil on this side)
-                  - Antenna (rect + circle at top)
-                  - Decorative floating circles around the robot
-              -->
+              
               <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot_svg"
                 aria-label="Nerdy robot mascot">
-                <!-- Laptop body (dark rounded rectangle) -->
+                
                 <rect x="55" y="45" width="210" height="165" rx="18" fill="#0a0a0a" />
-                <!-- Laptop screen (light fill inside the body) -->
+                
                 <rect x="68" y="58" width="184" height="139" rx="10" fill="#f5f5f5" />
-                <!-- Screen glare / reflection overlay (semi-transparent white) -->
+                
                 <rect x="68" y="58" width="60" height="139" rx="10" fill="#fff" opacity="0.08" />
 
-                <!-- Left eye: outer dark circle, white iris, dark pupil, white specular dot -->
+                
                 <circle cx="118" cy="112" r="24" fill="#0a0a0a" />
                 <circle cx="118" cy="112" r="15" fill="#fff" />
                 <circle cx="123" cy="107" r="7" fill="#0a0a0a" />
                 <circle cx="125" cy="105" r="2.5" fill="#fff" />
 
-                <!-- Right eye: same structure as left eye -->
+                
                 <circle cx="202" cy="112" r="24" fill="#0a0a0a" />
                 <circle cx="202" cy="112" r="15" fill="#fff" />
                 <circle cx="207" cy="107" r="7" fill="#0a0a0a" />
                 <circle cx="209" cy="105" r="2.5" fill="#fff" />
 
-                <!-- Smile: a quadratic bezier curve between the eyes -->
+                
                 <path d="M130 158 Q160 182 190 158" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"
                   fill="none" />
 
-                <!-- Left cheek blush (semi-transparent yellow ellipse) -->
+                
                 <ellipse cx="104" cy="150" rx="16" ry="9" fill="#FFD700" opacity="0.55" />
-                <!-- Right cheek blush -->
+                
                 <ellipse cx="216" cy="150" rx="16" ry="9" fill="#FFD700" opacity="0.55" />
 
-                <!-- Laptop trackpad (small dark rectangle below the screen) -->
+                
                 <rect x="146" y="210" width="48" height="32" rx="5" fill="#0a0a0a" />
-                <!-- Laptop base / hinge bar -->
+                
                 <rect x="114" y="240" width="112" height="15" rx="7" fill="#0a0a0a" />
 
-                <!-- Left arm: two rects forming the wrist/shoulder connection -->
+                
                 <rect x="15" y="108" width="40" height="14" rx="7" fill="#0a0a0a" />
                 <rect x="5" y="93" width="20" height="40" rx="10" fill="#0a0a0a" />
-                <!--
-                  Pencil group: rotated -22 degrees around point (15, 93).
-                  Contains the pencil shaft, yellow tip, and yellow eraser.
-                -->
+                
                 <g transform="rotate(-22 15 93)">
                   <rect x="9" y="70" width="11" height="44" rx="4" fill="#333" />
                   <polygon points="9,114 20,114 14.5,132" fill="#FFD700" />
                   <rect x="9" y="70" width="11" height="10" rx="4" fill="#FFD700" />
                 </g>
 
-                <!-- Right arm: wrist connector + shoulder socket -->
+                
                 <rect x="265" y="108" width="40" height="14" rx="7" fill="#0a0a0a" />
                 <rect x="295" y="93" width="20" height="40" rx="10" fill="#0a0a0a" />
 
-                <!-- Antenna: vertical stick topped with a yellow circle -->
+                
                 <rect x="155" y="18" width="10" height="30" rx="5" fill="#0a0a0a" />
                 <circle cx="160" cy="13" r="9" fill="#FFD700" />
 
-                <!-- Decorative floating dots around the mascot -->
+                
                 <circle cx="42" cy="58" r="6" fill="#FFD700" />
                 <circle cx="298" cy="48" r="5" fill="#0a0a0a" />
                 <circle cx="318" cy="76" r="4" fill="#FFD700" />
@@ -367,121 +189,63 @@
                 <circle cx="310" cy="190" r="4" fill="#FFD700" />
               </svg>
             </div>
-            <!-- end .mascot_card -->
+            
           </div>
-          <!-- end .hero_right -->
+          
         </div>
-        <!-- end .hero_inner -->
+        
       </section>
-      <!-- end #hero -->
+      
 
-      <!--
-        ============================================================
-        SECTION 2 — QUICK LINKS BAR
-        class="quicklinks_section"
-        ============================================================
-        A horizontal strip placed directly below the hero section.
-        It provides one-click navigation anchors to all four main
-        sections of the page.
-
-        LAYOUT:
-          .quicklinks_bar uses CSS Grid with 4 equal columns.
-          Each cell (.quicklink_cell) is an <a> tag containing:
-            .ql_icon  — Small Font Awesome icon (visual cue)
-            <span>    — The section label text ("Projects", "About", etc.)
-            .ql_arrow — The "↗" diagonal arrow that animates on hover
-
-        INTERACTION:
-          On hover, the cell background turns gold (.accent) and
-          the .ql_arrow shifts diagonally (CSS transform in style.css).
-        ============================================================
-      -->
+      
       <section class="quicklinks_section">
         <div class="inner">
           <div class="quicklinks_bar">
-            <!-- Quick link: Projects -->
+            
             <a href="#projects" class="quicklink_cell">
               <span class="ql_icon"><i class="fa-solid fa-folder-open"></i></span>
               <span>Projects</span>
               <span class="ql_arrow">↗</span>
             </a>
 
-            <!-- Quick link: About -->
+            
             <a href="#about" class="quicklink_cell">
               <span class="ql_icon"><i class="fa-solid fa-user"></i></span>
               <span>About</span>
               <span class="ql_arrow">↗</span>
             </a>
 
-            <!-- Quick link: Skills -->
+            
             <a href="#skills" class="quicklink_cell">
               <span class="ql_icon"><i class="fa-solid fa-code"></i></span>
               <span>Skills</span>
               <span class="ql_arrow">↗</span>
             </a>
 
-            <!-- Quick link: Contact -->
+            
             <a href="#contact" class="quicklink_cell">
               <span class="ql_icon"><i class="fa-solid fa-envelope"></i></span>
               <span>Contact</span>
               <span class="ql_arrow">↗</span>
             </a>
           </div>
-          <!-- end .quicklinks_bar -->
+          
         </div>
-        <!-- end .inner -->
+        
       </section>
-      <!-- end .quicklinks_section -->
+      
 
-      <!--
-        ============================================================
-        SECTION 3 — PROJECTS
-        id="projects" | class="section_wrap"
-        ============================================================
-        Displays a 2-column grid of project "cards" — each card
-        represents a portfolio piece.
-
-        TOP ROW (.section_header_row):
-          - Left side: eyebrow label ("Selected work") + section title H2
-          - Right side: four filter buttons (All, Web, Mobile, Design)
-            These trigger script.js which shows/hides cards by their
-            data-category attribute.
-
-        PROJECTS GRID (.projects_grid):
-          A CSS Grid with 2 columns. Each project is an <article>
-          with class "project_card" and a data-category attribute
-          ("web", "mobile", or "design") used by the JS filter logic.
-
-        EACH PROJECT CARD STRUCTURE:
-          .win_bar        — The faux "window title bar" at the top of card
-            .win_dots     — Two decorative small circles (like macOS stoplight)
-            .win_filename — The filename shown in the bar (e.g. project-01.html)
-          .card_image     — Image area (16:9 aspect ratio)
-            <img>          — Project screenshot (loaded from contents/ folder)
-          .card_body      — The main card content area
-            .card_title   — Project name (H3)
-            .card_desc    — Short description paragraph
-            .card_tags    — Flex row of .tag badges (tech stack used)
-            .btn_view     — Button that opens the matching modal overlay;
-                            its data-modal attribute tells JS which modal to open
-        ============================================================
-      -->
+      
       <section class="section_wrap" id="projects">
         <div class="inner">
-          <!-- Header row: title on left, filter buttons on right -->
+          
           <div class="section_header_row">
             <div>
               <span class="section_eyebrow">Selected Ones</span>
               <h2 class="section_title">Projects</h2>
             </div>
 
-            <!--
-              Filter buttons: clicking one filters the cards grid below.
-              data-filter="all" shows all cards.
-              data-filter="web"/"mobile"/"design" shows only matching cards.
-              The "active" class styles the currently selected button.
-              script.js handles the filtering logic.
-            -->
+            
             <div class="filter_bar">
               <button class="filter_btn active" data-filter="all">All</button>
               <button class="filter_btn" data-filter="web">Web</button>
@@ -491,27 +255,22 @@
               <button class="filter_btn" data-filter="foss">FOSS</button>
             </div>
           </div>
-          <!-- end .section_header_row -->
+          
 
-          <!-- Projects grid: holds all project cards -->
+          
           <div class="projects_grid" id="projects_grid">
-            <!--
-              PROJECT CARD 1 (category: web)
-              data-category="web": This card appears when filter is "All" or "Web".
-              data-modal="modal_1": clicking "View Project" opens #modal_1.
-              Replace placeholder content with your actual project details!
-            -->
+            
             <article class="project_card" data-category="web">
-              <!-- Faux window title bar -->
+              
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
                 <span class="win_filename">netflix_clone.html</span>
               </div>
-              <!-- Card image area (replace .img_placeholder with <img> when ready) -->
+              
               <div class="card_image">
                 <img src="contents/netflix_1.jpg" alt="Netflix Clone project screenshot" />
               </div>
-              <!-- Card content body -->
+              
               <div class="card_body">
                 <h3 class="card_title">Netflix Clone</h3>
                 <p class="card_desc">
@@ -519,23 +278,20 @@
                   development. It includes a landing page, login page, and a
                   browse page with a featured banner and movie sections.
                 </p>
-                <!-- Technology tags -->
+                
                 <div class="card_tags">
                   <span class="tag">HTML</span>
                   <span class="tag">CSS</span>
                   <span class="tag">JS</span>
                 </div>
-                <!-- Opens modal_1 via script.js -->
+                
                 <button class="btn_view" data-modal="modal_1">
                   View Project →
                 </button>
               </div>
             </article>
 
-            <!--
-              PROJECT CARD 2 (category: web)
-              Same structure. data-modal="modal_2" links to #modal_2.
-            -->
+            
             <article class="project_card" data-category="automation">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
@@ -563,10 +319,7 @@
               </div>
             </article>
 
-            <!--
-              PROJECT CARD 3 (category: mobile)
-              data-category="mobile": hidden when filter is "Web" or "Design".
-            -->
+            
             <article class="project_card" data-category="automation">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
@@ -595,10 +348,7 @@
               </div>
             </article>
 
-            <!--
-              PROJECT CARD 4 (category: design)
-              data-category="design": only visible when filter is "All" or "Design".
-            -->
+            
             <!-- <article class="project_card" data-category="design">
               <div class="win_bar">
                 <div class="win_dots"><span></span><span></span></div>
@@ -619,63 +369,29 @@
               </div>
             </article> -->
           </div>
-          <!-- end .projects_grid -->
+          
         </div>
-        <!-- end .inner -->
+        
       </section>
-      <!-- end #projects -->
+      
 
-      <!--
-        ============================================================
-        MODAL OVERLAYS — PROJECT DETAIL POP-UPS
-        id="modal_1" through id="modal_4"
-        class="modal_overlay"
-        ============================================================
-        These four modal divs are all hidden by default (display: none).
-        When the user clicks a "View Project →" button inside any
-        project card, script.js reads the button's data-modal attribute
-        and adds the "open" class to the matching modal div.
-        The CSS then sets display: flex to show the modal.
 
-        CLOSING a modal can be done three ways (all handled by script.js):
-          1. Click the ✕ button (.modal_close)
-          2. Click anywhere on the dark overlay background
-          3. Press the Escape key on the keyboard
 
-        EACH MODAL STRUCTURE:
-          .modal_overlay — The full-screen dark semi-transparent backdrop
-            .modal_panel   — The white content box in the center (max 680px wide)
-              .modal_close — The ✕ close button (absolute positioned top-right)
-              .win_bar     — Same decorative window title bar as on the cards
-              .modal_image — Large image area for the project screenshot
-              .modal_body  — Detailed text + tech tags + live demo/github links
-                h3           — Project title (linked with aria-labelledby for accessibility)
-                p            — Longer description (4-6 sentences)
-                .modal_tags  — Row of .tag spans for tech stack
-                .modal_links — Two action buttons: Live Demo ↗ and GitHub link
-
-        ACCESSIBILITY:
-          role="dialog"              — tells screen readers it's a dialog
-          aria-modal="true"          — says this dialog blocks the rest of the page
-          aria-labelledby="modal_N_title" — links the dialog to its <h3> title for screen readers
-        ============================================================
-      -->
-
-      <!-- ——— MODAL 1: linked to project card 1 ——— -->
+      
       <div class="modal_overlay" id="modal_1" role="dialog" aria-modal="true" aria-labelledby="modal_1_title">
         <div class="modal_panel">
-          <!-- Close button — script.js adds a click listener to remove "open" class -->
+          
           <button class="modal_close" aria-label="Close modal">✕</button>
-          <!-- Decorative title bar matching the card design -->
+          
           <div class="win_bar">
             <div class="win_dots"><span></span><span></span></div>
             <span class="win_filename">netflix_clone.html</span>
           </div>
-          <!-- Large image placeholder — replace with actual <img> tag -->
+          
           <div class="modal_image">
             <img src="contents/netflix_4.jpg" alt="Netflix Clone detailed screenshot" />
           </div>
-          <!-- Project details -->
+          
           <div class="modal_body">
             <h3 id="modal_1_title">Netflix Clone</h3>
             <p>
@@ -687,13 +403,13 @@
               Added basic JS for simple interactivity.<br />
               Focused on clean UI structuring and component-design.<br />
             </p>
-            <!-- Tech stack tags -->
+            
             <div class="modal_tags">
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
             </div>
-            <!-- Action buttons -->
+            
             <div class="modal_links">
-              <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
+              
               <a href="https://github.com/Its-Nishant-10/netflix_clone" class="btn btn_secondary" target="_blank"
                 rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
@@ -701,7 +417,7 @@
         </div>
       </div>
 
-      <!-- ——— MODAL 2: linked to project card 2 ——— -->
+      
       <div class="modal_overlay" id="modal_2" role="dialog" aria-modal="true" aria-labelledby="modal_2_title">
         <div class="modal_panel">
           <button class="modal_close" aria-label="Close modal">✕</button>
@@ -729,7 +445,7 @@
               <span class="tag">Excel</span><span class="tag">UIPath Studio</span><span class="tag">Regex</span>
             </div>
             <div class="modal_links">
-              <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
+              
               <a href="https://github.com/Its-Nishant-10/invoice_automation_pdf" class="btn btn_secondary"
                 target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
@@ -737,7 +453,7 @@
         </div>
       </div>
 
-      <!-- ——— MODAL 3: linked to project card 3 ——— -->
+      
       <div class="modal_overlay" id="modal_3" role="dialog" aria-modal="true" aria-labelledby="modal_3_title">
         <div class="modal_panel">
           <button class="modal_close" aria-label="Close modal">✕</button>
@@ -766,7 +482,7 @@
               <span class="tag">Web Scrap</span><span class="tag">UIPath Studio</span>
             </div>
             <div class="modal_links">
-              <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
+              
               <a href="https://github.com/Its-Nishant-10/diet_planner" class="btn btn_secondary" target="_blank"
                 rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
@@ -797,71 +513,35 @@
         </div>
       </div> -->
 
-      <!--
-        ============================================================
-        SECTION 4 — ABOUT ME
-        id="about" | class="section_wrap alt"
-        ============================================================
-        A personal biography section with a soft grey background
-        (.alt modifier in CSS sets background to --gray-light).
-
-        LAYOUT (.about_grid):
-          Uses CSS Grid: two columns.
-          Left column  (.about_photo_col) — Profile photo + location badges
-          Right column (.about_text_col)  — Bio text + sticky notes
-
-        LEFT COLUMN DETAILS:
-          .photo_window — A faux window frame wrapping the profile photo.
-            .win_bar        — Decorative top bar (same pattern as project cards)
-            .photo_frame    — Contains the actual <img> tag
-              profile_photo — The profile picture (src="contents/pfp.png")
-          .location_badge — Two small text badges showing location info:
-                            "📍Silchar, Assam" and "📍India"
-
-        RIGHT COLUMN DETAILS:
-          .section_eyebrow — "Get to know me" (small uppercase label)
-          .section_title   — "About Me" (H2)
-          .about_para      — Bio text paragraphs
-          .fun_facts        — A container holding sticky notes
-          .sticky_note      — Individual fun fact cards styled to look like
-                              yellow sticky notes; each has a CSS custom property
-                              --rot that slightly rotates each note randomly
-                              for a handwritten/natural effect.
-
-        TO UPDATE:
-          - Change pfp.png to your actual photo filename
-          - Edit the bio text paragraphs
-          - Edit the sticky note text/emoji
-        ============================================================
-      -->
+      
       <section class="section_wrap alt" id="about">
         <div class="inner">
           <div class="about_grid">
-            <!-- LEFT: Photo + location -->
+            
             <div class="about_photo_col">
               <div class="photo_window">
-                <!-- Decorative window title bar -->
+                
                 <div class="win_bar">
                   <div class="win_dots"><span></span><span></span></div>
                   <span class="win_filename">me.png</span>
                 </div>
-                <!-- Profile photo frame -->
+                
                 <div class="photo_frame">
                   <img src="contents/pfp.png" alt="Nishant Pic" class="profile_photo" />
                 </div>
               </div>
-              <!-- Location tags below the photo -->
+              
               <div class="location_badge">📍Silchar, Assam</div>
               <div class="location_badge">📍India</div>
             </div>
-            <!-- end .about_photo_col -->
+            
 
-            <!-- RIGHT: Bio text + fun facts -->
+            
             <div class="about_text_col">
               <span class="section_eyebrow">Get to know me</span>
               <h2 class="section_title">About Me</h2>
 
-              <!-- First bio paragraph -->
+              
               <p class="about_para">
                 Hi there! I'm <strong>Nishant Nahar</strong>, someone who
                 enjoys solving problems and thinking with logic. I love
@@ -869,7 +549,7 @@
                 great and work smoothly behind the scenes.
               </p>
 
-              <!-- Second bio paragraph -->
+              
               <p class="about_para">
                 When I'm not coding, you'll usually find me playing squash or
                 badminton, or going for a quiet walk to clear my head. I'm a
@@ -878,11 +558,7 @@
                 excited.
               </p>
 
-              <!--
-                Fun facts: 4 "sticky note" divs.
-                --rot: CSS custom property controlling the slight rotation of each note.
-                Values vary per note to look natural and hand-placed.
-              -->
+              
               <div class="fun_facts">
                 <div class="sticky_note" style="--rot: -2.5deg">
                   ☕ Coffee powered person
@@ -898,75 +574,38 @@
                 </div>
               </div>
             </div>
-            <!-- end .about_text_col -->
+            
           </div>
-          <!-- end .about_grid -->
+          
         </div>
-        <!-- end .inner -->
+        
       </section>
-      <!-- end #about -->
+      
 
-      <!--
-        ============================================================
-        SECTION 5 — SKILLS & TOOLS
-        id="skills" | class="section_wrap dark"
-        ============================================================
-        Dark-background section (.dark modifier sets background to --bg-dark
-        which is near-black #141414) showcasing technical skills.
-
-        LAYOUT (.skills_grid):
-          Two columns:
-          Left  (.skills_left)  — Animated skill progress bars
-          Right (.skills_right) — Tool stack tags grid
-
-        LEFT COLUMN — SKILL BARS:
-          .skill_bars container (#skill_bars) holds multiple .skill_item rows.
-          Each .skill_item contains:
-            .skill_header — Row with skill name + percentage on the right:
-              .skill_label — e.g. "HTML / CSS / JS"
-              .skill_pct   — e.g. "90%"
-            .skill_track — Grey background track bar (100% wide)
-              .skill_bar  — The actual yellow filled bar; starts at 0 width.
-                            data-width="90" tells JavaScript the target width.
-                            When the section scrolls into view, script.js sets
-                            bar.style.width = target_width + "%" to animate it.
-
-        RIGHT COLUMN — TOOLS GRID:
-          .tools_grid is a CSS flex/grid container of .tool_tag spans.
-          Each .tool_tag is a small bordered badge naming a tool or language.
-          Add or remove <span class="tool_tag">Name</span> as needed.
-
-        SKILLS LISTED:
-          - HTML / CSS / JS  — 90%
-          - Java             — 80%
-          - C++ / C          — 95%
-          - Python           — 75%
-          - UI / UX Design   — 60%
-          - Machine Learning — 30%     ============================================================
-      -->
+      
       <section class="section_wrap dark" id="skills">
         <div class="inner">
           <div class="skills_grid">
-            <!-- LEFT: Skill progress bars -->
+            
             <div class="skills_left">
               <span class="section_eyebrow light">What I know</span>
               <h2 class="section_title light">Skills</h2>
 
-              <!-- Skill bars container (observed by IntersectionObserver in script.js) -->
+              
               <div class="skill_bars" id="skill_bars">
-                <!-- Skill: HTML / CSS / JS — 90% -->
+                
                 <div class="skill_item">
                   <div class="skill_header">
                     <span class="skill_label">HTML / CSS / JS</span>
                     <span class="skill_pct">90%</span>
                   </div>
                   <div class="skill_track">
-                    <!-- data-width is read by script.js to set the animated width -->
+                    
                     <div class="skill_bar" data-width="90"></div>
                   </div>
                 </div>
 
-                <!-- Skill: Java — 80% -->
+                
                 <div class="skill_item">
                   <div class="skill_header">
                     <span class="skill_label">Java</span>
@@ -977,7 +616,7 @@
                   </div>
                 </div>
 
-                <!-- Skill: C++ / C — 95% -->
+                
                 <div class="skill_item">
                   <div class="skill_header">
                     <span class="skill_label">C++ / C</span>
@@ -988,7 +627,7 @@
                   </div>
                 </div>
 
-                <!-- Skill: Python — 75% -->
+                
                 <div class="skill_item">
                   <div class="skill_header">
                     <span class="skill_label">Python</span>
@@ -999,7 +638,7 @@
                   </div>
                 </div>
 
-                <!-- Skill: UI / UX Design — 60% -->
+                
                 <div class="skill_item">
                   <div class="skill_header">
                     <span class="skill_label">UI / UX Design</span>
@@ -1010,7 +649,7 @@
                   </div>
                 </div>
 
-                <!-- Skill: Machine Learning — 30% -->
+                
                 <div class="skill_item">
                   <div class="skill_header">
                     <span class="skill_label">Machine Learning</span>
@@ -1021,21 +660,18 @@
                   </div>
                 </div>
               </div>
-              <!-- end .skill_bars -->
+              
             </div>
-            <!-- end .skills_left -->
+            
 
-            <!-- RIGHT: Tools grid -->
+            
             <div class="skills_right">
               <span class="section_eyebrow light">My tool stack</span>
               <h2 class="section_title light" style="margin-bottom: 2rem">
                 Tools
               </h2>
 
-              <!--
-                Tool tags: each .tool_tag is a small badge for one tool/language.
-                Add more <span class="tool_tag">Name</span> elements as needed.
-              -->
+              
               <div class="tools_grid">
                 <span class="tool_tag">Git</span>
                 <span class="tool_tag">GitHub</span>
@@ -1053,63 +689,19 @@
                 <span class="tool_tag">Canva</span>
               </div>
             </div>
-            <!-- end .skills_right -->
+            
           </div>
-          <!-- end .skills_grid -->
+          
         </div>
-        <!-- end .inner -->
+        
       </section>
-      <!-- end #skills -->
+      
 
-      <!--
-        ============================================================
-        SECTION 6 — CONTACT
-        id="contact" | class="section_wrap"
-        ============================================================
-        The final main section where visitors can get in touch.
-
-        LAYOUT (.contact_grid):
-          Two columns:
-          Left  (.contact_left)  — Contact info + social media icons
-          Right (.contact_right) — The contact form
-
-        LEFT COLUMN DETAILS:
-          .section_eyebrow — "Get in touch" label
-          .section_title   — "Let's Work Together." heading (H2)
-          .contact_intro   — Short invitation paragraph
-          .contact_info    — Two .contact_detail items:
-              1. Email anchor (mailto:) with fa-envelope icon
-              2. Location div with fa-location-dot icon
-          .social_links    — Row of .social_icon anchor tags:
-              GitHub, LinkedIn, Twitter/X, Instagram
-              (Each opens in new tab: target="_blank" rel="noopener")
-
-        RIGHT COLUMN — CONTACT FORM:
-          id="contact_form": script.js attaches the submit handler here.
-          novalidate: disables browser's native validation; we use custom JS.
-          Four .form_group blocks (name, email, subject, message):
-            <label>      — Accessible text label for the input
-            <input>      — The text/email input field
-            .field_error — Empty <span> that script.js fills with error text
-                           when validation fails (e.g. "This field is required.")
-          The <textarea> is for the message (5 rows).
-          #submit_btn: the submit button; script.js disables it during sending.
-
-        FORM BEHAVIOUR (handled entirely in script.js):
-          1. On submit, script.js validates all fields.
-          2. If invalid, it sets error text in .field_error spans.
-          3. If valid, it POSTs the form data to the Formspree URL.
-          4. On success/failure, it shows a toast notification.
-
-        TO ACTIVATE THE FORM:
-          Replace "YOUR_FORM_ID" in script.js with your real Formspree form ID.
-          Sign up free at https://formspree.io
-        ============================================================
-      -->
+      
       <section class="section_wrap" id="contact">
         <div class="inner">
           <div class="contact_grid">
-            <!-- LEFT: Info + socials -->
+            
             <div class="contact_left">
               <span class="section_eyebrow">Get in touch</span>
               <h2 class="section_title">Let's Work<br />Together.</h2>
@@ -1119,21 +711,21 @@
                 Looking forward to connecting with you!
               </p>
 
-              <!-- Contact details: email and location -->
+              
               <div class="contact_info">
-                <!-- Clickable email link -->
+                
                 <a href="mailto:nishantnahar2006@gmail.com" class="contact_detail">
                   <i class="fa-solid fa-envelope"></i>
                   <span>nishantnahar2006@gmail.com</span>
                 </a>
-                <!-- Location (not a link, just an info item) -->
+                
                 <div class="contact_detail">
                   <i class="fa-solid fa-location-dot"></i>
                   <span>India 🇮🇳</span>
                 </div>
               </div>
 
-              <!-- Social media icon links — update href="#" with your actual URLs -->
+              
               <div class="social_links">
                 <a href="https://github.com/Its-Nishant-10" class="social_icon" aria-label="GitHub" target="_blank"
                   rel="noopener">
@@ -1149,39 +741,35 @@
                   <i class="fa-brands fa-instagram"></i></a>
               </div>
             </div>
-            <!-- end .contact_left -->
+            
 
-            <!-- RIGHT: Contact form -->
+            
             <div class="contact_right">
-              <!--
-                The contact form.
-                novalidate: turns off browser-native validation bubbles.
-                script.js takes over ALL validation and submission.
-              -->
+              
               <form class="contact_form" id="contact_form" novalidate>
-                <!-- Name field -->
+                
                 <div class="form_group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" />
-                  <!-- Error message shown by script.js if validation fails -->
+                  
                   <span class="field_error" id="name_error"></span>
                 </div>
 
-                <!-- Email field -->
+                
                 <div class="form_group">
                   <label for="email">Email</label>
                   <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
                   <span class="field_error" id="email_error"></span>
                 </div>
 
-                <!-- Subject field -->
+                
                 <div class="form_group">
                   <label for="subject">Subject</label>
                   <input type="text" id="subject" name="subject" placeholder="What's this about?" />
                   <span class="field_error" id="subject_error"></span>
                 </div>
 
-                <!-- Message textarea -->
+                
                 <div class="form_group">
                   <label for="message">Message</label>
                   <textarea id="message" name="message" rows="5"
@@ -1189,42 +777,23 @@
                   <span class="field_error" id="message_error"></span>
                 </div>
 
-                <!--
-                  Submit button.
-                  id="submit_btn": script.js targets this to:
-                    - Disable it while the form is being sent
-                    - Change its text to "Sending…" during the request
-                    - Restore it after the request completes
-                  .btn_full: makes the button stretch to 100% width.
-                -->
+                
                 <button type="submit" class="btn btn_primary btn_full" id="submit_btn">
                   Send Message →
                 </button>
               </form>
             </div>
-            <!-- end .contact_right -->
+            
           </div>
-          <!-- end .contact_grid -->
+          
         </div>
-        <!-- end .inner -->
+        
       </section>
-      <!-- end #contact -->
+      
     </main>
-    <!-- end <main> -->
+    
 
-    <!--
-      ============================================================
-      FOOTER
-      class="footer"
-      ============================================================
-      The bottom-most visible element on the page.
-      Contains two parts:
-        1. .footer_copy — Copyright text + blinking cursor decoration
-           .footer_cursor — The "_" character that blinks via CSS
-        2. .footer_nav  — A mini navigation bar repeating the main
-                          section links separated by "·" dots.
-      ============================================================
-    -->
+    
     <footer class="footer">
       <span class="footer_copy">© 2025 Nishant Nahar. All rights reserved.<span class="footer_cursor">_</span></span>
       <nav class="footer_nav">
@@ -1234,43 +803,12 @@
       </nav>
     </footer>
   </div>
-  <!-- end .page_frame -->
+  
 
-  <!--
-    ============================================================
-    TOAST NOTIFICATION (#toast)
-    ============================================================
-    A small popup notification that briefly appears at the bottom
-    right of the screen when the form is submitted.
-    It is hidden by default (no "show" class).
-    script.js adds the "show" class and sets its text content when
-    the form is successfully submitted or encounters an error.
-    After a timeout (~4 seconds), the "show" class is removed.
-
-    role="alert" and aria-live="polite" make the toast announcement
-    accessible to screen readers without interrupting them rudely.
-    ============================================================
-  -->
+  
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
-  <!--
-    ============================================================
-    JAVASCRIPT — script.js
-    ============================================================
-    This <script> tag is placed at the BOTTOM of the <body>
-    (just before the closing body tag) intentionally. This ensures the entire
-    HTML DOM is fully parsed and available before JavaScript runs.
-    All interactive features are inside script.js:
-      - Typewriter animation
-      - Navbar scroll highlighting
-      - Hamburger menu toggle
-      - Project card filtering
-      - Modal open/close logic
-      - Skill bar scroll animation
-      - Fade-in scroll observer
-      - Contact form validation and Formspree submission
-    ============================================================
-  -->
+  
   <script src="script.js"></script>
 </body>
 

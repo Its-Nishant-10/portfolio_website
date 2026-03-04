@@ -1,30 +1,61 @@
-# Nishant Nahar — Personal Portfolio
+# 🌟 Nishant Nahar — Personal Portfolio
 
-Hey! This is my personal portfolio website that I built from scratch. It's a single-page site inspired by the Mac Webflow template aesthetic — clean, sharp, black & white with a gold accent.
+Welcome to my personal portfolio repository! This is a clean, modern, and responsive single-page portfolio website built entirely from scratch. Designed with a premium aesthetic inspired by Mac Webflow templates, it features a sleek black-and-white theme with a striking gold accent.
 
-I wanted something that felt premium but still very "me", so I built the whole thing with just HTML, CSS, and Vanilla JavaScript. No frameworks, no libraries (except Font Awesome for icons and Google Fonts).
-
----
-
-## What's on it
-
-- A hero section with a typewriter animation and a little robot mascot SVG I drew myself
-- A projects section with cards that open into full-screen modals
-- Category filtering for projects (Web / Mobile / Design)
-- An about me section with sticky notes and a profile photo
-- Animated skill progress bars that trigger when you scroll to them
-- A contact form (powered by Formspree)
-- Fully responsive down to mobile
+> **Live Demo:** [Check it out here](https://its-nishant-10.github.io/portfolio_website/)
 
 ---
 
-## Tech used
+## ✨ Features
 
-- HTML, CSS, JavaScript — all vanilla, no frameworks
-- Font Awesome for icons
-- Google Fonts (Space Grotesk, DM Sans, IBM Plex Mono)
-- Formspree for form submissions
+- **Hero Section**: Includes a dynamic typewriter animation and a custom-drawn robot mascot SVG.
+- **Projects Showcase**: Interactive project cards that open into full-screen modals with detailed information.
+- **Category Filtering**: Easily filter projects by Web, Automation, and FOSS/Design.
+- **About Me**: A personal biography section featuring fun animated sticky notes.
+- **Skills & Tools**: Animated skill progress bars that trigger smoothly upon scrolling.
+- **Contact Form**: Functional contact form powered by Formspree.
+- **Fully Responsive**: Optimized for desktop, tablet, and mobile devices.
+- **Custom Smooth Scrolling & Animations**: Polished UX with custom scroll behaviors and subtle fade-in animations as you navigate the page.
 
 ---
 
-Built by **Nishant Nahar** �
+## 🛠️ Technology Stack
+
+No bloated frameworks or heavy libraries! Just pure, performant web technologies:
+
+- **HTML5** (Semantic structuring)
+- **CSS3** (Flexbox, CSS Grid, Custom Variables, Animations)
+- **Vanilla JavaScript** (DOM manipulation, IntersectionObserver API, custom smooth scrolling)
+- **Font Awesome 6** (Icons)
+- **Google Fonts** (Space Grotesk, DM Sans, IBM Plex Mono)
+- **Formspree** (Contact form handling)
+
+---
+
+## 🚀 Getting Started
+
+If you want to use this codebase for your own portfolio (or just want to run it locally):
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Its-Nishant-10/portfolio_website.git
+   ```
+
+2. **Open `index.html`** in your favorite browser. No build steps or local servers required!
+
+### 📚 Customizing the Template
+
+I have extracted all the internal developer comments and instructions from the source code and compiled them into a simple, easy-to-read guide.
+
+If you want to customize this portfolio (change text, colors, projects, or connect your email), please read the **[`CONTENT_GUIDE.md`](CONTENT_GUIDE.md)**. It serves as a master manual for updating the site with zero coding knowledge required!
+
+---
+
+## 👨‍💻 Author
+
+Built with ❤️ by **Nishant Nahar**
+
+- [GitHub](https://github.com/Its-Nishant-10)
+- [LinkedIn](https://www.linkedin.com/in/nishantnahar2006)
+- [X / Twitter](https://x.com/yours_nishant)
