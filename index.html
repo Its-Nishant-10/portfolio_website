@@ -112,7 +112,6 @@
 </head>
 
 <body>
-
   <!--
     ============================================================
     PAGE FRAME (.page_frame)
@@ -125,8 +124,6 @@
     ============================================================
   -->
   <div class="page_frame">
-
-
     <!--
       ============================================================
       HEADER — STICKY TOP NAVIGATION BAR
@@ -151,7 +148,6 @@
     -->
     <header class="navbar" id="navbar">
       <nav class="nav_container">
-
         <!--
           Logo: clicking this scrolls back to the top (#hero).
           .logo_box holds the "N." square badge.
@@ -183,15 +179,21 @@
           - script.js adds/removes "active" class as sections scroll into view.
         -->
         <ul class="nav_links" id="nav_links">
-          <li><a href="#projects" class="nav_link"><i class="fa-solid fa-folder-open nav_icon"></i>projects</a></li>
-          <li><a href="#about" class="nav_link"><i class="fa-solid fa-user nav_icon"></i>about</a></li>
-          <li><a href="#skills" class="nav_link"><i class="fa-solid fa-code nav_icon"></i>skills</a></li>
-          <li><a href="#contact" class="nav_link"><i class="fa-solid fa-envelope nav_icon"></i>contact</a></li>
+          <li>
+            <a href="#projects" class="nav_link"><i class="fa-solid fa-folder-open nav_icon"></i>projects</a>
+          </li>
+          <li>
+            <a href="#about" class="nav_link"><i class="fa-solid fa-user nav_icon"></i>about</a>
+          </li>
+          <li>
+            <a href="#skills" class="nav_link"><i class="fa-solid fa-code nav_icon"></i>skills</a>
+          </li>
+          <li>
+            <a href="#contact" class="nav_link"><i class="fa-solid fa-envelope nav_icon"></i>contact</a>
+          </li>
         </ul>
-
       </nav>
     </header>
-
 
     <!--
       The <main> element wraps all of the primary page content sections.
@@ -199,8 +201,6 @@
       content of the page, so it's important for accessibility and SEO.
     -->
     <main>
-
-
       <!--
         ============================================================
         SECTION 1 — HERO
@@ -243,10 +243,8 @@
       -->
       <section class="hero" id="hero">
         <div class="hero_inner">
-
           <!-- LEFT: Text content -->
           <div class="hero_left">
-
             <!-- Small uppercase badge above the main heading -->
             <span class="hero_tag">&lt; Developer /&gt;</span>
 
@@ -278,9 +276,8 @@
               <a href="#projects" class="btn btn_primary">My Work →</a>
               <a href="#contact" class="btn btn_secondary">Contact Me</a>
             </div>
-
-          </div><!-- end .hero_left -->
-
+          </div>
+          <!-- end .hero_left -->
 
           <!-- RIGHT: Mascot SVG illustration -->
           <div class="hero_right">
@@ -308,7 +305,6 @@
               -->
               <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="mascot_svg"
                 aria-label="Nerdy robot mascot">
-
                 <!-- Laptop body (dark rounded rectangle) -->
                 <rect x="55" y="45" width="210" height="165" rx="18" fill="#0a0a0a" />
                 <!-- Laptop screen (light fill inside the body) -->
@@ -369,14 +365,15 @@
                 <circle cx="318" cy="76" r="4" fill="#FFD700" />
                 <circle cx="22" cy="178" r="5" fill="#0a0a0a" />
                 <circle cx="310" cy="190" r="4" fill="#FFD700" />
-
               </svg>
-            </div><!-- end .mascot_card -->
-          </div><!-- end .hero_right -->
-
-        </div><!-- end .hero_inner -->
-      </section><!-- end #hero -->
-
+            </div>
+            <!-- end .mascot_card -->
+          </div>
+          <!-- end .hero_right -->
+        </div>
+        <!-- end .hero_inner -->
+      </section>
+      <!-- end #hero -->
 
       <!--
         ============================================================
@@ -402,7 +399,6 @@
       <section class="quicklinks_section">
         <div class="inner">
           <div class="quicklinks_bar">
-
             <!-- Quick link: Projects -->
             <a href="#projects" class="quicklink_cell">
               <span class="ql_icon"><i class="fa-solid fa-folder-open"></i></span>
@@ -430,11 +426,12 @@
               <span>Contact</span>
               <span class="ql_arrow">↗</span>
             </a>
-
-          </div><!-- end .quicklinks_bar -->
-        </div><!-- end .inner -->
-      </section><!-- end .quicklinks_section -->
-
+          </div>
+          <!-- end .quicklinks_bar -->
+        </div>
+        <!-- end .inner -->
+      </section>
+      <!-- end .quicklinks_section -->
 
       <!--
         ============================================================
@@ -471,7 +468,6 @@
       -->
       <section class="section_wrap" id="projects">
         <div class="inner">
-
           <!-- Header row: title on left, filter buttons on right -->
           <div class="section_header_row">
             <div>
@@ -489,16 +485,16 @@
             <div class="filter_bar">
               <button class="filter_btn active" data-filter="all">All</button>
               <button class="filter_btn" data-filter="web">Web</button>
-              <button class="filter_btn" data-filter="automation">Automation</button>
+              <button class="filter_btn" data-filter="automation">
+                Automation
+              </button>
               <button class="filter_btn" data-filter="foss">FOSS</button>
             </div>
-          </div><!-- end .section_header_row -->
-
+          </div>
+          <!-- end .section_header_row -->
 
           <!-- Projects grid: holds all project cards -->
           <div class="projects_grid" id="projects_grid">
-
-
             <!--
               PROJECT CARD 1 (category: web)
               data-category="web": This card appears when filter is "All" or "Web".
@@ -518,8 +514,10 @@
               <!-- Card content body -->
               <div class="card_body">
                 <h3 class="card_title">Netflix Clone</h3>
-                <p class="card_desc">A Netflix-style website created to practice front-end development.
-                  It includes a landing page, login page, and a browse page with a featured banner and movie sections.
+                <p class="card_desc">
+                  A Netflix-style website created to practice front-end
+                  development. It includes a landing page, login page, and a
+                  browse page with a featured banner and movie sections.
                 </p>
                 <!-- Technology tags -->
                 <div class="card_tags">
@@ -528,10 +526,11 @@
                   <span class="tag">JS</span>
                 </div>
                 <!-- Opens modal_1 via script.js -->
-                <button class="btn_view" data-modal="modal_1">View Project →</button>
+                <button class="btn_view" data-modal="modal_1">
+                  View Project →
+                </button>
               </div>
             </article>
-
 
             <!--
               PROJECT CARD 2 (category: web)
@@ -547,19 +546,22 @@
               </div>
               <div class="card_body">
                 <h3 class="card_title">Invoice Automation PDF</h3>
-                <p class="card_desc">A UiPath automation that reads PDF invoices, extracts key details using OCR and
-                  validation, and generates vendor-wise monthly reports in Excel.
-                  It also handles errors and automatically organizes processed files.
+                <p class="card_desc">
+                  A UiPath automation that reads PDF invoices, extracts key
+                  details using OCR and validation, and generates vendor-wise
+                  monthly reports in Excel. It also handles errors and
+                  automatically organizes processed files.
                 </p>
                 <div class="card_tags">
                   <span class="tag">UIPath Studio</span>
                   <span class="tag">Excel</span>
                   <span class="tag">Regex</span>
                 </div>
-                <button class="btn_view" data-modal="modal_2">View Project →</button>
+                <button class="btn_view" data-modal="modal_2">
+                  View Project →
+                </button>
               </div>
             </article>
-
 
             <!--
               PROJECT CARD 3 (category: mobile)
@@ -575,18 +577,23 @@
               </div>
               <div class="card_body">
                 <h3 class="card_title">Diet Planner</h3>
-                <p class="card_desc">The Smart Diet Planner Bot is a UiPath automation project that calculates BMI and
-                  generates personalized diet recommendations. It features a dual-mode system that provides instant
-                  logic-based suggestions or fetches real-time meal plans through web scraping.</p>
+                <p class="card_desc">
+                  The Smart Diet Planner Bot is a UiPath automation project
+                  that calculates BMI and generates personalized diet
+                  recommendations. It features a dual-mode system that
+                  provides instant logic-based suggestions or fetches
+                  real-time meal plans through web scraping.
+                </p>
                 <div class="card_tags">
                   <span class="tag">UIPath Studio</span>
                   <span class="tag">Web Scraping</span>
                   <span class="tag">Logics</span>
                 </div>
-                <button class="btn_view" data-modal="modal_3">View Project →</button>
+                <button class="btn_view" data-modal="modal_3">
+                  View Project →
+                </button>
               </div>
             </article>
-
 
             <!--
               PROJECT CARD 4 (category: design)
@@ -611,13 +618,12 @@
                 <button class="btn_view" data-modal="modal_4">View Project →</button>
               </div>
             </article> -->
-
-
-
-          </div><!-- end .projects_grid -->
-        </div><!-- end .inner -->
-      </section><!-- end #projects -->
-
+          </div>
+          <!-- end .projects_grid -->
+        </div>
+        <!-- end .inner -->
+      </section>
+      <!-- end #projects -->
 
       <!--
         ============================================================
@@ -662,7 +668,8 @@
           <button class="modal_close" aria-label="Close modal">✕</button>
           <!-- Decorative title bar matching the card design -->
           <div class="win_bar">
-            <div class="win_dots"><span></span><span></span></div><span class="win_filename">netflix_clone.html</span>
+            <div class="win_dots"><span></span><span></span></div>
+            <span class="win_filename">netflix_clone.html</span>
           </div>
           <!-- Large image placeholder — replace with actual <img> tag -->
           <div class="modal_image">
@@ -672,22 +679,23 @@
           <div class="modal_body">
             <h3 id="modal_1_title">Netflix Clone</h3>
             <p>
-              Built a front-end recreation of the Netflix user interface.<br>
-              Developed landing, login, and browse pages with a hero banner and scrollable movie rows.<br>
-              Structured layout using HTML and styled with CSS (Flexbox).<br>
-              Implemented responsive design using media queries.<br>
-              Added basic JS for simple interactivity.<br>
-              Focused on clean UI structuring and component-design.<br>
+              Built a front-end recreation of the Netflix user interface.<br />
+              Developed landing, login, and browse pages with a hero banner
+              and scrollable movie rows.<br />
+              Structured layout using HTML and styled with CSS (Flexbox).<br />
+              Implemented responsive design using media queries.<br />
+              Added basic JS for simple interactivity.<br />
+              Focused on clean UI structuring and component-design.<br />
             </p>
             <!-- Tech stack tags -->
-            <div class="modal_tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            <div class="modal_tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
             </div>
             <!-- Action buttons -->
             <div class="modal_links">
               <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
               <a href="https://github.com/Its-Nishant-10/netflix_clone" class="btn btn_secondary" target="_blank"
-                rel="noopener"><i class="fa-brands fa-github"></i>
-                GitHub</a>
+                rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
           </div>
         </div>
@@ -698,26 +706,32 @@
         <div class="modal_panel">
           <button class="modal_close" aria-label="Close modal">✕</button>
           <div class="win_bar">
-            <div class="win_dots"><span></span><span></span></div><span class="win_filename">invoice_pdf.xaml</span>
+            <div class="win_dots"><span></span><span></span></div>
+            <span class="win_filename">invoice_pdf.xaml</span>
           </div>
           <div class="modal_image">
             <img src="contents/pdf_3.jpg" alt="Invoice Automation PDF detailed screenshot" />
           </div>
           <div class="modal_body">
             <h3 id="modal_2_title">Invoice Automation PDF</h3>
-            <p>Built an automation workflow to process PDF invoices and generate reports.<br>
-              Extracted invoice details (Number, Date, Vendor, Amount) using OCR and Regex.<br>
-              Implemented validation logic to ensure data accuracy.<br>
-              Stored valid records in Excel and calculated vendor-wise monthly bills.<br>
-              Handled exceptions using Try-Catch and automated archiving.<br>
-              Focused on workflow structuring and scalable automation design.</p>
-            <div class="modal_tags"><span class="tag">Excel</span><span class="tag">UIPath Studio</span><span
-                class="tag">Regex</span></div>
+            <p>
+              Built an automation workflow to process PDF invoices and
+              generate reports.<br />
+              Extracted invoice details (Number, Date, Vendor, Amount) using
+              OCR and Regex.<br />
+              Implemented validation logic to ensure data accuracy.<br />
+              Stored valid records in Excel and calculated vendor-wise monthly
+              bills.<br />
+              Handled exceptions using Try-Catch and automated archiving.<br />
+              Focused on workflow structuring and scalable automation design.
+            </p>
+            <div class="modal_tags">
+              <span class="tag">Excel</span><span class="tag">UIPath Studio</span><span class="tag">Regex</span>
+            </div>
             <div class="modal_links">
               <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
               <a href="https://github.com/Its-Nishant-10/invoice_automation_pdf" class="btn btn_secondary"
-                target="_blank" rel="noopener"><i class="fa-brands fa-github"></i>
-                GitHub</a>
+                target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
           </div>
         </div>
@@ -728,25 +742,33 @@
         <div class="modal_panel">
           <button class="modal_close" aria-label="Close modal">✕</button>
           <div class="win_bar">
-            <div class="win_dots"><span></span><span></span></div><span class="win_filename">diet_planner.xaml</span>
+            <div class="win_dots"><span></span><span></span></div>
+            <span class="win_filename">diet_planner.xaml</span>
           </div>
           <div class="modal_image">
             <img src="contents/diet_1.jpg" alt="Diet Planner detailed screenshot" />
           </div>
           <div class="modal_body">
             <h3 id="modal_3_title">Diet Planner</h3>
-            <p>Developed a dual-mode RPA workflow in UiPath combining automation and live web scraping.<br>
-              Implemented dynamic BMI calculation and conditional branching.<br>
-              Built an Automated Mode for instant calorie and meal suggestions based on BMI.<br>
-              Integrated browser automation to fetch real-time diet plans from <strong>Eat This Much</strong>.<br>
-              Applied selector handling, decision logic and scalability.<br>
-              Focused on multi-path automation.</p>
-            <div class="modal_tags"><span class="tag">Web Scrap</span><span class="tag">UIPath Studio</span></div>
+            <p>
+              Developed a dual-mode RPA workflow in UiPath combining
+              automation and live web scraping.<br />
+              Implemented dynamic BMI calculation and conditional
+              branching.<br />
+              Built an Automated Mode for instant calorie and meal suggestions
+              based on BMI.<br />
+              Integrated browser automation to fetch real-time diet plans from
+              <strong>Eat This Much</strong>.<br />
+              Applied selector handling, decision logic and scalability.<br />
+              Focused on multi-path automation.
+            </p>
+            <div class="modal_tags">
+              <span class="tag">Web Scrap</span><span class="tag">UIPath Studio</span>
+            </div>
             <div class="modal_links">
               <!-- <a href="#" class="btn btn_primary" target="_blank" rel="noopener">Live Demo ↗</a> -->
               <a href="https://github.com/Its-Nishant-10/diet_planner" class="btn btn_secondary" target="_blank"
-                rel="noopener"><i class="fa-brands fa-github"></i>
-                GitHub</a>
+                rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
           </div>
         </div>
@@ -774,7 +796,6 @@
           </div>
         </div>
       </div> -->
-
 
       <!--
         ============================================================
@@ -816,7 +837,6 @@
       <section class="section_wrap alt" id="about">
         <div class="inner">
           <div class="about_grid">
-
             <!-- LEFT: Photo + location -->
             <div class="about_photo_col">
               <div class="photo_window">
@@ -833,8 +853,8 @@
               <!-- Location tags below the photo -->
               <div class="location_badge">📍Silchar, Assam</div>
               <div class="location_badge">📍India</div>
-            </div><!-- end .about_photo_col -->
-
+            </div>
+            <!-- end .about_photo_col -->
 
             <!-- RIGHT: Bio text + fun facts -->
             <div class="about_text_col">
@@ -843,16 +863,19 @@
 
               <!-- First bio paragraph -->
               <p class="about_para">
-                Hi there! I'm <strong>Nishant Nahar</strong>, someone who enjoys solving problems and thinking with
-                logic. I love building bold, visually striking digital experiences that look great and work smoothly
-                behind the scenes.
+                Hi there! I'm <strong>Nishant Nahar</strong>, someone who
+                enjoys solving problems and thinking with logic. I love
+                building bold, visually striking digital experiences that look
+                great and work smoothly behind the scenes.
               </p>
 
               <!-- Second bio paragraph -->
               <p class="about_para">
-                When I'm not coding, you'll usually find me playing squash or badminton, or going for a quiet walk to
-                clear my head. I'm a learner at heart, always working to improve myself. Turning simple / messy ideas
-                into something fun is what keeps me excited.
+                When I'm not coding, you'll usually find me playing squash or
+                badminton, or going for a quiet walk to clear my head. I'm a
+                learner at heart, always working to improve myself. Turning
+                simple / messy ideas into something fun is what keeps me
+                excited.
               </p>
 
               <!--
@@ -861,17 +884,27 @@
                 Values vary per note to look natural and hand-placed.
               -->
               <div class="fun_facts">
-                <div class="sticky_note" style="--rot: -2.5deg">☕ Coffee powered person</div>
-                <div class="sticky_note" style="--rot: -3.8deg">🎨 Tinkering nerd at heart</div>
-                <div class="sticky_note" style="--rot: -4.2deg">🌍 Open to work remotely</div>
-                <div class="sticky_note" style="--rot: -2deg">💻 Open to learning new things</div>
+                <div class="sticky_note" style="--rot: -2.5deg">
+                  ☕ Coffee powered person
+                </div>
+                <div class="sticky_note" style="--rot: -3.8deg">
+                  🎨 Tinkering nerd at heart
+                </div>
+                <div class="sticky_note" style="--rot: -4.2deg">
+                  🌍 Open to work remotely
+                </div>
+                <div class="sticky_note" style="--rot: -2deg">
+                  💻 Open to learning new things
+                </div>
               </div>
-
-            </div><!-- end .about_text_col -->
-          </div><!-- end .about_grid -->
-        </div><!-- end .inner -->
-      </section><!-- end #about -->
-
+            </div>
+            <!-- end .about_text_col -->
+          </div>
+          <!-- end .about_grid -->
+        </div>
+        <!-- end .inner -->
+      </section>
+      <!-- end #about -->
 
       <!--
         ============================================================
@@ -914,7 +947,6 @@
       <section class="section_wrap dark" id="skills">
         <div class="inner">
           <div class="skills_grid">
-
             <!-- LEFT: Skill progress bars -->
             <div class="skills_left">
               <span class="section_eyebrow light">What I know</span>
@@ -922,7 +954,6 @@
 
               <!-- Skill bars container (observed by IntersectionObserver in script.js) -->
               <div class="skill_bars" id="skill_bars">
-
                 <!-- Skill: HTML / CSS / JS — 90% -->
                 <div class="skill_item">
                   <div class="skill_header">
@@ -989,15 +1020,17 @@
                     <div class="skill_bar" data-width="30"></div>
                   </div>
                 </div>
-
-              </div><!-- end .skill_bars -->
-            </div><!-- end .skills_left -->
-
+              </div>
+              <!-- end .skill_bars -->
+            </div>
+            <!-- end .skills_left -->
 
             <!-- RIGHT: Tools grid -->
             <div class="skills_right">
               <span class="section_eyebrow light">My tool stack</span>
-              <h2 class="section_title light" style="margin-bottom: 2rem">Tools</h2>
+              <h2 class="section_title light" style="margin-bottom: 2rem">
+                Tools
+              </h2>
 
               <!--
                 Tool tags: each .tool_tag is a small badge for one tool/language.
@@ -1019,12 +1052,14 @@
                 <span class="tool_tag">Arduino</span>
                 <span class="tool_tag">Canva</span>
               </div>
-            </div><!-- end .skills_right -->
-
-          </div><!-- end .skills_grid -->
-        </div><!-- end .inner -->
-      </section><!-- end #skills -->
-
+            </div>
+            <!-- end .skills_right -->
+          </div>
+          <!-- end .skills_grid -->
+        </div>
+        <!-- end .inner -->
+      </section>
+      <!-- end #skills -->
 
       <!--
         ============================================================
@@ -1074,15 +1109,14 @@
       <section class="section_wrap" id="contact">
         <div class="inner">
           <div class="contact_grid">
-
             <!-- LEFT: Info + socials -->
             <div class="contact_left">
               <span class="section_eyebrow">Get in touch</span>
               <h2 class="section_title">Let's Work<br />Together.</h2>
               <p class="contact_intro">
-                Got something on your mind?
-                A project, collaboration, suggestion, or just a quick hello.
-                I’m just one message away. Looking forward to connecting with you!
+                Got something on your mind? A project, collaboration,
+                suggestion, or just a quick hello. I’m just one message away.
+                Looking forward to connecting with you!
               </p>
 
               <!-- Contact details: email and location -->
@@ -1114,19 +1148,17 @@
                   aria-label="Instagram" target="_blank" rel="noopener">
                   <i class="fa-brands fa-instagram"></i></a>
               </div>
-            </div><!-- end .contact_left -->
-
+            </div>
+            <!-- end .contact_left -->
 
             <!-- RIGHT: Contact form -->
             <div class="contact_right">
-
               <!--
                 The contact form.
                 novalidate: turns off browser-native validation bubbles.
                 script.js takes over ALL validation and submission.
               -->
               <form class="contact_form" id="contact_form" novalidate>
-
                 <!-- Name field -->
                 <div class="form_group">
                   <label for="name">Name</label>
@@ -1168,16 +1200,17 @@
                 <button type="submit" class="btn btn_primary btn_full" id="submit_btn">
                   Send Message →
                 </button>
-
               </form>
-            </div><!-- end .contact_right -->
-
-          </div><!-- end .contact_grid -->
-        </div><!-- end .inner -->
-      </section><!-- end #contact -->
-
-    </main><!-- end <main> -->
-
+            </div>
+            <!-- end .contact_right -->
+          </div>
+          <!-- end .contact_grid -->
+        </div>
+        <!-- end .inner -->
+      </section>
+      <!-- end #contact -->
+    </main>
+    <!-- end <main> -->
 
     <!--
       ============================================================
@@ -1196,14 +1229,12 @@
       <span class="footer_copy">© 2025 Nishant Nahar. All rights reserved.<span class="footer_cursor">_</span></span>
       <nav class="footer_nav">
         <a href="#projects">Projects</a><span>·</span>
-        <a href="#about">About</a><span>·</span>
-        <a href="#skills">Skills</a><span>·</span>
+        <a href="#about">About</a><span>·</span> <a href="#skills">Skills</a><span>·</span>
         <a href="#contact">Contact</a>
       </nav>
     </footer>
-
-  </div><!-- end .page_frame -->
-
+  </div>
+  <!-- end .page_frame -->
 
   <!--
     ============================================================

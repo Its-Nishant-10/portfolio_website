@@ -52,7 +52,6 @@ const typewriter_phrases = [
   "Creating Something out of Mess is my Thing 🤓.",
 ];
 
-
 /* ============================================================
    DOMContentLoaded — MASTER EVENT LISTENER
    ============================================================
@@ -66,7 +65,6 @@ const typewriter_phrases = [
    which also works — but DOMContentLoaded adds safety regardless.)
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
-
   /*
   ============================================================
   [1] TYPEWRITER ANIMATION
@@ -100,15 +98,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. TYPEWRITER ANIMATION
   const typewriter_text = document.getElementById("typewriter_text");
   if (typewriter_text) {
-    let phrase_index = 0;   /* Index of the current phrase in typewriter_phrases array */
-    let char_index = 0;     /* How many characters of the phrase are currently shown */
+    let phrase_index = 0; /* Index of the current phrase in typewriter_phrases array */
+    let char_index = 0; /* How many characters of the phrase are currently shown */
     let is_deleting = false; /* true = currently erasing; false = currently typing */
 
     /* Timing constants (milliseconds) */
-    const type_speed = 70;   /* Delay between each character typed */
-    const delete_speed = 50;   /* Delay between each character erased */
-    const pause_end = 180;  /* Pause after phrase is FULLY typed */
-    const pause_start = 300;  /* Pause after phrase is FULLY erased */
+    const type_speed = 70; /* Delay between each character typed */
+    const delete_speed = 50; /* Delay between each character erased */
+    const pause_end = 180; /* Pause after phrase is FULLY typed */
+    const pause_start = 300; /* Pause after phrase is FULLY erased */
 
     /*
       tick_typewriter — The core recursive function.
@@ -133,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       /* Check if we just finished TYPING the full phrase */
       if (!is_deleting && char_index === current_phrase.length) {
-        current_delay = pause_end;   /* Pause before starting to erase */
+        current_delay = pause_end; /* Pause before starting to erase */
         is_deleting = true;
         /* Check if we just finished ERASING the phrase completely */
       } else if (is_deleting && char_index === 0) {
@@ -150,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Start the typewriter loop after a brief initial delay */
     setTimeout(tick_typewriter, pause_start);
   }
-
 
   /*
   ============================================================
@@ -186,25 +183,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const page_sections = document.querySelectorAll("main section[id]");
   const navigation_links = document.querySelectorAll(".nav_link");
 
-  const scroll_observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        /* Section is in view — highlight the matching nav link */
-        navigation_links.forEach((link) => {
-          const target_id = "#" + entry.target.id;
-          if (link.getAttribute("href") === target_id) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
-      }
-    });
-  }, { rootMargin: "-40% 0px -55% 0px" });
+  const scroll_observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          /* Section is in view — highlight the matching nav link */
+          navigation_links.forEach((link) => {
+            const target_id = "#" + entry.target.id;
+            if (link.getAttribute("href") === target_id) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" },
+  );
 
   /* Start observing every section */
   page_sections.forEach((section) => scroll_observer.observe(section));
-
 
   /*
   ============================================================
@@ -257,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   /*
   ============================================================
   [4] PROJECT CARD FILTERING
@@ -307,8 +305,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let visible_count = 0;
 
       project_cards.forEach((card) => {
-        const matches_filter = selected_filter === "all" || card.dataset.category === selected_filter;
-        const should_show = matches_filter && visible_count < visible_project_limit;
+        const matches_filter =
+          selected_filter === "all" ||
+          card.dataset.category === selected_filter;
+        const should_show =
+          matches_filter && visible_count < visible_project_limit;
 
         if (should_show) {
           visible_count++;
@@ -334,10 +335,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* Apply current active filter on initial load so limit is active immediately */
-    const initial_active_filter = document.querySelector(".filter_btn.active")?.dataset.filter || "all";
+    const initial_active_filter =
+      document.querySelector(".filter_btn.active")?.dataset.filter || "all";
     apply_project_filter(initial_active_filter);
   }
-
 
   /*
   ============================================================
@@ -386,13 +387,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Open the correct modal when "View Project →" is clicked */
   view_buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const target_modal_id = btn.dataset.modal;                        /* e.g. "modal_1" */
-      const target_modal = document.getElementById(target_modal_id); /* finds #modal_1 */
+      const target_modal_id = btn.dataset.modal; /* e.g. "modal_1" */
+      const target_modal =
+        document.getElementById(target_modal_id); /* finds #modal_1 */
       if (target_modal) {
         target_modal.classList.add("open");
-        document.body.style.overflow = "hidden"; /* Prevent background scroll while modal is open */
+        document.body.style.overflow =
+          "hidden"; /* Prevent background scroll while modal is open */
         const close_btn = target_modal.querySelector(".modal_close");
-        if (close_btn) close_btn.focus(); /* Move keyboard focus to close button for accessibility */
+        if (close_btn)
+          close_btn.focus(); /* Move keyboard focus to close button for accessibility */
       }
     });
   });
@@ -416,7 +420,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") close_all_modals();
   });
-
 
   /*
   ============================================================
@@ -452,28 +455,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (skill_bars.length > 0) {
     let has_animated = false; /* Guard: prevents re-triggering on scroll */
 
-    const skills_observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !has_animated) {
-          has_animated = true;
-          skill_bars.forEach((bar) => {
-            requestAnimationFrame(() => {
-              /* Read the target width from the HTML data-width attribute */
-              const target_width = bar.dataset.width || "0";
-              bar.style.width = target_width + "%";
-              /* CSS transition: width 1.2s handles the smooth animation */
+    const skills_observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !has_animated) {
+            has_animated = true;
+            skill_bars.forEach((bar) => {
+              requestAnimationFrame(() => {
+                /* Read the target width from the HTML data-width attribute */
+                const target_width = bar.dataset.width || "0";
+                bar.style.width = target_width + "%";
+                /* CSS transition: width 1.2s handles the smooth animation */
+              });
             });
-          });
-        }
-      });
-    }, { threshold: 0.3 }); /* Fires when 30% of #skills is in view */
+          }
+        });
+      },
+      { threshold: 0.3 },
+    ); /* Fires when 30% of #skills is in view */
 
     const skills_section = document.getElementById("skills");
     if (skills_section) {
       skills_observer.observe(skills_section);
     }
   }
-
 
   /*
   ============================================================
@@ -506,31 +511,35 @@ document.addEventListener("DOMContentLoaded", () => {
   */
   // 7. FADE-IN ANIMATION ON SCROLL
   const fade_in_targets = document.querySelectorAll(
-    '.about_grid, .skills_grid, .contact_grid, ' +
-    '.section_title, .section_eyebrow, .quicklinks_label, .quicklinks_bar, ' +
-    '.section_header_row'
+    ".about_grid, .skills_grid, .contact_grid, " +
+    ".section_title, .section_eyebrow, .quicklinks_label, .quicklinks_bar, " +
+    ".section_header_row",
   );
 
   /* Give every target element the "fade_in" starting state */
-  fade_in_targets.forEach((el) => el.classList.add('fade_in'));
+  fade_in_targets.forEach((el) => el.classList.add("fade_in"));
 
   const fade_in_observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is_visible'); /* Trigger the CSS animation */
-          fade_in_observer.unobserve(entry.target); /* Stop watching once animated */
+          entry.target.classList.add(
+            "is_visible",
+          ); /* Trigger the CSS animation */
+          fade_in_observer.unobserve(
+            entry.target,
+          ); /* Stop watching once animated */
         }
       });
     },
     {
-      threshold: 0.12,            /* Element must be 12% visible to trigger */
-      rootMargin: '0px 0px -40px 0px' /* Offset: trigger 40px before the bottom of viewport */
-    }
+      threshold: 0.12 /* Element must be 12% visible to trigger */,
+      rootMargin:
+        "0px 0px -40px 0px" /* Offset: trigger 40px before the bottom of viewport */,
+    },
   );
 
   fade_in_targets.forEach((el) => fade_in_observer.observe(el));
-
 
   /*
   ============================================================
@@ -583,7 +592,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const submit_button = document.getElementById("submit_btn");
 
   if (contact_form) {
-
     /*
       show_toast — Displays a brief notification at the bottom of the screen.
       message:     The text to show inside the toast.
@@ -614,7 +622,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!current_val) {
         error_message = "This field is required.";
-      } else if (input_el.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(current_val)) {
+      } else if (
+        input_el.type === "email" &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(current_val)
+      ) {
         error_message = "Please enter a valid email address.";
       }
 
@@ -648,7 +659,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const form_inputs = contact_form.querySelectorAll("input, textarea");
     form_inputs.forEach(clear_error_on_input);
 
-
     /*
       Form submit handler — runs when the user clicks "Send Message →".
       async so we can await the fetch() Formspree POST request.
@@ -663,10 +673,22 @@ document.addEventListener("DOMContentLoaded", () => {
           error: the corresponding <span class="field_error"> element
       */
       const form_fields = [
-        { input: contact_form.querySelector("#name"), error: contact_form.querySelector("#name_error") },
-        { input: contact_form.querySelector("#email"), error: contact_form.querySelector("#email_error") },
-        { input: contact_form.querySelector("#subject"), error: contact_form.querySelector("#subject_error") },
-        { input: contact_form.querySelector("#message"), error: contact_form.querySelector("#message_error") }
+        {
+          input: contact_form.querySelector("#name"),
+          error: contact_form.querySelector("#name_error"),
+        },
+        {
+          input: contact_form.querySelector("#email"),
+          error: contact_form.querySelector("#email_error"),
+        },
+        {
+          input: contact_form.querySelector("#subject"),
+          error: contact_form.querySelector("#subject_error"),
+        },
+        {
+          input: contact_form.querySelector("#message"),
+          error: contact_form.querySelector("#message_error"),
+        },
       ];
 
       /* Validate all fields; is_form_valid becomes false if ANY field fails */
@@ -731,9 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submit_button.textContent = "Send Message →";
       }
     });
-
   } /* end if (contact_form) */
-
 
   /*
   ============================================================
@@ -769,9 +789,9 @@ document.addEventListener("DOMContentLoaded", () => {
         /* Custom easing function (easeInOutCubic) for a premium feel */
         const ease = (t, b, c, d) => {
           t /= d / 2;
-          if (t < 1) return c / 2 * t * t * t + b;
+          if (t < 1) return (c / 2) * t * t * t + b;
           t -= 2;
-          return c / 2 * (t * t * t + 2) + b;
+          return (c / 2) * (t * t * t + 2) + b;
         };
 
         const animation_step = (current_time) => {
@@ -791,5 +811,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
 }); /* end DOMContentLoaded */

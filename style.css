@@ -30,7 +30,6 @@ NAMING CONVENTION:
 ===========================================================================
 */
 
-
 /* 
 ==========================================================================
 [1] GLOBAL CSS VARIABLES (DESIGN TOKENS)
@@ -92,7 +91,8 @@ SPACING & SIZING:
   --shadow-lg: 7px 7px 0 var(--black);
   --shadow-sm: 2px 2px 0 var(--black);
   --shadow-depth: 0 8px 24px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.15);
-  --shadow-depth-lg: 0 14px 36px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-depth-lg:
+    0 14px 36px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
   --nav-h: 58px;
   --radius: 0px;
   --transition: 0.2s ease;
@@ -258,7 +258,9 @@ Reusable classes applied across multiple sections.
 .fade_in {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
 }
 
 /* .fade_in.is_visible — The "appeared" state. script.js adds this class. */
@@ -283,8 +285,11 @@ Reusable classes applied across multiple sections.
   padding: 0.65rem 1.5rem;
   border: var(--border-thin);
   border-radius: var(--radius);
-  transition: background var(--transition), color var(--transition),
-    transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
@@ -440,8 +445,6 @@ SELECTORS IN THIS SECTION:
   letter-spacing: -0.02em;
   text-decoration: none;
 }
-
-
 
 /* .nav_icon — Font Awesome icon shown before each nav link text */
 .nav_icon {
@@ -820,7 +823,9 @@ SELECTORS:
   font-size: 0.8rem;
   color: #aaaaaa;
   border-right: 1px solid #333;
-  transition: background var(--transition), color var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition);
   letter-spacing: 0.06em;
   white-space: nowrap;
 }
@@ -918,7 +923,9 @@ SELECTORS:
   border: var(--border);
   background: var(--white);
   box-shadow: var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
   display: flex;
   flex-direction: column;
   opacity: 0;
@@ -1034,8 +1041,11 @@ SELECTORS:
   border: var(--border-thin);
   background: var(--white);
   color: var(--black);
-  transition: background var(--transition), color var(--transition),
-    box-shadow 0.15s ease, transform 0.15s ease;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
 .btn_view:hover {
@@ -1059,7 +1069,9 @@ SELECTORS:
   background: transparent;
   color: var(--black);
   letter-spacing: 0.04em;
-  transition: background var(--transition), color var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition);
   text-transform: uppercase;
 }
 
@@ -1144,7 +1156,9 @@ SELECTORS:
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition), color var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition);
   z-index: 10;
 }
 
@@ -1327,12 +1341,16 @@ SELECTORS:
   transform: rotate(var(--rot, 0deg));
   max-width: 170px;
   line-height: 1.4;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
 .sticky_note:hover {
   transform: rotate(0deg) scale(1.05);
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    5px 5px 0 rgba(0, 0, 0, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* 
@@ -1394,7 +1412,9 @@ tags. The bars' widths are set horizontally utilizing data-width via JS.
   height: 100%;
   width: 0;
   background: var(--accent);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 4px rgba(255, 215, 0, 0.8);
+  box-shadow:
+    0 0 10px rgba(255, 215, 0, 0.6),
+    0 0 4px rgba(255, 215, 0, 0.8);
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1411,7 +1431,12 @@ tags. The bars' widths are set horizontally utilizing data-width via JS.
   border: 1px solid #444;
   color: var(--gray-mid);
   letter-spacing: 0.03em;
-  transition: border-color var(--transition), color var(--transition), background var(--transition), box-shadow var(--transition), transform var(--transition);
+  transition:
+    border-color var(--transition),
+    color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
 }
 
 .tool_tag:hover {
@@ -1502,8 +1527,11 @@ SELECTORS:
   justify-content: center;
   font-size: 0.95rem;
   color: var(--black);
-  transition: background var(--transition), color var(--transition),
-    box-shadow 0.15s ease, transform 0.15s ease;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
 .social_icon:hover {
@@ -1542,7 +1570,9 @@ SELECTORS:
   background: var(--white);
   color: var(--black);
   outline: none;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
   resize: vertical;
 }
 
@@ -1651,7 +1681,10 @@ when the contact form is submitted (success or error).
   border: var(--border-thin);
   box-shadow: var(--shadow);
   z-index: 500;
-  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0.3s;
   white-space: nowrap;
   max-width: 90vw;
 }
