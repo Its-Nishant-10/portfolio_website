@@ -34,7 +34,7 @@ No package manager or build steps required. Simply open `index.html` in your bro
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Vercel
 
 1. Connect your GitHub repository to Vercel
 2. Deploy automatically — Vercel will serve the static HTML immediately.
@@ -83,14 +83,11 @@ portfolio/
 3. Make your changes
 4. Submit a pull request
 
-## 📄 License
-
-This project is open source and available under the MIT License.
 
 ## 📞 Contact
 
-- **Email**: \[Your Email Address\]
-- **LinkedIn**: \[Your LinkedIn URL\]
+- **Email**: nishantnahar2006@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/nishantnahar2006
 - **GitHub**: Its-Nishant-10
 
 ---
