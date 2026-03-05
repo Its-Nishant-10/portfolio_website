@@ -8,6 +8,42 @@ const typewriter_phrases = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
+  const footer_year_el = document.getElementById("footer_year");
+  if (footer_year_el) {
+    footer_year_el.textContent = new Date().getFullYear();
+  }
+
+  const progress_bar = document.getElementById("scroll_progress");
+  const back_to_top_btn = document.getElementById("back_to_top");
+
+  const on_scroll = () => {
+    const scroll_top = window.scrollY;
+    const doc_height =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    if (progress_bar) {
+      const pct = doc_height > 0 ? (scroll_top / doc_height) * 100 : 0;
+      progress_bar.style.width = pct + "%";
+    }
+
+    if (back_to_top_btn) {
+      if (scroll_top > 320) {
+        back_to_top_btn.classList.add("visible");
+      } else {
+        back_to_top_btn.classList.remove("visible");
+      }
+    }
+  };
+
+  window.addEventListener("scroll", on_scroll, { passive: true });
+  on_scroll();
+
+  if (back_to_top_btn) {
+    back_to_top_btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   const typewriter_text = document.getElementById("typewriter_text");
   if (typewriter_text) {
     let phrase_index = 0;
@@ -134,42 +170,57 @@ document.addEventListener("DOMContentLoaded", () => {
     apply_project_filter(initial_active_filter);
   }
 
-  const modal_overlays = document.querySelectorAll(".modal_overlay");
-  const view_buttons = document.querySelectorAll(".btn_view");
-  const close_buttons = document.querySelectorAll(".modal_close");
+  document.querySelectorAll(".card_image[data-images]").forEach((wrap) => {
+    const images = wrap.dataset.images.split("|").filter(Boolean);
+    if (images.length < 2) {
+      const ctrl = wrap.querySelector(".carousel_ctrl");
+      if (ctrl) ctrl.remove();
+      return;
+    }
 
-  const close_all_modals = () => {
-    modal_overlays.forEach((modal) => modal.classList.remove("open"));
-    document.body.style.overflow = "";
-  };
+    const img = wrap.querySelector(".card_img");
+    const dots = Array.from(wrap.querySelectorAll(".cdot"));
+    const prev_btn = wrap.querySelector(".c_prev");
+    const next_btn = wrap.querySelector(".c_next");
+    let current = 0;
+    let auto_timer = null;
 
-  view_buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target_modal_id = btn.dataset.modal;
-      const target_modal = document.getElementById(target_modal_id);
-      if (target_modal) {
-        target_modal.classList.add("open");
-        document.body.style.overflow = "hidden";
-        const close_btn = target_modal.querySelector(".modal_close");
-        if (close_btn) close_btn.focus();
-      }
+    const show = (index) => {
+      img.style.opacity = "0";
+      setTimeout(() => {
+        img.src = images[index];
+        img.style.opacity = "1";
+      }, 180);
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+      current = index;
+    };
+
+    const advance = () => show((current + 1) % images.length);
+
+    prev_btn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show((current - 1 + images.length) % images.length);
     });
-  });
 
-  modal_overlays.forEach((overlay) => {
-    overlay.addEventListener("click", (event) => {
-      if (event.target === overlay) {
-        close_all_modals();
-      }
+    next_btn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      advance();
     });
-  });
 
-  close_buttons.forEach((btn) => {
-    btn.addEventListener("click", close_all_modals);
-  });
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", (e) => {
+        e.stopPropagation();
+        show(i);
+      });
+    });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") close_all_modals();
+    const card = wrap.closest(".project_card");
+    card?.addEventListener("mouseenter", () => {
+      auto_timer = setInterval(advance, 2200);
+    });
+    card?.addEventListener("mouseleave", () => {
+      clearInterval(auto_timer);
+    });
   });
 
   const skill_bars = document.querySelectorAll(".skill_bar");
@@ -381,4 +432,44 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+  // --- LeetCode Auto-Updater ---
+  const fetchLeetCodeStats = async () => {
+    try {
+      const response = await fetch("https://leetcode-api-faisalshohag.vercel.app/its_nishant_10");
+      if (!response.ok) throw new Error("API not ok");
+      const data = await response.json();
+
+      const totalSolved = data.totalSolved;
+      const easySolved = data.easySolved;
+      const mediumSolved = data.mediumSolved;
+      const hardSolved = data.hardSolved;
+
+      const easyPct = totalSolved > 0 ? (easySolved / totalSolved) * 100 : 0;
+      const mediumPct = totalSolved > 0 ? (mediumSolved / totalSolved) * 100 : 0;
+      const hardPct = totalSolved > 0 ? (hardSolved / totalSolved) * 100 : 0;
+
+      const lcTotal = document.getElementById("lc_total");
+      if (lcTotal) lcTotal.innerHTML = `${totalSolved}<span style="font-size: 0.5em; opacity: 0.7; font-weight: 500;"> / ${data.totalQuestions}</span>`;
+
+      const lcEasyCount = document.getElementById("lc_easy_count");
+      if (lcEasyCount) lcEasyCount.textContent = `${easySolved} / ${data.totalEasy}`;
+      const lcEasyBar = document.getElementById("lc_easy_bar");
+      if (lcEasyBar) lcEasyBar.style.width = `${easyPct}%`;
+
+      const lcMediumCount = document.getElementById("lc_medium_count");
+      if (lcMediumCount) lcMediumCount.textContent = `${mediumSolved} / ${data.totalMedium}`;
+      const lcMediumBar = document.getElementById("lc_medium_bar");
+      if (lcMediumBar) lcMediumBar.style.width = `${mediumPct}%`;
+
+      const lcHardCount = document.getElementById("lc_hard_count");
+      if (lcHardCount) lcHardCount.textContent = `${hardSolved} / ${data.totalHard}`;
+      const lcHardBar = document.getElementById("lc_hard_bar");
+      if (lcHardBar) lcHardBar.style.width = `${hardPct}%`;
+
+    } catch (err) {
+      console.error("Failed to fetch LeetCode stats:", err);
+    }
+  };
+
+  fetchLeetCodeStats();
 });
